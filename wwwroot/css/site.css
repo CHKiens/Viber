@@ -1,0 +1,224 @@
+html {
+    font-size: 14px;
+}
+
+main {
+    
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+    background: linear-gradient(#c78383, #260f05), radial-gradient(circle, transparent, #9d49cc), radial-gradient(1000px at left top, #44356e, #bc86bd);
+    background-blend-mode: darken;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+body {
+    background-color: transparent;
+}
+
+.custom-button {
+    display:flex;
+    max-height: fit-content;
+    text-decoration: none;
+}
+
+.custom-button-submit {
+    color: #E2DED7;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 18px;
+    max-height: fit-content;
+    text-decoration: none;
+    background-color: #AE6B71;
+    margin-top: 20px;
+    padding: 2px 20px;
+    border-radius: 50px;
+    border: none;
+    float: right;
+    letter-spacing: 1px;
+}
+
+.custom-button-search {
+    display:flex;
+    float:right;
+    color: #E2DED7;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 18px;
+    max-height: fit-content;
+    text-decoration: none;
+    background-color: #AE6B71;
+    margin-right: -3px;
+    padding: 3px 30px;
+    border-radius: 50px;
+    border: none;
+    letter-spacing: 1px;
+}
+
+.form-control {
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 15px;
+    color: #5B352E;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    border: none;
+    background-image: linear-gradient(white, #fcb69f);
+    box-shadow: inset 3px 3px 12px #8c5a82;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search {
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 15px;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+textarea:focus, input:focus{
+    outline:none;
+}
+
+.search-style {
+    display:block;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 15px;
+    color: #5B352E;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    border-radius: 40px;
+    border: none;
+    background-image: linear-gradient(white, #fcb69f);
+    box-shadow: inset 3px 3px 12px #8c5a82;
+    padding: 6px 10px;
+    margin-top: 10px;
+    width: 800px;
+}
+
+.span-left {
+    float:left;
+}
+
+.span-right {
+    float: right;
+}
+
+.title {
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 90px;
+    letter-spacing: -7px;
+    color: #d4c6b4;
+    font-weight: bold;
+    text-align: left;
+    text-shadow: -3px 0px #a37b60,-6px 0px #75341a;
+}
+
+.title-frontpage {
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 200px;
+    letter-spacing: -7px;
+    color: #d4c6b4;
+    font-weight: bold;
+    text-align: left;
+    text-shadow: -3px 0px #a37b60,-6px 0px #75341a;
+}
+
+.login {
+    font-size: 25px;
+    text-align: right;
+    color: #d4c6b4;
+    margin-top: 100px
+}
+
+.tag {
+    color: #9c8a72;
+}
+
+h1 {
+    font-size: 70px;
+    letter-spacing: -7px;
+    color: #d4c6b4;
+    font-weight: bold;
+}
+
+h2 {
+    color: #d4c6b4;
+}
+
+h3 {
+    font-size: 20px;
+    text-align: right;
+    color: #d4c6b4;
+}
+
+p {
+    color: #9c8a72;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+}
+
+p2 {
+    color: #9c8a72;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 800px){
+    .header{
+        flex-direction:column;
+    }
+
+    .login {
+        margin-top:-60px;
+        margin-bottom: 90px;
+    }
+}

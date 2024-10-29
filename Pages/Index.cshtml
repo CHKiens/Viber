@@ -1,0 +1,56 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+@* <div class="container">
+    <div class="col-3">
+        <h2>Looking to set the vibe? Welcome to Viber</h2>
+        <p>
+            Your go-to platform for creating and sharing moodboards
+            that reflect your unique tastes! With Viber,
+            you can craft personalized vibeboards filled with your favorite music,
+            movies, and inspirations, all tagged to help you and others discover the perfect fit for every mood.
+            Join our vibrant community, explore new vibes, and let your creativity shine!
+        </p>
+    </div>
+    <div class="col"></div>
+</div>
+ *@
+
+@* @if(!LoggedIn){} ---- tænker at vi laver en simpel forside som kun vises man ikke er logget ind/oprettet*@
+<div class="container" style="margin-top: -50px">
+    <div class="row">
+        <div class="col-sm">
+            <h2>Capture the vibe, share the feeling </h2>
+            <p>
+                Your go-to platform for creating and sharing moodboards
+                that reflect your unique tastes! With Viber,
+                you can craft personalized vibeboards filled with your favorite music,
+                movies, and inspirations, all tagged to help you and others discover the perfect fit for every mood.
+                <br /><br />Join our vibrant community, explore new vibes, and let your creativity shine!
+            </p>
+        </div>
+        <div class="col-sm" style="margin-left: 30px">
+            <h2>
+                Create a profile
+            </h2>
+            <form>
+                <div class="form-group">
+                    <p2>Username</p2>
+                    <input type="username" class="form-control" placeholder="Enter username">
+                </div>
+                <p2>Email</p2>
+                <div class="form-group">
+                    <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <p2>Password</p2>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Enter password">
+                </div>
+                <a asp-page="Home" class="custom-button-submit" style="float:left">ENTER AS GUEST</a>
+                <span class="span-right"><button type="submit" class="custom-button-submit">SUBMIT</button></span>
+            </form>
+        </div>
+    </div>
+</div>
