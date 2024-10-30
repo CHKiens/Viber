@@ -149,16 +149,15 @@ textarea:focus, input:focus{
 }
 
 .square {
-    display:flex;
-    align-items:flex-end;
-    justify-content:flex-start;
-    position:relative;
-    border-radius:10px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    position: relative;
+    border-radius: 10px;
     height: 155px;
     width: 155px;
     margin-right: -50px;
-    background-image: linear-gradient(transparent , transparent 20%, black);
-
+    background-image: linear-gradient(transparent, #24130d);
 }
 
 .square img {
