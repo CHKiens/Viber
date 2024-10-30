@@ -43,7 +43,7 @@ body {
     font-size: 18px;
     max-height: fit-content;
     text-decoration: none;
-    background-color: #AE6B71;
+    background-image: linear-gradient(#a37b60, #8C583D);
     margin-top: 20px;
     padding: 2px 20px;
     border-radius: 50px;
@@ -53,7 +53,7 @@ body {
 }
 
 .custom-button-search {
-    float:right;
+    float: right;
     color: #E2DED7;
     font-family: "Sora", sans-serif;
     font-optical-sizing: auto;
@@ -62,7 +62,7 @@ body {
     font-size: 18px;
     max-height: fit-content;
     text-decoration: none;
-    background-color: #AE6B71;
+    background-image: linear-gradient(#a37b60, #8C583D);
     padding: 3px 30px;
     border-radius: 50px;
     border: none;
@@ -70,11 +70,13 @@ body {
 }
 
 .custom-button-submit:hover {
-    background-color: #bf7c82;
+    background-image: linear-gradient(#b0876b, #996245);
+    text-shadow: #D4C6B4 1px 0 7px;
     color: ivory;
 }
 .custom-button-search:hover {
-    background-color: #bf7c82;
+    background-image: linear-gradient(#b0876b, #996245);
+    text-shadow: #D4C6B4 1px 0 7px;
     color: ivory;
 }
 
@@ -156,7 +158,8 @@ textarea:focus, input:focus{
     color: #d4c6b4;
     font-weight: bold;
     text-align: left;
-    text-shadow: -3px 0px #a37b60,-6px 0px #75341a;
+    text-shadow: -3px 0px #a37b60,-6px 0px #75341a,0 0 1em #9F4E7C, 0 0 0.2em #543029;
+
 }
 
 .title-frontpage {
@@ -173,12 +176,15 @@ textarea:focus, input:focus{
 }
 
 .login {
-    display:block;
+    display: block;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
     font-size: 25px;
     text-align: left;
     color: #d4c6b4;
     margin-top: 100px
-    
 }
 .login:hover{
     color:ivory;
@@ -208,6 +214,13 @@ h3 {
 
 h4 {
     color: #d4c6b4;
+    font-size: 40px;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    letter-spacing: -2px;
+    font-style: normal;
+    text-shadow: 0 0 1em #9F4E7C, 0 0 0.2em #543029;
 }
 
 p {
