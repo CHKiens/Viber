@@ -148,6 +148,27 @@ textarea:focus, input:focus{
     float: right;
 }
 
+.square {
+    display:flex;
+    align-items:flex-end;
+    justify-content:flex-start;
+    position:relative;
+    border-radius:10px;
+    height: 155px;
+    width: 155px;
+    margin-right: -50px;
+    background-image: linear-gradient(transparent , transparent 20%, black);
+
+}
+
+.square img {
+    border-radius: 13px;
+    position: relative;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+}
+
 .title {
     font-family: "Sora", sans-serif;
     font-optical-sizing: auto;
@@ -192,6 +213,12 @@ textarea:focus, input:focus{
 
 .tag {
     color: #9c8a72;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+    margin-top:5px;
 }
 
 h1 {
@@ -221,6 +248,19 @@ h4 {
     letter-spacing: -2px;
     font-style: normal;
     text-shadow: 0 0 1em #9F4E7C, 0 0 0.2em #543029;
+}
+
+.image-text {
+    position: absolute;
+    color: #ffffff;
+    margin-left: 11px;
+    margin-right: 11px;
+    margin-bottom:5px;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 20px;
 }
 
 p {
