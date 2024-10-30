@@ -53,7 +53,6 @@ body {
 }
 
 .custom-button-search {
-    display:flex;
     float:right;
     color: #E2DED7;
     font-family: "Sora", sans-serif;
@@ -64,11 +63,19 @@ body {
     max-height: fit-content;
     text-decoration: none;
     background-color: #AE6B71;
-    margin-right: -3px;
     padding: 3px 30px;
     border-radius: 50px;
     border: none;
     letter-spacing: 1px;
+}
+
+.custom-button-submit:hover {
+    background-color: #bf7c82;
+    color: ivory;
+}
+.custom-button-search:hover {
+    background-color: #bf7c82;
+    color: ivory;
 }
 
 .form-control {
@@ -84,6 +91,7 @@ body {
     border: none;
     background-image: linear-gradient(white, #fcb69f);
     box-shadow: inset 3px 3px 12px #8c5a82;
+    padding: 8px 12px;
 }
 
 .form-group {
@@ -105,6 +113,7 @@ body {
     font-size: 15px;
     margin-top: 5px;
     margin-left: 10px;
+    flex-grow:1;
 }
 
 textarea:focus, input:focus{
@@ -112,7 +121,7 @@ textarea:focus, input:focus{
 }
 
 .search-style {
-    display:block;
+    display: flex;
     font-family: "Sora", sans-serif;
     font-optical-sizing: auto;
     font-weight: normal;
@@ -125,9 +134,8 @@ textarea:focus, input:focus{
     border: none;
     background-image: linear-gradient(white, #fcb69f);
     box-shadow: inset 3px 3px 12px #8c5a82;
-    padding: 6px 10px;
+    padding: 10px 10px;
     margin-top: 10px;
-    width: 800px;
 }
 
 .span-left {
@@ -165,10 +173,15 @@ textarea:focus, input:focus{
 }
 
 .login {
+    display:inline-block;
     font-size: 25px;
-    text-align: right;
+    text-align: left;
     color: #d4c6b4;
     margin-top: 100px
+    
+}
+.login:hover{
+    color:ivory;
 }
 
 .tag {
