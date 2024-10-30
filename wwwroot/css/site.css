@@ -24,6 +24,7 @@ html {
     background-repeat: no-repeat;
 }
 
+
 body {
     background-color: transparent;
 }
@@ -157,7 +158,9 @@ textarea:focus, input:focus{
     height: 155px;
     width: 155px;
     margin-right: -50px;
+    margin-left:20px;
     background-image: linear-gradient(transparent, #24130d);
+
 }
 
 .square img {
@@ -178,7 +181,7 @@ textarea:focus, input:focus{
     color: #d4c6b4;
     font-weight: bold;
     text-align: left;
-    text-shadow: -3px 0px #a37b60,-6px 0px #75341a,0 0 1em #9F4E7C, 0 0 0.2em #543029;
+    text-shadow: -3px 0px #a37b60,-5px 0px 5px #75341a,0 0 1em #9F4E7C, 0 0 0.2em #543029;
 
 }
 
@@ -192,7 +195,8 @@ textarea:focus, input:focus{
     color: #d4c6b4;
     font-weight: bold;
     text-align: left;
-    text-shadow: -3px 0px #a37b60,-6px 0px #75341a;
+    text-shadow: -6px 0px #a37b60,-10px 4px 10px #75341a;
+    
 }
 
 .login {
@@ -206,9 +210,10 @@ textarea:focus, input:focus{
     color: #d4c6b4;
     margin-top: 100px
 }
-.login:hover{
-    color:ivory;
-}
+    .login:hover {
+        text-shadow: #D4C6B4 1px 0 7px;
+        color: ivory;
+    }
 
 .tag {
     color: #9c8a72;
@@ -246,7 +251,7 @@ h4 {
     font-weight: bold;
     letter-spacing: -2px;
     font-style: normal;
-    text-shadow: 0 0 1em #9F4E7C, 0 0 0.2em #543029;
+    text-shadow: -3px 0 4px #75341a, 0px 0px 5px #c4894f ;
 }
 
 .image-text {
