@@ -173,7 +173,7 @@ textarea:focus, input:focus{
 }
 
 .login {
-    display:inline-block;
+    display:block;
     font-size: 25px;
     text-align: left;
     color: #d4c6b4;
@@ -199,9 +199,14 @@ h2 {
     color: #d4c6b4;
 }
 
+
 h3 {
     font-size: 20px;
     text-align: right;
+    color: #d4c6b4;
+}
+
+h4 {
     color: #d4c6b4;
 }
 
@@ -225,13 +230,17 @@ p2 {
     margin-bottom: 5px;
 }
 
-@media (max-width: 800px){
-    .header{
-        flex-direction:column;
+@media (max-width: 800px) {
+    .header {
+        flex-direction: column;
     }
 
     .login {
-        margin-top:-60px;
-        margin-bottom: 90px;
+        margin-top: -30px;
+    }
+
+    h4{
+        margin-bottom:100px;
     }
 }
+
