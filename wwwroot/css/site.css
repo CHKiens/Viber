@@ -154,21 +154,32 @@ textarea:focus, input:focus{
     align-items: flex-end;
     justify-content: flex-start;
     position: relative;
-    border-radius: 10px;
+    border-radius: 8px;
     height: 155px;
     width: 155px;
-    margin-right: -50px;
-    margin-left:20px;
+    min-height: 5%;
+    min-height: 5%;
+    margin:8px;
     background-image: linear-gradient(transparent, #24130d);
-
+    box-shadow: inset 0px 0px 6px #24130d, 0 5px 10px #24130d, 0 15px 40px #24130d;
 }
 
 .square img {
-    border-radius: 13px;
-    position: relative;
+    border-radius:inherit;
+    display:flex;
     z-index: -1;
-    height: 100%;
-    width: 100%;
+    height: inherit;
+    width: inherit;
+}
+
+.square-row {
+    display:flex;
+    align-items:center;
+    align-content:center;
+    justify-content:flex-start;
+    flex-wrap:wrap;
+    padding:1%;
+
 }
 
 .title {
@@ -215,6 +226,8 @@ textarea:focus, input:focus{
         color: ivory;
     }
 
+
+
 .tag {
     color: #9c8a72;
     font-family: "Sora", sans-serif;
@@ -256,10 +269,10 @@ h4 {
 
 .image-text {
     position: absolute;
-    color: #ffffff;
+    color: #CBC8C6;
     margin-left: 11px;
     margin-right: 11px;
-    margin-bottom:5px;
+    margin-bottom: 5px;
     font-family: "Sora", sans-serif;
     font-optical-sizing: auto;
     font-weight: bold;

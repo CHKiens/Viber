@@ -10,29 +10,28 @@
 <div style="margin:20px"></div>
 <div class="container">
     <h4>Sad</h4>
-    <div class="row">
+    <div class="square-row">
         @for (int i = 12; i < 20; i++) @* her skal itereres over antal af entries indeholder "main tag (#sad)" *@
         {
-            <div class="col">
+
                 <div class="square">
                     <img src="@($"https://picsum.photos/id/{i}/200/300")" alt="placeholder" />
-                    <div class="image-text"> Test test</div>
+                    <div class="image-text"> Min billedtekst</div>
                 </div>
-            </div>
+
         }
     </div>
     <p class="tag">#rain, #clouds, #darkness</p> @* //tags skulle gerne kunne klikkes på, hvilket fører til en oversigt over andre posts med samme tag *@
     <h4>Happy</h4>
-    <div class="row">
+    <div class="square-row">
     @for (int i = 20; i < 28; i++)
     {
-            <div class="col">
                 <div class="square">
 
                     <img src="@($"https://picsum.photos/id/{i}/200/300")" alt="placeholder" />
                     <div class="image-text"> Test test</div>
                 </div>
-            </div>
+
     }
     </div>
     <p class="tag">#sun, #smile, #party</p>
