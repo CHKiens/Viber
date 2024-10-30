@@ -7,8 +7,10 @@
         <input class="search" type="search" placeholder="Search here... e.g. sad, happy, angry"><a href="#" class="custom-button-search"><i class="bi bi-search"></i></a>
     </div>
 </div>
-<div style="margin:20px"></div>
-<div class="container">
+<div style="display:flex; margin-left:30px; margin-top:10px">
+    <p>Filter by: &nbsp</p><p id="p-filter"> Date, Popularity, Rating</p> @* filtering af søgeresultater implementeres her *@
+</div>
+<div class="container"> @*denne container skal kun vises hvis søgefeltet er tomt, og ingen filtre er applied. *@
     <h4>Sad</h4>
     <div class="square-row">
         @for (int i = 12; i < 20; i++) @* her skal itereres over antal af entries indeholder "main tag (#sad)" *@
