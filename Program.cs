@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Viber.Models;
+using Viber.Services.Interfaces;
+using Viber.Services.Services;
 
 namespace Viber
 {
@@ -10,10 +12,20 @@ namespace Viber
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            //Fundet på https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-strings?tabs=dotnet-core-cli
+            var conString = builder.Configuration.GetConnectionString("DefaultConnection") ??
+            throw new InvalidOperationException("Connection string 'DefaultConnection'" +
+             " not found.");
             builder.Services.AddDbContext<finsby_dk_db_viberContext>(options =>
-               options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(conString));
 
             builder.Services.AddRazorPages();
+            builder.Services.AddScoped<IUserService,UserService>();
+            builder.Services.AddScoped<IMoodboardService, MoodboardService>();
+            builder.Services.AddScoped<IPrimaryTagService, PrimaryTagService>();
+            builder.Services.AddScoped<ISubTagService, SubTagService>();
+            builder.Services.AddScoped<IContentContainerService, ContentContainerService>();
 
             var app = builder.Build();
 
