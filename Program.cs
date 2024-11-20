@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Viber.Models;
+
 namespace Viber
 {
     public class Program
@@ -7,6 +10,9 @@ namespace Viber
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddDbContext<finsby_dk_db_viberContext>(options =>
+               options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
             builder.Services.AddRazorPages();
 
             var app = builder.Build();
