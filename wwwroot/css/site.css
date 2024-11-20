@@ -12,7 +12,7 @@ main {
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #D2B179;
 }
 
 html {
@@ -95,6 +95,7 @@ body {
     background-image: linear-gradient(white, #fcb69f);
     box-shadow: inset 3px 3px 12px #8c5a82;
     padding: 8px 12px;
+    display:flex;
 }
 
 .form-group {
@@ -287,6 +288,25 @@ p {
     font-weight: normal;
     font-style: normal;
     font-size: 20px;
+}
+
+#p-filter {
+    color: #DC9C98;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+}
+
+#p-underline {
+    color: #DC9C98;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+    text-decoration:underline;
 }
 
 p2 {
