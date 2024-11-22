@@ -22,7 +22,7 @@
 <body>
     <div class="container"> 
         <div class="header">
-            @if (ViewData["Title"]?.ToString() == "Index")
+            @if (ViewData["Title"]?.ToString() == "CreateUser")
             {
                 <span class="title-frontpage">viber</span>
             }
@@ -32,7 +32,7 @@
             }
             @if (ViewData["Title"]?.ToString() != "Login") //skal laves om på et tidspunkt så den heller ikke vises hvis man allerede logget ind
             {
-                <a asp-page="Login" class="custom-button"><span class="login"><i class="bi bi-person"></i>Login</span></a>
+                <a asp-page="/Login" class="custom-button"><span class="login"><i class="bi bi-person"></i>Login</span></a>
             }
             
         </div>

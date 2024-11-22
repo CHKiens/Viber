@@ -12,6 +12,13 @@ namespace Viber.Services.Services {
 
         //CRUD
 
+        public void CreateUser(User user)
+        {
+            _context.Users.Add(user);
+            _context.SaveChanges();
+        }
+        
+
         //Andet
     }
 }
