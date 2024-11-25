@@ -11,10 +11,10 @@ namespace Viber.Pages
         {
             _logger = logger;
         }
-
+        //TODO: RET TILBAG TIL (/"Home")
         public IActionResult OnGet()
         {
-            return RedirectToPage("/Home");
+            return RedirectToPage("/MoodBoardPages/Create");
         }
     }
 }

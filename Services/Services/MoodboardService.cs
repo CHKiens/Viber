@@ -9,5 +9,14 @@ namespace Viber.Services.Services {
         {
             _context = context;
         }
+
+        //CRUD
+
+        public Moodboard GetMoodboard(int Id)
+        {
+            var moodboard = _context.Moodboards.FirstOrDefault(mb => mb.MoodboardId == Id);
+
+            return moodboard;
+        }
     }
 }
