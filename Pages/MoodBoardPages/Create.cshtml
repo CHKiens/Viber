@@ -4,24 +4,21 @@
     ViewData["Title"] = "CreateMoodboard";
 }
 
-<form method="post" asp-page-handler="SetTitle">
+<form method="post">
     <div class="form-group">
         <p2>Moodboard Title</p2>
         <input type="text" asp-for="Moodboard.Title" class="form-control" placeholder="Enter moodboard title">
         <p2>Primary Tag</p2>
-        <select name="number">
-            <option>Pick a primary tag</option>
+        <select asp-for="Moodboard.PrimaryTag" class="form-control">
+            <option>Click here to select a primary tag</option>
             @foreach (var primaryTag in Model.PrimaryTags)
             {
                 <option value="@primaryTag.PrimaryTagId">@primaryTag.Name</option>
             }
         </select>
+        <input type="hidden" asp-for="Moodboard.UserId" value="@Model.Moodboard.UserId" />
+        <button type="submit">Continue</button>
     </div>
-</form>
-<form method="post" asp-page-handler="CreateContainer">
-    
-</form>
-<form method="post">
-    
+   
 </form>
 

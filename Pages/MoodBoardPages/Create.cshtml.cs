@@ -15,7 +15,6 @@ namespace Viber.Pages.MoodBoardPages
         public Moodboard Moodboard { get; set; }
 
         [BindProperty]
-        public ContentContainer Container { get; set; }
 
         public List<PrimaryTag> PrimaryTags { get; set; }
         public PrimaryTag PrimaryTag { get; set; }
@@ -28,26 +27,17 @@ namespace Viber.Pages.MoodBoardPages
         {
             PrimaryTags = _primaryTagService.GetPrimaryTags();
             int userId = HttpContext.Session.GetInt32("UserId") ?? 0; //userId bliver 0 i stedet for null hvis den ikke kan findes
-            // Initialize an empty moodboard instance
             Moodboard = new Moodboard
             {
-                ContentContainers = new List<ContentContainer>(),
                 UserId = userId
             };
         }
 
-        // Redirect to the Edit page with the moodboard's metadata
-        public IActionResult OnPost([FromBody] Moodboard moodboard)
+        public IActionResult OnPost()
         {
-            // Store data in session or pass via query parameters
-            TempData["MoodboardData"] = JsonSerializer.Serialize(moodboard); //Gemmer moodboard i tempdata som kan læses af Edit siden. 
+            Moodboard.PrimaryTag = PrimaryTag;
+            TempData["MoodboardData"] = JsonSerializer.Serialize(Moodboard); //Gemmer moodboard i tempdata som kan læses af Edit siden. 
             return RedirectToPage("/MoodBoardPages/Edit");
-        }
-
-        public IActionResult OnPostSetTitle(string title)
-        {
-            Moodboard.Title = title;
-            return RedirectToPage();
         }
 
         public IActionResult OnPostCreateContainer()
