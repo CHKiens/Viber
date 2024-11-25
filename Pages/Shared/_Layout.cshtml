@@ -1,5 +1,4 @@
-﻿@inject IHttpContextAccessor HttpContextAccessor
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -20,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 
 </head>
-@{ var UserId = HttpContextAccessor.HttpContext.Session.GetString("UserId"); }
+@{ var UserId = Context.Session.GetString("UserId"); }
 <body>
     <div class="container"> 
         <div class="header">
