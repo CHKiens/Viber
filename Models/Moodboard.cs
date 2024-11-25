@@ -25,9 +25,18 @@ public partial class Moodboard
     public DateTime? UpdateDate { get; set; }
 
     [Column("Background_Color")]
-    [StringLength(6)]
+    [StringLength(7)]
     [Unicode(false)]
     public string BackgroundColor { get; set; }
+
+    [StringLength(300)]
+    [Unicode(false)]
+    public string Title { get; set; }
+
+    [Column("Title_Color")]
+    [StringLength(7)]
+    [Unicode(false)]
+    public string TitleColor { get; set; }
 
     [Column("PrimaryTag_Id")]
     public int PrimaryTagId { get; set; }

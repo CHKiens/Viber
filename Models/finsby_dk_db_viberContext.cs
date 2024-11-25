@@ -8,7 +8,6 @@ namespace Viber.Models;
 
 public partial class finsby_dk_db_viberContext : DbContext
 {
-
     public finsby_dk_db_viberContext(DbContextOptions<finsby_dk_db_viberContext> options)
         : base(options)
     {
@@ -26,32 +25,31 @@ public partial class finsby_dk_db_viberContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ContentContainer>(entity =>
         {
             entity.HasKey(e => e.ContentContainterId).HasName("PK__ContentC__5AB3C8A78F7FA029");
 
-            entity.HasOne(d => d.Moodboard).WithMany(p => p.ContentContainers).HasConstraintName("FK__ContentCo__Moodb__46E78A0C");
+            entity.HasOne(d => d.Moodboard).WithMany(p => p.ContentContainers).HasConstraintName("FK__ContentCo__Moodb__4CA06362");
         });
 
         modelBuilder.Entity<Moodboard>(entity =>
         {
-            entity.HasKey(e => e.MoodboardId).HasName("PK__Moodboar__A52F4D9F252D6F0F");
+            entity.HasKey(e => e.MoodboardId).HasName("PK__tmp_ms_x__A52F4D9F2CA4D9EA");
 
             entity.HasOne(d => d.PrimaryTag).WithMany(p => p.Moodboards)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Moodboard__Prima__3D5E1FD2");
+                .HasConstraintName("FK__Moodboard__Prima__4AB81AF0");
 
-            entity.HasOne(d => d.User).WithMany(p => p.Moodboards).HasConstraintName("FK__Moodboard__User___398D8EEE");
+            entity.HasOne(d => d.User).WithMany(p => p.Moodboards).HasConstraintName("FK__Moodboard__User___49C3F6B7");
         });
 
         modelBuilder.Entity<MoodboardSubTag>(entity =>
         {
             entity.HasKey(e => e.MoodboardSubtagId).HasName("PK__Moodboar__A401C6EF7E164C94");
 
-            entity.HasOne(d => d.Moodboard).WithMany(p => p.MoodboardSubTags).HasConstraintName("FK__Moodboard__Moodb__4316F928");
+            entity.HasOne(d => d.Moodboard).WithMany(p => p.MoodboardSubTags).HasConstraintName("FK__Moodboard__Moodb__4BAC3F29");
 
             entity.HasOne(d => d.Subtag).WithMany(p => p.MoodboardSubTags).HasConstraintName("FK__Moodboard__Subta__440B1D61");
         });
