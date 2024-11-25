@@ -18,30 +18,31 @@ public partial class ContentContainer
     [Column("Moodboard_Id")]
     public int MoodboardId { get; set; }
 
-    [Required]
     [StringLength(300)]
     [Unicode(false)]
-    public string Title { get; set; }
+    public string Type { get; set; }
 
     [StringLength(300)]
     [Unicode(false)]
-    public string Music { get; set; }
+    public string Link { get; set; }
 
+    [Column("Display_Text")]
     [StringLength(300)]
     [Unicode(false)]
-    public string Movie { get; set; }
+    public string DisplayText { get; set; }
 
-    [StringLength(300)]
-    [Unicode(false)]
-    public string YouTubeLink { get; set; }
+    [Column("Order_Id")]
+    public int? OrderId { get; set; }
 
-    [StringLength(300)]
+    [Column("Background_Color")]
+    [StringLength(7)]
     [Unicode(false)]
-    public string PictureLink { get; set; }
+    public string BackgroundColor { get; set; }
 
-    [StringLength(1000)]
+    [Column("Text_Color")]
+    [StringLength(7)]
     [Unicode(false)]
-    public string ContentText { get; set; }
+    public string TextColor { get; set; }
 
     [ForeignKey("MoodboardId")]
     [InverseProperty("ContentContainers")]
