@@ -5,15 +5,17 @@
 }
 
 <h4>Login</h4>
-<form>
+<form method="post">
     <div class="form-group">
         <p2>Username</p2>
-        <input type="username" class="form-control" placeholder="Enter username">
+        <input type="text" asp-for="LoginInput.Username" class="form-control" placeholder="Enter username">
     </div>
+    
     <p2>Password</p2>
     <div class="form-group">
-        <input type="password" class="form-control" placeholder="Enter password">
+        <input type="password" asp-for="LoginInput.Password" class="form-control" placeholder="Enter password">
     </div>
+    
     <span class="span-left"><button type="submit" class="custom-button-submit" style="color: #9c8a72;background:none;text-decoration:underline">I forgot my password</button></span>
     <span class="span-right"><button type="submit" class="custom-button-submit">SUBMIT</button></span>
     <span class="span-left"><button type="submit" asp-page="/UserPages/Create" class="custom-button-submit" style="color: #9c8a72;background:none;text-decoration:underline">Create Profile</button></span>

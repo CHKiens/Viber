@@ -14,7 +14,6 @@ namespace Viber.Pages.UserPages
         public CreateModel(IUserService userService)
         {
             _userService = userService;
-            
         }
         
         public void OnGet()
