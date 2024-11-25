@@ -21,7 +21,7 @@ public partial class User
     public string Username { get; set; }
 
     [Required]
-    [StringLength(30)]
+    [StringLength(128)]
     [Unicode(false)]
     public string Password { get; set; }
 

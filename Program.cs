@@ -13,7 +13,7 @@ namespace Viber
 
             // Add services to the container.
 
-            //Fundet på https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-strings?tabs=dotnet-core-cli
+            //Fundet pï¿½ https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-strings?tabs=dotnet-core-cli
             var conString = builder.Configuration.GetConnectionString("DefaultConnection") ??
             throw new InvalidOperationException("Connection string 'DefaultConnection'" +
              " not found.");
@@ -26,6 +26,15 @@ namespace Viber
             builder.Services.AddScoped<IPrimaryTagService, PrimaryTagService>();
             builder.Services.AddScoped<ISubTagService, SubTagService>();
             builder.Services.AddScoped<IContentContainerService, ContentContainerService>();
+            
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+            });
+            
+            builder.Services.AddHttpContextAccessor();
 
             var app = builder.Build();
 
@@ -38,13 +47,18 @@ namespace Viber
             }
 
             app.UseHttpsRedirection();
+            
             app.UseStaticFiles();
 
             app.UseRouting();
+            
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
             app.MapRazorPages();
+
+            app.UseSession();
 
             app.Run();
         }

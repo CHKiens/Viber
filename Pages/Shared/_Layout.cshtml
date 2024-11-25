@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -19,6 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 
 </head>
+@{ var UserId = HttpContextAccessor.HttpContext.Session.GetString("UserId"); }
 <body>
     <div class="container"> 
         <div class="header">
@@ -30,10 +32,11 @@
             {
                 <a asp-page="Index" class="custom-button"><span class="title">viber</span></a>
             }
-            @if (ViewData["Title"]?.ToString() != "Login") //skal laves om på et tidspunkt så den heller ikke vises hvis man allerede logget ind
+            @if (ViewData["Title"]?.ToString() != "Login" && UserId == null ) //skal laves om på et tidspunkt så den heller ikke vises hvis man allerede logget ind
             {
                 <a asp-page="/Login" class="custom-button"><span class="login"><i class="bi bi-person"></i>Login</span></a>
             }
+            
             
         </div>
         <main role="main" class="pb-3">
