@@ -1,4 +1,27 @@
 ﻿@page
 @model Viber.Pages.MoodBoardPages.CreateModel
 @{
+    ViewData["Title"] = "CreateMoodboard";
 }
+
+<form method="post" asp-page-handler="SetTitle">
+    <div class="form-group">
+        <p2>Moodboard Title</p2>
+        <input type="text" asp-for="Moodboard.Title" class="form-control" placeholder="Enter moodboard title">
+        <p2>Primary Tag</p2>
+        <select name="number">
+            <option>Pick a primary tag</option>
+            @foreach (var primaryTag in Model.PrimaryTags)
+            {
+                <option value="@primaryTag.PrimaryTagId">@primaryTag.Name</option>
+            }
+        </select>
+    </div>
+</form>
+<form method="post" asp-page-handler="CreateContainer">
+    
+</form>
+<form method="post">
+    
+</form>
+

@@ -1,0 +1,14 @@
+﻿@page
+@model Viber.Pages.MoodBoardPages.EditModel
+@{
+}
+<p>@Model.Moodboard.Title</p>
+<p>@Model.Moodboard.PrimaryTag</p>
+<p>@Model.Moodboard.DateOfCreation</p>
+
+@foreach(var c in Model.Moodboard.ContentContainers){
+    <p1>@c.Type</p1>
+    @if(c.Link!=null){
+        <p1>@c.Link</p1>
+    }
+}

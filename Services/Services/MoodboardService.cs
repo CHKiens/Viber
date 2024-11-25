@@ -9,5 +9,11 @@ namespace Viber.Services.Services {
         {
             _context = context;
         }
+
+        public void CreateMoodboard(Moodboard moodboard)
+        {
+            _context.Moodboards.Add(moodboard);
+        }
+
     }
 }
