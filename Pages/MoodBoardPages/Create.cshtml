@@ -17,10 +17,7 @@
             }
         </select>
         <input type="hidden" asp-for="Moodboard.UserId" value="@Model.Moodboard.UserId" />
-        <button type="submit">
-            <a asp-page asp-route-Id="@Model.searchId"></a>
-            Continue
-        </button>
+        <button type="submit" asp-route-Id="@Model.searchId">Continue</button>
 
     </div>
    

@@ -40,13 +40,14 @@ namespace Viber.Pages.MoodBoardPages
 
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
             Moodboard.PrimaryTagId = PrimaryTag;
             moodboardService.CreateMoodboard(Moodboard);
-            searchId = Moodboard.MoodboardId;
+
             /*TempData["MoodboardData"] = JsonSerializer.Serialize(Moodboard); *///Gemmer moodboard i tempdata som kan læses af Edit siden. 
-            //return RedirectToPage("/MoodBoardPages/Edit");
+            return RedirectToPage("/MoodBoardPages/Edit", new { Id = Moodboard.MoodboardId });
+            
         }
 
         public IActionResult OnPostCreateContainer()
