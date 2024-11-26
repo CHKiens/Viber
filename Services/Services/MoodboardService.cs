@@ -12,7 +12,14 @@ namespace Viber.Services.Services {
 
         public void CreateMoodboard(Moodboard moodboard)
         {
+            
             _context.Moodboards.Add(moodboard);
+            _context.SaveChanges();
+            
+        }
+        public Moodboard GetMoodboard(int moodboardId) 
+        {
+            return _context.Moodboards.FirstOrDefault(mb => mb.MoodboardId == moodboardId);
         }
 
     }

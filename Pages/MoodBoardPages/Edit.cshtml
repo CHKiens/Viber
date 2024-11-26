@@ -2,9 +2,96 @@
 @model Viber.Pages.MoodBoardPages.EditModel
 @{
 }
-<p>@Model.Moodboard.Title</p>
-<p>@Model.Moodboard.PrimaryTag</p>
-<p>@Model.Moodboard.DateOfCreation</p>
+<body class="vh-100">
+    <div class="container-fluid h-100">
+        <div class="row h-100 g-3">
+            <div class="col-8">
+                @* Venstre kasse *@
+                <div class="p-5 border rounded-3 h-100" id="Moodboard">
+                    <p>#Example</p>
 
-<p1>@Model.test</p1>
+                    @* //titlen sættes ind her baseret på input *@
+                    <h1 class="display-8 text-center mb-5 col-12" id="DynamicTitle"></h1>
 
+                    <h1>@Model.MoodBoard.MoodboardId</h1>
+
+
+                    <div class="row g-2" id="dynamicRow">
+                        @* her indsættes værdierne fra javascript *@
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            @* højre kasse *@
+            <div class="col-4">
+                <div class="p-5 bg-light border rounded-3 h-100">
+                    <h1 class="display-8 text-center">Design</h1>
+                    <p class="mt-2">Moodboard name:</p>
+
+                    <form method="post">
+                        <input asp-for="MoodBoard.Title" class="col-12" id="titleInput" placeholder="Moodboard title" />
+
+                        <p class="mt-2">Background color</p>
+                        <input asp-for="MoodBoard.BackgroundColor" class="col-3" type="color" id="BackgroundColorPicker" />
+
+                        <p>
+                            Pick a color for your title
+                        </p>
+
+                        <input asp-for="MoodBoard.TitleColor" class="col-3" type="color" id="TitleColor" />
+
+                        <p class="mt-1">Add box to moodboard</p>
+
+
+
+                        <p class="mt-2">Regret your placement? click here!</p>
+                        <div class="text-center mb-2">
+                            <button type="button" onclick="UndoLastBox()" class="btn-danger text-center">Regret last placement</button>
+                        </div>
+                        @* Laver en linje til at adskille submit fra resten *@
+                        <div class="border-top mt-3 border-dark">
+                            <p></p>
+                        </div>
+                        @* Sender moodboard med i onpost *@
+                        <div class="text-end">
+                            <button type="submit" class="btn-success mt-2" asp-route-moodBoard="@Model.MoodBoard"> Submit moodboard </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+             //metode til at skrive overskriften
+        // skal skrive den i venstre side, når der er et input i højre side . DynamicTitle er venstre side(Moodboardsiden).
+        // titleInput er højre (bruger-området)
+        const dynamicTitle = document.getElementById("DynamicTitle");
+        const titleInput = document.getElementById("titleInput");
+        // Holder øje med Comment noget er skrevet i inputfeltet. Hvis der er laver den en function der skriver det ind.
+        // Er input null skriver den "Title".
+        titleInput.addEventListener("input", function () {
+            dynamicTitle.textContent = titleInput.value || "Title";
+        });
+
+
+        // Vælg baggrundsfarve
+
+
+        //vælg en farve:
+        function BackgroundColor() {
+            // Se hvad brugeren har valgt
+            var color = document.getElementById('BackgroundColorPicker').value;
+
+            // Sæt baggrundsfarven til det valgte farve. Men kun i det område med id Moodboard
+            document.getElementById('Moodboard').style.backgroundColor = color;
+        }
+        //ændrer farven når den ser at man har klikket
+        document.getElementById('BackgroundColorPicker').addEventListener('input', BackgroundColor);
+    </script>
+</body>
