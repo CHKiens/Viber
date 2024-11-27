@@ -1,4 +1,5 @@
-﻿using Viber.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Viber.Models;
 using Viber.Services.Interfaces;
 
 namespace Viber.Services.Services {
@@ -10,6 +11,7 @@ namespace Viber.Services.Services {
             _context = context;
         }
 
+        //CRUD
         public void CreateMoodboard(Moodboard moodboard)
         {
             
@@ -21,6 +23,13 @@ namespace Viber.Services.Services {
         {
             return _context.Moodboards.FirstOrDefault(mb => mb.MoodboardId == moodboardId);
         }
+
+        public Moodboard GetMoodboardAndCC(int moodboardId) {
+            return _context.Moodboards.Include(mb => mb.ContentContainers).FirstOrDefault(mb => mb.MoodboardId == moodboardId);
+                }
+        //
+
+        
 
     }
 }

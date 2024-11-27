@@ -14,7 +14,11 @@ namespace Viber.Pages
 
         public IActionResult OnGet()
         {
-            return RedirectToPage("/Home");
+            //TODO: RET TILBAGE
+            //return RedirectToPage("/Home");
+
+            return RedirectToPage("/MoodBoardPages/Edit", new { id = 5 });
+
         }
     }
 }

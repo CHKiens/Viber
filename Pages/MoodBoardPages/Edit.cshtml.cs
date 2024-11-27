@@ -15,10 +15,9 @@ namespace Viber.Pages.MoodBoardPages {
         [BindProperty]
         public Moodboard MoodBoard { get; set; }
 
-
         public void OnGet(int Id)
         {
-            MoodBoard = _moodboardService.GetMoodboard(Id);
+            MoodBoard = _moodboardService.GetMoodboardAndCC(Id);
         }
     }
 }

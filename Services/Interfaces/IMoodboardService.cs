@@ -5,5 +5,6 @@ namespace Viber.Services.Interfaces {
 
         public void CreateMoodboard(Moodboard moodboard);
         public Moodboard GetMoodboard(int moodboardId);
+        public Moodboard GetMoodboardAndCC(int moodboardId);
     }
 }
