@@ -15,10 +15,10 @@
                     <h1 class="display-8 text-center mb-5 col-12" id="DynamicTitle"></h1>
 
                     <h1>@Model.MoodBoard.MoodboardId</h1>
-
+                    <h2>@Model.MoodBoard.PrimaryTag.Name</h2>
+                    
                     <div class="row g-2" id="dynamicRow">
                         @* her indsættes værdierne fra javascript *@
-
                     </div>
 
 
@@ -51,10 +51,10 @@
                             Open modal
                         </button>
 
-                        <p class="mt-2">Regret your placement? click here!</p>
+@*                         <p class="mt-2">Regret your placement? click here!</p>
                         <div class="text-center mb-2">
                             <button type="button" onclick="UndoLastBox()" class="btn-danger text-center">Regret last placement</button>
-                        </div>
+                        </div> *@
                         @* Laver en linje til at adskille submit fra resten *@
                         <div class="border-top mt-3 border-dark">
                             <p></p>
@@ -68,7 +68,7 @@
 
                 </div>
             </div>
-            @*Laver hvad min modal skal indeholde, modalen fylder hele siden*@
+            @*Laver hvad min modal skal indeholde, modalen fylder hele siden. Hentet fra ws3 school*@
             <div class="modal" id="myModal">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
@@ -78,18 +78,15 @@
                             <h4 class="modal-title">Add new content container</h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
+                            <!-- Modal body -->
+                            <div class="modal-body" id="AddContentContainer">
+                            </div>
 
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            Modal body..
-                        </div>
-
-                        <!-- Modal footer -->
-                        <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">submit</button>
-                        </div>
-
+                            <!-- Modal footer -->
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success">submit</button>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -136,10 +133,6 @@
 
         //funktion til at flytte  kasse fra højre side til venstre fundet på https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_appendchild2
         
-        function MoveBox(){
-            const node = document.getElementById('MovableBox')
-            document.getElementById('dynamicRow').appendChild(node);
-        }
 
         
     </script>

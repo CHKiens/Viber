@@ -25,7 +25,10 @@ namespace Viber.Services.Services {
         }
 
         public Moodboard GetMoodboardAndCC(int moodboardId) {
-            return _context.Moodboards.Include(mb => mb.ContentContainers).FirstOrDefault(mb => mb.MoodboardId == moodboardId);
+            return _context.Moodboards
+                .Include(mb => mb.ContentContainers)
+                .Include(mb => mb.PrimaryTag)
+                .FirstOrDefault(mb => mb.MoodboardId == moodboardId);
                 }
         //
 

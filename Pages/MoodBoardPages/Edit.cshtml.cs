@@ -19,5 +19,6 @@ namespace Viber.Pages.MoodBoardPages {
         {
             MoodBoard = _moodboardService.GetMoodboardAndCC(Id);
         }
+
     }
 }
