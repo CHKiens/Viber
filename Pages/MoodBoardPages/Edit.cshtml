@@ -46,14 +46,10 @@
                         <input asp-for="MoodBoard.TitleColor" class="col-3" type="color" id="TitleColor" />
 
                         <p class="mt-1">Add box to moodboard</p>
-
-                        @foreach(var contentcontainer in Model.MoodBoard.ContentContainers){
-                            <div>
-                                <p>
-                                   her @contentcontainer.DisplayText
-                                </p>
-                            </div>
-                        }
+                        @* Tilføj ny boks via modal *@
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                            Open modal
+                        </button>
 
                         <p class="mt-2">Regret your placement? click here!</p>
                         <div class="text-center mb-2">
@@ -72,6 +68,32 @@
 
                 </div>
             </div>
+            @*Laver hvad min modal skal indeholde, modalen fylder hele siden*@
+            <div class="modal" id="myModal">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add new content container</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            Modal body..
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">submit</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <script>
@@ -112,6 +134,12 @@
         //holder øje med om der er valgt en værdi og sætter den dynamisk
         document.getElementById('TitleColor').addEventListener('input', TitleColor);
 
+        //funktion til at flytte  kasse fra højre side til venstre fundet på https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_appendchild2
+        
+        function MoveBox(){
+            const node = document.getElementById('MovableBox')
+            document.getElementById('dynamicRow').appendChild(node);
+        }
 
         
     </script>
