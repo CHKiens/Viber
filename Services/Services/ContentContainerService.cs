@@ -11,14 +11,20 @@ namespace Viber.Services.Services {
             _context = context;
         }
 
-        public void CreateContainer(ContentContainer container)
+        public void CreateContainer(ContentContainer container, int moodboardid)
         {
+            container.MoodboardId = moodboardid;
             _context.ContentContainers.Add(container);
         }
 
         public void DeleteContainer(ContentContainer container)
         {
             _context.ContentContainers.Remove(container);
+        }
+
+        public ICollection<ContentContainer> GetContainers(int moodboardid)
+        {
+            return _context.ContentContainers.Where(c => c.MoodboardId == moodboardid).ToList();
         }
     }
 }

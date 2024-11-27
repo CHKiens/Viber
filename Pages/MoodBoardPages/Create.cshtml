@@ -17,10 +17,39 @@
             }
         </select>
         <input type="hidden" asp-for="Moodboard.UserId" value="@Model.Moodboard.UserId" />
-        <button type="submit">Continue</button>
-
+        <input type="hidden" asp-for="Moodboard.MoodboardId" value="@Model.Moodboard.MoodboardId" />
     </div>
-   
+
+    <div class="form-group" id="objectContainer"></div> <!-- This will hold the dynamic inputs -->
+    <span class="span-left"><button type="button" class="custom-button-submit" onclick="addObject()">Add Object</button></span>
+    <span class="span-right"><button type="submit" class="custom-button-submit">Submit</button></span>
+    
 </form>
+<script>
+    function addObject() {
+        const container = document.getElementById('objectContainer');
 
+        // Create a new div for the container fields
+        const div = document.createElement('div');
+        div.className = "object";
 
+        // Add the dropdown for 'Type' and the text input for 'Link'
+        div.innerHTML = `
+            <label>Type:
+                <select class="form-control" name="ContainerType[]">
+                    <option value="text">Text</option>
+                    <option value="image">Image</option>
+                    <option value="spotify">Spotify</option>
+                    <option value="youtube">YouTube</option>
+                </select>
+            </label>
+            <label>Link:
+                <input type="text" class="form-control" name="ContainerText[]">
+            </label>
+            
+        `;
+
+        // Append the new div to the container
+        container.appendChild(div);
+    }
+</script>

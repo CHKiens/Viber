@@ -14,8 +14,12 @@
                     <h1 class="display-8 text-center mb-5 col-12" id="DynamicTitle"></h1>
 
                     <h1>@Model.MoodBoard.MoodboardId</h1>
-
-
+                    @foreach(var c in Model.MoodBoard.ContentContainers){
+                        <p2>@c.Type</p2>
+                        <p2>@c.Link</p2>
+                    }
+                    
+                    <h2></h2>
                     <div class="row g-2" id="dynamicRow">
                         @* her indsættes værdierne fra javascript *@
 
@@ -33,8 +37,9 @@
                     <p class="mt-2">Moodboard name:</p>
 
                     <form method="post">
-                        <input asp-for="MoodBoard.Title" class="col-12" id="titleInput" placeholder="Moodboard title" />
-
+                        @* input til titel *@
+                        <input asp-for="MoodBoard.Title" class="col-12" id="titleInput" placeholder="@Model.MoodBoard.Title" />
+                        @* input til baggrundsfarve *@
                         <p class="mt-2">Background color</p>
                         <input asp-for="MoodBoard.BackgroundColor" class="col-3" type="color" id="BackgroundColorPicker" />
 
@@ -45,8 +50,10 @@
                         <input asp-for="MoodBoard.TitleColor" class="col-3" type="color" id="TitleColor" />
 
                         <p class="mt-1">Add box to moodboard</p>
-
-
+                        @* Tilføj ny boks via modal *@
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                            Open modal
+                        </button>
 
                         <p class="mt-2">Regret your placement? click here!</p>
                         <div class="text-center mb-2">
@@ -65,10 +72,35 @@
 
                 </div>
             </div>
+            @*Laver hvad min modal skal indeholde, modalen fylder hele siden*@
+            <div class="modal" id="myModal">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add new content container</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body" id="AddContentContainer">
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success">submit</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <script>
-             //metode til at skrive overskriften
+         //metode til at skrive overskriften
         // skal skrive den i venstre side, når der er et input i højre side . DynamicTitle er venstre side(Moodboardsiden).
         // titleInput er højre (bruger-området)
         const dynamicTitle = document.getElementById("DynamicTitle");
@@ -83,7 +115,7 @@
         // Vælg baggrundsfarve
 
 
-        //vælg en farve:
+        //vælg en farve til baggrunden:
         function BackgroundColor() {
             // Se hvad brugeren har valgt
             var color = document.getElementById('BackgroundColorPicker').value;
@@ -93,5 +125,25 @@
         }
         //ændrer farven når den ser at man har klikket
         document.getElementById('BackgroundColorPicker').addEventListener('input', BackgroundColor);
+
+
+        // vælg farve til overskriften
+
+        function TitleColor(){
+            //color er lig med inputtet i titleColor værdi feltet
+            var color = document.getElementById('TitleColor').value;
+            document.getElementById('DynamicTitle').style.color = color
+        }
+        //holder øje med om der er valgt en værdi og sætter den dynamisk
+        document.getElementById('TitleColor').addEventListener('input', TitleColor);
+
+        //funktion til at flytte  kasse fra højre side til venstre fundet på https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_appendchild2
+
+        function MoveBox(){
+            const node = document.getElementById('MovableBox')
+            document.getElementById('dynamicRow').appendChild(node);
+        }
+
+
     </script>
 </body>
