@@ -3,22 +3,40 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 using Viber.Models;
 using Viber.Services.Interfaces;
+using Viber.Services.Services;
 
 namespace Viber.Pages.MoodBoardPages {
     public class EditModel : PageModel {
         IMoodboardService _moodboardService;
+        IPrimaryTagService _primaryTagService;
 
-        public EditModel(IMoodboardService moodboardService)
+        public EditModel(IMoodboardService moodboardService, IPrimaryTagService primaryTagService)
         {
             _moodboardService = moodboardService;
+            _primaryTagService = primaryTagService;
         }
         [BindProperty]
         public Moodboard MoodBoard { get; set; }
 
+        [BindProperty]
+        public List<PrimaryTag> PrimaryTags { get; set; }
+
+
         public void OnGet(int Id)
         {
+            PrimaryTags = _primaryTagService.GetPrimaryTags();
             MoodBoard = _moodboardService.GetMoodboardAndCC(Id);
+            
         }
+        public IActionResult OnPost()
+        {
+            _moodboardService.CreateMoodboard(MoodBoard);
+
+            return RedirectToPage("/MoodBoardPages/Edit", new { Id = MoodBoard.MoodboardId });
+
+        }
+
+
 
     }
 }

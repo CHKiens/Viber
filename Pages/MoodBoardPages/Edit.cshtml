@@ -19,6 +19,11 @@
                     
                     <div class="row g-2" id="dynamicRow">
                         @* her indsættes værdierne fra javascript *@
+                        @foreach(var cc in Model.MoodBoard.ContentContainers){
+                             <div class="">
+
+                            </div>
+                        }
                     </div>
 
 
@@ -35,26 +40,48 @@
                     <form method="post">
                         @* input til titel *@
                         <input asp-for="MoodBoard.Title" class="col-12" id="titleInput" placeholder="@Model.MoodBoard.Title" />
+                        <div class="row mt-3 g-2 text-center">
+                            <div class="col-5 border border-dark me-5">
+                                <p>Background color</p>
+                                <input asp-for="MoodBoard.BackgroundColor" class="col-3" type="color" id="BackgroundColorPicker" />
+
+                            </div>
+                            <div class="col-5 border border-dark">
+                                <p>
+                                    Pick Title color
+                                </p>
+
+                                <input asp-for="MoodBoard.TitleColor" class="col-3" type="color" id="TitleColor" />
+                            </div>
+  
+                        </div>
                         @* input til baggrundsfarve *@
-                        <p class="mt-2">Background color</p>
-                        <input asp-for="MoodBoard.BackgroundColor" class="col-3" type="color" id="BackgroundColorPicker" />
-
-                        <p>
-                            Pick a color for your title
-                        </p>
-
-                        <input asp-for="MoodBoard.TitleColor" class="col-3" type="color" id="TitleColor" />
+ 
 
                         <p class="mt-1">Add box to moodboard</p>
                         @* Tilføj ny boks via modal *@
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                            Open modal
-                        </button>
+                        <div class="text-center">
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#myModal">
+                                Open modal
+                            </button>
+                        </div>
+ 
 
 @*                         <p class="mt-2">Regret your placement? click here!</p>
                         <div class="text-center mb-2">
                             <button type="button" onclick="UndoLastBox()" class="btn-danger text-center">Regret last placement</button>
                         </div> *@
+                        <p class="mt-2">Select primary Tag</p>
+                        <select asp-for="MoodBoard.PrimaryTag" class="form-control">
+                            <option>Click here to select a primary tag</option>
+                            @foreach (var primaryTag in Model.PrimaryTags)
+                            {
+                                <option value="@primaryTag.PrimaryTagId">@primaryTag.Name</option>
+                            }
+                        </select>
+
+
+
                         @* Laver en linje til at adskille submit fra resten *@
                         <div class="border-top mt-3 border-dark">
                             <p></p>
@@ -80,6 +107,8 @@
                         </div>
                             <!-- Modal body -->
                             <div class="modal-body" id="AddContentContainer">
+
+
                             </div>
 
                             <!-- Modal footer -->
