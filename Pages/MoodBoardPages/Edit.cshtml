@@ -19,7 +19,7 @@
                     
                     <div class="row g-2" id="dynamicRow">
                         @* her indsættes værdierne fra javascript *@
-
+                        
                     </div>
 
 
@@ -37,11 +37,13 @@
                         @* input til titel *@
                         <input asp-for="MoodBoard.Title" class="col-12" id="titleInput" placeholder="@Model.MoodBoard.Title" />
                         <div class="row mt-3 g-2 text-center">
+                            @* input til baggrundsfarve *@
                             <div class="col-5 border border-dark me-5">
                                 <p>Background color</p>
                                 <input asp-for="MoodBoard.BackgroundColor" class="col-3" type="color" id="BackgroundColorPicker" />
 
                             </div>
+                            @*Input til titel farve*@
                             <div class="col-5 border border-dark">
                                 <p>
                                     Pick Title color
@@ -51,7 +53,11 @@
                             </div>
   
                         </div>
-                        @* input til baggrundsfarve *@
+                        
+                        <div>
+                            <p>Enter a link for your thumbnail</p>
+                            <input asp-for="MoodBoard.Thumbnail" type="url" class="col-12" />
+                        </div>
  
 
                         <p class="mt-1">Add box to moodboard</p>
@@ -61,12 +67,7 @@
                                 Open modal
                             </button>
                         </div>
- 
 
-@*                         <p class="mt-2">Regret your placement? click here!</p>
-                        <div class="text-center mb-2">
-                            <button type="button" onclick="UndoLastBox()" class="btn-danger text-center">Regret last placement</button>
-                        </div> *@
                         <p class="mt-2">Select primary Tag</p>
                         <select asp-for="MoodBoard.PrimaryTag" class="form-control">
                             <option>Click here to select a primary tag</option>
@@ -91,6 +92,8 @@
 
                 </div>
             </div>
+
+
             @*Laver hvad min modal skal indeholde, modalen fylder hele siden. Hentet fra ws3 school*@
             <div class="modal" id="myModal">
                 <div class="modal-dialog modal-xl">
@@ -104,7 +107,7 @@
                             <!-- Modal body -->
                             <div class="modal-body" id="AddContentContainer">
                                 <div class="form-group" id="objectContainer"></div>
-                                <span class=""
+                                <span class="span-left"><button class="custom-button-submit" onclick="addObject()">Add content box</button></span>
                             </div>
 
                             <!-- Modal footer -->
@@ -161,6 +164,33 @@
 
         //funktion til at flytte  kasse fra højre side til venstre fundet på https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_appendchild2
         
+        //tilføjer div til at lave bokse med.
+        function addObject(){
+            const container = document.getElementById('objectContainer')
+
+            //Den div hvor vores valgmuligheder skal være i
+            const div = document.createElement('div');
+            div.className = "object";
+
+            // laver en dropdown til at vælge link og type.
+            div.innerHTML =
+            `<label>Type:
+                    <select class="form-control" name="ContainerType[]">
+                        <option value="text">Text</option>
+                        <option value="image">Image</option>
+                        <option value="spotify">Spotify</option>
+                        <option value="youtube">YouTube</option>
+                    </select>
+                </label>
+                <label>Link:
+                    <input type="text" class="form-control" name="ContainerText[]">
+                </label>
+            `;
+            //tilføj vores html til det sted hvor id er objectContainer
+            container.appendChild(div)
+
+        }
+
         
         
     </script>
