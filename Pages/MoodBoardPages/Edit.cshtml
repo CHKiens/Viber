@@ -19,12 +19,7 @@
                     
                     <div class="row g-2" id="dynamicRow">
                         @* her indsættes værdierne fra javascript *@
-                        @foreach(var cc in Model.MoodBoard.ContentContainers){
-                            
-                             <div class="border rounded-2 h-100">
-                                 
-                            </div>
-                        }
+
                     </div>
 
 
@@ -108,21 +103,24 @@
                         </div>
                             <!-- Modal body -->
                             <div class="modal-body" id="AddContentContainer">
-
-
+                                <div class="form-group" id="objectContainer"></div>
+                                <span class=""
                             </div>
 
                             <!-- Modal footer -->
                             <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success">submit</button>
+                                <button type="button" class="btn custom-button-submit">submit</button>
                             </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+
+
+
+
     <script>
          //metode til at skrive overskriften
         // skal skrive den i venstre side, når der er et input i højre side . DynamicTitle er venstre side(Moodboardsiden).
@@ -163,7 +161,7 @@
 
         //funktion til at flytte  kasse fra højre side til venstre fundet på https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_appendchild2
         
-
+        
         
     </script>
 </body>
