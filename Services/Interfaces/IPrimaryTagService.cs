@@ -1,4 +1,8 @@
-﻿namespace Viber.Services.Interfaces {
-    public interface IPrimaryTagService {
+﻿using Viber.Models;
+
+namespace Viber.Services.Interfaces {
+    public interface IPrimaryTagService 
+    {
+        public List<PrimaryTag> GetPrimaryTags();
     }
 }

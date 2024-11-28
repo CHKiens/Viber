@@ -1,7 +1,10 @@
 ﻿using Viber.Models;
 
 namespace Viber.Services.Interfaces {
-    public interface IMoodboardService {
+    public interface IMoodboardService 
+    {
        public Moodboard GetMoodboard(int Id);
+
+        List<Moodboard> GetMoodboardsByPrimaryTagId(int primaryTagId, int limit = 14);
     }
 }

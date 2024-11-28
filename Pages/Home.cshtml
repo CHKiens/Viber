@@ -10,32 +10,66 @@
 <div style="display:flex; margin-left:30px; margin-top:10px">
     <p>Filter by: &nbsp</p><p id="p-filter"> Date, Popularity, Rating</p> @* filtering af søgeresultater implementeres her *@
 </div>
-<div class="container"> @*denne container skal kun vises hvis søgefeltet er tomt, og ingen filtre er applied. *@
-    <h4>Sad</h4>
+
+
+@foreach (var tag in Model.PrimaryTags)
+{
+    <h4>@tag.Name</h4>
+
     <div class="square-row">
-        @for (int i = 12; i < 20; i++) @* her skal itereres over antal af entries indeholder "main tag (#sad)" *@
+        @if (Model.MoodboardsByTag.ContainsKey(tag.PrimaryTagId))
         {
+            var moodboards = Model.MoodboardsByTag[tag.PrimaryTagId];
 
+            foreach (var moodboard in moodboards)
+            {
                 <div class="square">
-                    <img src="@($"https://picsum.photos/id/{i}/200/300")" alt="placeholder" />
-                    <div class="image-text"> Min billedtekst</div>
+                    <img src="@moodboard.Thumbnail" alt="Moodboard Image" />
+                    <div class="image-text">@moodboard.Title</div>
                 </div>
-
+            }
         }
     </div>
-    <p class="tag">#rain, #clouds, #darkness</p> @* //tags skulle gerne kunne klikkes på, hvilket fører til en oversigt over andre posts med samme tag *@
-    <h4>Happy</h4>
+
+    <h5>Subtags</h5>
+}
+
+
+
+
+@* <div class="container"> *@ @*denne container skal kun vises hvis søgefeltet er tomt, og ingen filtre er applied. *@
+    
+    @* <h4>Sad</h4>
+    <div class="square-row">
+        @foreach (var moodboard in Model.Moodboards.Where(m => m.PrimaryTagId == 1))
+            {
+                @foreach(var content in moodboard.ContentContainers)
+                {
+                    <div class="square">
+                        <img src="@content.L" alt="Moodboard Image" />
+                        <div class="image-text">@content.DisplayText</div>
+                    </div>
+                }
+            }
+    </div>
+    <p class="tag">#rain, #clouds, #darkness</p> *@ @* //tags skulle gerne kunne klikkes på, hvilket fører til en oversigt over andre posts med samme tag *@
+    @* <h4>Happy</h4>
     <div class="square-row">
     @for (int i = 20; i < 28; i++)
     {
-                <div class="square">
+            @foreach(var Moodboard in Model.Moodboards)
+            {
+                @if(Moodboard.PrimaryTagId == 2)
+                {
+                    <div class="square">
 
-                    <img src="@($"https://picsum.photos/id/{i}/200/300")" alt="placeholder" />
-                    <div class="image-text"> Test test</div>
-                </div>
-
-    }
+                        <img src="@($"https://picsum.photos/id/{i}/200/300")" alt="placeholder" />
+                        <div class="image-text"> Test test</div>
+                    </div>
+                }
+            }
+        }
     </div>
     <p class="tag">#sun, #smile, #party</p>
-</div>           
+</div> *@
             
