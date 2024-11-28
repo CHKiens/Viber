@@ -28,13 +28,6 @@ namespace Viber.Pages.MoodBoardPages {
             MoodBoard = _moodboardService.GetMoodboardAndCC(Id);
             
         }
-        public IActionResult OnPost()
-        {
-            _moodboardService.CreateMoodboard(MoodBoard);
-
-            return RedirectToPage("/MoodBoardPages/Edit", new { Id = MoodBoard.MoodboardId });
-
-        }
 
 
 

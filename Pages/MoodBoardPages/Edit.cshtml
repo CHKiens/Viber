@@ -2,24 +2,35 @@
 @model Viber.Pages.MoodBoardPages.EditModel
 @{
 }
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+</head>
 
-<body class="vh-100">
+<div class="text-center">
+    Design your moodboard
+</div>
+<div class="d-flex justify-content-center mb-2 mt-0">
+    <i class="fa-regular fa-circle"></i>
+    <i class="fa-solid fa-circle"></i>
+    <i class="fa-regular fa-circle"></i>
+</div>
+<body class="vh-100 ">
     <div class="container-fluid h-100">
-        <div class="row h-100 g-3">
+        <div class="row h-100 g-3 ">
             <div class="col-8">
                 @* Venstre kasse *@
-                <div class="p-5 border rounded-3 h-100" id="Moodboard">
+                <div class="p-5 border rounded-3 h-100 shadow-lg p-4 mb-4" id="Moodboard">
                     <p>#Example</p>
 
                     @* //titlen sættes ind her baseret på input *@
                     <h1 class="display-8 text-center mb-5 col-12" id="DynamicTitle"></h1>
 
-                    <h1>@Model.MoodBoard.MoodboardId</h1>
-                    <h2>@Model.MoodBoard.PrimaryTag.Name</h2>
                     
                     <div class="row g-2" id="dynamicRow">
                         @* her indsættes værdierne fra javascript *@
-                        
+
                     </div>
 
 
@@ -35,37 +46,31 @@
 
                     <form method="post">
                         @* input til titel *@
-                        <input asp-for="MoodBoard.Title" class="col-12" id="titleInput" placeholder="@Model.MoodBoard.Title" />
+                        <input asp-for="MoodBoard.Title" class="col-12 form-control" id="titleInput" placeholder="@Model.MoodBoard.Title" />
                         <div class="row mt-3 g-2 text-center">
                             @* input til baggrundsfarve *@
-                            <div class="col-5 border border-dark me-5">
+                            <div class="col-5 border border-light me-5">
                                 <p>Background color</p>
                                 <input asp-for="MoodBoard.BackgroundColor" class="col-3" type="color" id="BackgroundColorPicker" />
 
                             </div>
                             @*Input til titel farve*@
-                            <div class="col-5 border border-dark">
+                            <div class="col-5 border border-light">
                                 <p>
                                     Pick Title color
                                 </p>
 
-                                <input asp-for="MoodBoard.TitleColor" class="col-3" type="color" id="TitleColor" />
+                                <input asp-for="MoodBoard.TitleColor" class="col-3 shadow" type="color" id="TitleColor" />
                             </div>
   
                         </div>
+                        <button class="custom-button shadow-sm text-center mt-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+                            Add content containers
+                        </button>
                         
                         <div>
                             <p>Enter a link for your thumbnail</p>
                             <input asp-for="MoodBoard.Thumbnail" type="url" class="col-12" />
-                        </div>
- 
-
-                        <p class="mt-1">Add box to moodboard</p>
-                        @* Tilføj ny boks via modal *@
-                        <div class="text-center">
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#myModal">
-                                Open modal
-                            </button>
                         </div>
 
                         <p class="mt-2">Select primary Tag</p>
@@ -85,36 +90,27 @@
                         </div>
                         @* Sender moodboard med i onpost *@
                         <div class="text-end">
-                            <button type="submit" class="btn-success mt-2" asp-route-moodBoard="@Model.MoodBoard"> Submit moodboard </button>
+                            <button type="submit" class="custom-button-submit mt-2" asp-route-moodBoard="@Model.MoodBoard"> Submit moodboard </button>
                         </div>
 
                     </form>
-
-                </div>
-            </div>
-
-
-            @*Laver hvad min modal skal indeholde, modalen fylder hele siden. Hentet fra ws3 school*@
-            <div class="modal" id="myModal">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title">Add new content container</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <div class="offcanvas offcanvas-end" id="demo">
+                        <button type="button" class="btn-close text-reset ms-auto" data-bs-dismiss="offcanvas"></button>
+                        <div class="offcanvas-header">
+                            <h1 class="offcanvas-title">Add content</h1>
+                            
                         </div>
-                            <!-- Modal body -->
-                            <div class="modal-body" id="AddContentContainer">
-                                <div class="form-group" id="objectContainer"></div>
-                                <span class="span-left"><button class="custom-button-submit" onclick="addObject()">Add content box</button></span>
-                            </div>
+                        <div class="offcanvas-body">
+                            @foreach(var CC in Model.MoodBoard.ContentContainers){
+                                if(CC.Type == "Text"){
+                                    <div class="square">
+                                        @CC.DisplayText
+                                    </div>
 
-                            <!-- Modal footer -->
-                            <div class="modal-footer justify-content-between">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn custom-button-submit">submit</button>
-                            </div>
+                                }
+                            }
+                            <button class="btn btn-secondary" type="button">A Button</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -164,32 +160,6 @@
 
         //funktion til at flytte  kasse fra højre side til venstre fundet på https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_appendchild2
         
-        //tilføjer div til at lave bokse med.
-        function addObject(){
-            const container = document.getElementById('objectContainer')
-
-            //Den div hvor vores valgmuligheder skal være i
-            const div = document.createElement('div');
-            div.className = "object";
-
-            // laver en dropdown til at vælge link og type.
-            div.innerHTML =
-            `<label>Type:
-                    <select class="form-control" name="ContainerType[]">
-                        <option value="text">Text</option>
-                        <option value="image">Image</option>
-                        <option value="spotify">Spotify</option>
-                        <option value="youtube">YouTube</option>
-                    </select>
-                </label>
-                <label>Link:
-                    <input type="text" class="form-control" name="ContainerText[]">
-                </label>
-            `;
-            //tilføj vores html til det sted hvor id er objectContainer
-            container.appendChild(div)
-
-        }
 
         
         
