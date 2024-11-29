@@ -10,13 +10,31 @@ namespace Viber.Services.Services {
             _context = context;
         }
 
-        //CRUD
 
-        public Moodboard GetMoodboard(int Id)
+        public void CreateMoodboard(Moodboard moodboard)
         {
-            var moodboard = _context.Moodboards.FirstOrDefault(mb => mb.MoodboardId == Id);
+            moodboard.DateOfCreation = DateTime.Now;
+            _context.Moodboards.Add(moodboard);
+            _context.SaveChanges();
+        }
 
-            return moodboard;
+
+        public Moodboard GetMoodboard(int moodboardId) 
+        {
+            return _context.Moodboards.FirstOrDefault(mb => mb.MoodboardId == moodboardId);
+        }
+
+        public void UpdateMoodboard(Moodboard moodboard)
+        {
+            moodboard.UpdateDate = DateTime.Now; 
+            _context.Moodboards.Update(moodboard);
+            _context.SaveChanges();
+        }
+
+        public void UpdateContainerList(Moodboard moodboard)
+        {
+            
+
         }
     }
 }
