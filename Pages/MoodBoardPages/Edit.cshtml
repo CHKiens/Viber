@@ -1,0 +1,149 @@
+﻿@page
+@model Viber.Pages.MoodBoardPages.EditModel
+@{
+}
+<body class="vh-100">
+    <div class="container-fluid h-100">
+        <div class="row h-100 g-3">
+            <div class="col-8">
+                @* Venstre kasse *@
+                <div class="p-5 border rounded-3 h-100" id="Moodboard">
+                    <p>#Example</p>
+
+                    @* //titlen sættes ind her baseret på input *@
+                    <h1 class="display-8 text-center mb-5 col-12" id="DynamicTitle"></h1>
+
+                    <h1>@Model.MoodBoard.MoodboardId</h1>
+                    @foreach(var c in Model.MoodBoard.ContentContainers){
+                        <p2>@c.Type</p2>
+                        <p2>@c.Link</p2>
+                    }
+                    
+                    <h2></h2>
+                    <div class="row g-2" id="dynamicRow">
+                        @* her indsættes værdierne fra javascript *@
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            @* højre kasse *@
+            <div class="col-4">
+                <div class="p-5 bg-light border rounded-3 h-100">
+                    <h1 class="display-8 text-center">Design</h1>
+                    <p class="mt-2">Moodboard name:</p>
+
+                    <form method="post">
+                        @* input til titel *@
+                        <input asp-for="MoodBoard.Title" class="col-12" id="titleInput" placeholder="@Model.MoodBoard.Title" />
+                        @* input til baggrundsfarve *@
+                        <p class="mt-2">Background color</p>
+                        <input asp-for="MoodBoard.BackgroundColor" class="col-3" type="color" id="BackgroundColorPicker" />
+
+                        <p>
+                            Pick a color for your title
+                        </p>
+
+                        <input asp-for="MoodBoard.TitleColor" class="col-3" type="color" id="TitleColor" />
+
+                        <p class="mt-1">Add box to moodboard</p>
+                        @* Tilføj ny boks via modal *@
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                            Open modal
+                        </button>
+
+                        <p class="mt-2">Regret your placement? click here!</p>
+                        <div class="text-center mb-2">
+                            <button type="button" onclick="UndoLastBox()" class="btn-danger text-center">Regret last placement</button>
+                        </div>
+                        @* Laver en linje til at adskille submit fra resten *@
+                        <div class="border-top mt-3 border-dark">
+                            <p></p>
+                        </div>
+                        @* Sender moodboard med i onpost *@
+                        <div class="text-end">
+                            <button type="submit" class="btn-success mt-2" asp-route-moodBoard="@Model.MoodBoard"> Submit moodboard </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+            @*Laver hvad min modal skal indeholde, modalen fylder hele siden*@
+            <div class="modal" id="myModal">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add new content container</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body" id="AddContentContainer">
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success">submit</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+         //metode til at skrive overskriften
+        // skal skrive den i venstre side, når der er et input i højre side . DynamicTitle er venstre side(Moodboardsiden).
+        // titleInput er højre (bruger-området)
+        const dynamicTitle = document.getElementById("DynamicTitle");
+        const titleInput = document.getElementById("titleInput");
+        // Holder øje med Comment noget er skrevet i inputfeltet. Hvis der er laver den en function der skriver det ind.
+        // Er input null skriver den "Title".
+        titleInput.addEventListener("input", function () {
+            dynamicTitle.textContent = titleInput.value || "Title";
+        });
+
+
+        // Vælg baggrundsfarve
+
+
+        //vælg en farve til baggrunden:
+        function BackgroundColor() {
+            // Se hvad brugeren har valgt
+            var color = document.getElementById('BackgroundColorPicker').value;
+
+            // Sæt baggrundsfarven til det valgte farve. Men kun i det område med id Moodboard
+            document.getElementById('Moodboard').style.backgroundColor = color;
+        }
+        //ændrer farven når den ser at man har klikket
+        document.getElementById('BackgroundColorPicker').addEventListener('input', BackgroundColor);
+
+
+        // vælg farve til overskriften
+
+        function TitleColor(){
+            //color er lig med inputtet i titleColor værdi feltet
+            var color = document.getElementById('TitleColor').value;
+            document.getElementById('DynamicTitle').style.color = color
+        }
+        //holder øje med om der er valgt en værdi og sætter den dynamisk
+        document.getElementById('TitleColor').addEventListener('input', TitleColor);
+
+        //funktion til at flytte  kasse fra højre side til venstre fundet på https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_appendchild2
+
+        function MoveBox(){
+            const node = document.getElementById('MovableBox')
+            document.getElementById('dynamicRow').appendChild(node);
+        }
+
+
+    </script>
+</body>

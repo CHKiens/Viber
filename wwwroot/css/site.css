@@ -47,7 +47,7 @@ body {
     background-image: linear-gradient(#a37b60, #8C583D);
     margin-top: 20px;
     padding: 2px 20px;
-    border-radius: 50px;
+    border-radius: 5px;
     border: none;
     float: right;
     letter-spacing: 1px;
@@ -65,7 +65,7 @@ body {
     text-decoration: none;
     background-image: linear-gradient(#a37b60, #8C583D);
     padding: 3px 30px;
-    border-radius: 50px;
+    border-radius: 5px;
     border: none;
     letter-spacing: 1px;
 }
@@ -88,14 +88,37 @@ body {
     font-style: normal;
     font-size: 15px;
     color: #5B352E;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     border: none;
     background-image: linear-gradient(white, #fcb69f);
     box-shadow: inset 3px 3px 12px #8c5a82;
     padding: 8px 12px;
     display:flex;
+}
+
+.dropdown {
+    color: #E2DED7;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 18px;
+    max-height: fit-content;
+    padding: 8px 12px;
+    display: flex;
+    text-decoration: none;
+    background-image: linear-gradient(#a37b60, #8C583D);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: none;
+    letter-spacing: 1px;
+}
+
+.dropdown option{
+    color:darkslategrey;
 }
 
 .form-group {
@@ -132,15 +155,16 @@ textarea:focus, input:focus{
     font-style: normal;
     font-size: 15px;
     color: #5B352E;
-    -webkit-border-radius: 40px;
-    -moz-border-radius: 40px;
-    border-radius: 40px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     border: none;
     background-image: linear-gradient(white, #fcb69f);
     box-shadow: inset 3px 3px 12px #8c5a82;
     padding: 10px 10px;
     margin-top: 10px;
 }
+
 
 .span-left {
     float:left;
@@ -327,6 +351,17 @@ p2 {
     font-weight: normal;
     font-style: normal;
     font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+label {
+    color: #9c8a72;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 15px;
     margin-top: 10px;
     margin-bottom: 5px;
 }
