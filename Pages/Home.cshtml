@@ -1,4 +1,5 @@
 ﻿@page
+@using Viber.Models
 @model Viber.Pages.HomeModel
 @{
 }
@@ -30,8 +31,16 @@
             }
         }
     </div>
+    <div class="subtags-container">
+        @foreach (var st in Model.SubTags.Where(SubTag => SubTag.PrimaryTagId == tag.PrimaryTagId))
+        {
+            <span class="subtag-item">
+            <h5>#@st.Name</h5>
+        </span>
+        }
+    </div>
 
-    <h5>Subtags</h5>
+    
 }
 
 

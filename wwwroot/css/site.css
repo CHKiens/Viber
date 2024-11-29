@@ -281,6 +281,17 @@ h4 {
     font-size: 20px;
 }
 
+.subtags-container {
+    display: flex;        
+    gap: 10px;            
+    flex-wrap: wrap;      
+}
+
+.subtag-item {
+    padding: 5px;      
+    font-size: 16px;
+}
+
 p {
     color: #9c8a72;
     font-family: "Sora", sans-serif;

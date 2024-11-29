@@ -14,7 +14,7 @@ namespace Viber.Pages
         //TODO: RET TILBAG TIL (/"Home")
         public IActionResult OnGet()
         {
-            return RedirectToPage("/MoodBoardPages/Create");
+            return RedirectToPage("/Home");
         }
     }
 }

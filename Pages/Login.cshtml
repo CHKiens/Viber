@@ -15,6 +15,13 @@
     <div class="form-group">
         <input type="password" asp-for="LoginInput.Password" class="form-control" placeholder="Enter password">
     </div>
+
+    @if (!string.IsNullOrEmpty(ModelState[""]?.Errors.FirstOrDefault()?.ErrorMessage))
+    {
+        <div class="text-danger">
+            @ModelState[""]?.Errors.FirstOrDefault()?.ErrorMessage
+        </div>
+    }
     
     <span class="span-left"><button type="submit" class="custom-button-submit" style="color: #9c8a72;background:none;text-decoration:underline">I forgot my password</button></span>
     <span class="span-right"><button type="submit" class="custom-button-submit">SUBMIT</button></span>
