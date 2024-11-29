@@ -4,27 +4,56 @@
     ViewData["Title"] = "CreateMoodboard";
 }
 
-<form method="post">
-    <div class="form-group">
-        <p2>Moodboard Title</p2>
-        <input type="text" asp-for="Moodboard.Title" class="form-control" placeholder="Enter moodboard title">
-        <p2>Primary Tag</p2>
-        <select asp-for="PrimaryTag" class="form-control">
-            <option>Click here to select a primary tag</option>
-            @foreach (var primaryTag in Model.PrimaryTags)
-            {
-                <option value="@primaryTag.PrimaryTagId" >@primaryTag.Name</option>
-            }
-        </select>
-        <input type="hidden" asp-for="Moodboard.UserId" value="@Model.Moodboard.UserId" />
-        <input type="hidden" asp-for="Moodboard.MoodboardId" value="@Model.Moodboard.MoodboardId" />
-    </div>
 
-    <div class="form-group" id="objectContainer"></div> <!-- This will hold the dynamic inputs -->
-    <span class="span-left"><button type="button" class="custom-button-submit" onclick="addObject()">Add Object</button></span>
-    <span class="span-right"><button type="submit" class="custom-button-submit">Submit</button></span>
-    
-</form>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <form method="post" id="submitform">
+                <div class="form-group" style="width: 100%">
+                    <p2>Moodboard Title</p2>
+                    <input type="text" asp-for="Moodboard.Title" class="form-control" placeholder="Enter moodboard title">
+                    <p2>Primary Tag</p2>
+                    <select asp-for="PrimaryTag" class="dropdown">
+                        <option>Click here to select a primary tag</option>
+                        @foreach (var primaryTag in Model.PrimaryTags)
+                        {
+                            <option value="@primaryTag.PrimaryTagId">@primaryTag.Name</option>
+                        }
+                    </select>
+                    <input type="hidden" asp-for="Moodboard.UserId" value="@Model.Moodboard.UserId" />
+                    <input type="hidden" asp-for="Moodboard.MoodboardId" value="@Model.Moodboard.MoodboardId" />
+                </div>
+                <p2>Configure Content</p2>
+                <div class="form-group" id="objectContainer">
+                </div> <!-- This will hold the dynamic inputs -->
+                <button type="button" class="dropdown" onclick="addObject()">Add Content Box</button>                
+
+            </form>
+        </div>
+        <div class="col-sm" style="margin-left: 30px">
+            <h4>
+                Info
+            </h4>
+            <p> Her kan du lave dit moodboard blablablablablablablablablablablablablablabla
+                blablablablablablablablablabl blablablablablabla balbalbablabalblablalblabl
+                ablalblablalbla
+                ablalbablalblablablalblalblablababla alblalblabllab
+                ablablabllablalbabl
+
+                labalblablalb
+                lbalablabllbalablabla
+            </p>
+            <button type="submit" form="submitform" class="dropdown">Proceed to Moodboard Designer</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 <script>
     function addObject() {
         const container = document.getElementById('objectContainer');
@@ -33,23 +62,54 @@
         const div = document.createElement('div');
         div.className = "object";
 
-        // Add the dropdown for 'Type' and the text input for 'Link'
+        // Add the dropdown for 'Type' and the input field
         div.innerHTML = `
-            <label>Type:
-                <select class="form-control" name="ContainerType[]">
+            <label style="width:20%">
+                <select class="dropdown" style="padding:5px 10px" name="ContainerType[]" onchange="adjustInputField(this)">
+                    <option>Select type</option>
                     <option value="text">Text</option>
                     <option value="image">Image</option>
                     <option value="spotify">Spotify</option>
                     <option value="youtube">YouTube</option>
                 </select>
             </label>
-            <label>Link:
-                <input type="text" class="form-control" name="ContainerText[]">
+            <label style="width:80%" display="flex">
+                <input type="text" class="form-control" name="ContainerText[]" placeholder="Enter text or link" style="height: 30px;">
             </label>
-            
         `;
 
         // Append the new div to the container
         container.appendChild(div);
     }
+
+    function adjustInputField(selectElement) {
+        const container = selectElement.parentElement.nextElementSibling;
+        const inputField = container.querySelector('input');
+
+        if (selectElement.value === 'text') {
+            // Replace input with a textarea
+            const textarea = document.createElement('textarea');
+            textarea.name = 'ContainerText[]';
+            textarea.className = 'form-control';
+            textarea.placeholder = 'Enter your text here...';
+            textarea.style.height = '100px'; // Set post-it note height
+            textarea.style.width = '100%'; // Full width for clarity
+            textarea.style.resize = 'none'; // Prevent resizing
+
+            // Replace input with textarea
+            container.replaceChild(textarea, inputField);
+        } else {
+            // Replace textarea back with input for other types
+            const newInput = document.createElement('input');
+            newInput.type = 'text';
+            newInput.name = 'ContainerText[]';
+            newInput.className = 'form-control';
+            newInput.placeholder = 'Paste your link here...';
+            newInput.style.height = '30px'; // Default height
+            container.replaceChild(newInput, inputField || container.querySelector('textarea'));
+        }
+    }
 </script>
+
+
+

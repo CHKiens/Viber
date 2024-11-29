@@ -59,6 +59,16 @@ namespace Viber.Pages.MoodBoardPages
 
             for (int i = 0; i < ContainerType.Count; i++)
             {
+                switch (ContainerType[i])
+                {
+                    case "youtube":
+                        ContainerText[i] = ContainerText[i].Split("?v=")[1];
+                        break;
+                    case "spotify":
+                        ContainerText[i] = ContainerText[i].Split("com/")[1].Split("si=")[0]+"utm_source=generator";
+                        break;
+                    default : break;
+                }
                 var container = new ContentContainer
                 {
                     Type = ContainerType[i],
