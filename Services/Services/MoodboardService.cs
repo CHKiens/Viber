@@ -10,6 +10,7 @@ namespace Viber.Services.Services {
             _context = context;
         }
 
+
         public void CreateMoodboard(Moodboard moodboard)
         {
             moodboard.DateOfCreation = DateTime.Now;
@@ -33,6 +34,7 @@ namespace Viber.Services.Services {
         public void UpdateContainerList(Moodboard moodboard)
         {
             
+
         }
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel;
 using System.Text.Json;
+
 using Viber.Models;
 using Viber.Services.Interfaces;
 
@@ -11,6 +12,7 @@ namespace Viber.Pages.MoodBoardPages
 {
     public class CreateModel : PageModel
     {
+
         public IPrimaryTagService _primaryTagService { get; set; }
         public IMoodboardService moodboardService { get; set; }
 
@@ -84,7 +86,7 @@ namespace Viber.Pages.MoodBoardPages
 
 
 
-            /*TempData["MoodboardData"] = JsonSerializer.Serialize(Moodboard); *///Gemmer moodboard i tempdata som kan læses af Edit siden. 
+            /*TempData["MoodboardData"] = JsonSerializer.Serialize(Moodboard); *///Gemmer moodboard i tempdata som kan lï¿½ses af Edit siden. 
             return RedirectToPage("/MoodBoardPages/Edit", new { Id = Moodboard.MoodboardId });
             
         }
