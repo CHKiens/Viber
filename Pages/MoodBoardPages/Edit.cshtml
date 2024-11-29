@@ -25,12 +25,60 @@
                     <p>#Example</p>
 
                     @* //titlen sættes ind her baseret på input *@
-                    <h1 class="display-8 text-center mb-5 col-12" id="DynamicTitle"></h1>
+                    <h1 class="display-8 text-center mb-5 col-12" id="DynamicTitle">@Model.MoodBoard.Title</h1>
 
-                    
+
                     <div class="row g-2" id="dynamicRow">
                         @* her indsættes værdierne fra javascript *@
 
+                        @foreach (var CC in Model.MoodBoard.ContentContainers)
+                        {
+
+                            @switch (CC.Type)
+                            {
+                                case "text":
+                                    <div>
+                                        <div class="col-4 mt-2">
+                                            <span class="shadow p-2" style="border-radius:5px">
+                                                <h1>
+                                                    @CC.DisplayText
+                                                </h1>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    break;
+                                case "youtube":
+                                    <div>
+                                        <div class="col-8 mt-2">
+                                            <span class="ratio ratio-16x9" style="border-radius:5px">
+                                                <iframe src="https://www.youtube.com/embed/@CC.Link" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:5px"></iframe>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    break;
+                                case "image":
+                                    <div class="col-4 mt-2">
+                                        <span class="shadow p-2" style="border-radius:5px">
+                                            <img src="@CC.Link"/>
+                                        </span>
+                                    </div>
+                                    break;
+                                case "spotify":
+                                    <div class="col-8 mt-2">
+                                        <span style="border-radius:5px">
+                                            <iframe src="https://open.spotify.com/embed/@CC.Link" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                                        </span>
+                                    </div>
+                                    break;
+                                default:
+                                    break;
+
+                            }
+
+
+                        }
                     </div>
 
 
@@ -45,8 +93,7 @@
                     <p class="mt-2">Moodboard name:</p>
 
                     <form method="post">
-                        @* input til titel *@
-                        <input asp-for="MoodBoard.Title" class="col-12 form-control" id="titleInput" placeholder="@Model.MoodBoard.Title" />
+
                         <div class="row mt-3 g-2 text-center">
                             @* input til baggrundsfarve *@
                             <div class="col-5 border border-light me-5">
@@ -62,25 +109,16 @@
 
                                 <input asp-for="MoodBoard.TitleColor" class="col-3 shadow" type="color" id="TitleColor" />
                             </div>
-  
+
                         </div>
                         <button class="custom-button shadow-sm text-center mt-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
                             Add content containers
                         </button>
-                        
+
                         <div>
                             <p>Enter a link for your thumbnail</p>
                             <input asp-for="MoodBoard.Thumbnail" type="url" class="col-12" />
                         </div>
-
-                        <p class="mt-2">Select primary Tag</p>
-                        <select asp-for="MoodBoard.PrimaryTag" class="form-control">
-                            <option>Click here to select a primary tag</option>
-                            @foreach (var primaryTag in Model.PrimaryTags)
-                            {
-                                <option value="@primaryTag.PrimaryTagId">@primaryTag.Name</option>
-                            }
-                        </select>
 
 
 
@@ -98,18 +136,58 @@
                         <button type="button" class="btn-close text-reset ms-auto" data-bs-dismiss="offcanvas"></button>
                         <div class="offcanvas-header">
                             <h1 class="offcanvas-title">Add content</h1>
-                            
+
                         </div>
                         <div class="offcanvas-body">
-                            @foreach(var CC in Model.MoodBoard.ContentContainers){
-                                if(CC.Type == "Text"){
-                                    <div class="square">
-                                        @CC.DisplayText
-                                    </div>
+                            @foreach (var CC in Model.MoodBoard.ContentContainers)
+                            {
+                                
+                                @switch (CC.Type)
+                                {
+                                    case "text":
+                                        <div>
+                                            <div class="col-4 mt-2" >
+                                                <span class="shadow p-2" style="border-radius:5px">
+                                                   <h1>
+                                                        MoodBoard.MoodboardId
+                                                   </h1> 
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        break;
+                                    case "youtube":
+                                        <div>
+                                            <div class="col-8 mt-2">
+                                                <span class="ratio ratio-16x9" style="border-radius:5px">
+                                                    <iframe src="https://www.youtube.com/embed/@CC.Link" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:5px"></iframe>
+                                                </span>
+                                            </div>
+                                        </div>
+      
+                                        break;
+                                    case "image":
+                                        <div class="col-4 mt-2">
+                                            <span class="shadow p-2" style="border-radius:5px">
+                                                <a src="@CC.Link"></a>
+                                            </span>
+                                        </div>
+                                        break;
+                                    case "spotify":
+                                        <div class="col-8 mt-2">
+                                            <span style="border-radius:5px">
+                                                <iframe src="https://open.spotify.com/embed/@CC.Link" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                                            </span>
+                                        </div>
+                                        break;
+                                    default:
+                                        break;
 
                                 }
+                                
+
                             }
-                            <button class="btn btn-secondary" type="button">A Button</button>
+                            <button onclick="myFunction()">Move</button>
                         </div>
                     </div>
                 </div>
@@ -118,16 +196,6 @@
     </div>
 
     <script>
-         //metode til at skrive overskriften
-        // skal skrive den i venstre side, når der er et input i højre side . DynamicTitle er venstre side(Moodboardsiden).
-        // titleInput er højre (bruger-området)
-        const dynamicTitle = document.getElementById("DynamicTitle");
-        const titleInput = document.getElementById("titleInput");
-        // Holder øje med Comment noget er skrevet i inputfeltet. Hvis der er laver den en function der skriver det ind.
-        // Er input null skriver den "Title".
-        titleInput.addEventListener("input", function () {
-            dynamicTitle.textContent = titleInput.value || "Title";
-        });
 
 
         // Vælg baggrundsfarve
@@ -156,8 +224,7 @@
         document.getElementById('TitleColor').addEventListener('input', TitleColor);
 
         //funktion til at flytte  kasse fra højre side til venstre fundet på https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_appendchild2
-        
-
+        }
         
         
     </script>
