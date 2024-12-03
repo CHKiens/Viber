@@ -15,9 +15,13 @@ namespace Viber.Pages.MoodBoardPages
         [BindProperty]
         public Moodboard Moodboard { get; set; }
 
+        [BindProperty]
+        public List<ContentContainer> ContentContainers { get; set; }
+
         public void OnGet(int MBId)
         {
-            Moodboard = _moodboardService.GetMoodboard(MBId);
+            Moodboard = _moodboardService.GetMoodboardAndCC(MBId);
+            ContentContainers = Moodboard.ContentContainers.OrderBy(cc => cc.OrderId).ToList();
         }
     }
 }

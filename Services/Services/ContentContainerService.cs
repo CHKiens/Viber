@@ -34,7 +34,14 @@ namespace Viber.Services.Services {
         }
 
         //
-
+        public void resetOrder(int moodboardId)
+        {
+            _context.ContentContainers
+                .Where(cc=>cc.MoodboardId == moodboardId)
+                .ToList()
+                .ForEach(cc => cc.OrderId = null);
+            _context.SaveChanges();
+        }
 
     }
 }

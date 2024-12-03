@@ -10,5 +10,6 @@ namespace Viber.Services.Interfaces {
         public void EditContainer(ContentContainer contentContainer);
 
         public ContentContainer GetContentContainerById(int id);
+        public void resetOrder(int moodboardId);
     }
 }

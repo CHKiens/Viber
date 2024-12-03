@@ -37,10 +37,8 @@ namespace Viber.Pages.MoodBoardPages {
             PrimaryTags = _primaryTagService.GetPrimaryTags();
             id = Id;
             MoodBoard = _moodboardService.GetMoodboardAndCC(Id);
-            foreach (ContentContainer contentContainer in MoodBoard.ContentContainers)
-            {
-                contentContainer.OrderId = null;
-            }
+            //sætter dem til null, hvis der er sat en order tidligere. Vælges en order ikke til sin contentcontainer vil den være null og vil ikke vises
+            _contentContainerService.resetOrder(Id);
 
         }
 
@@ -51,8 +49,6 @@ namespace Viber.Pages.MoodBoardPages {
             {
                 return Page();
             }
-            MoodBoard.BackgroundColor = BackgroundColor;
-            MoodBoard.TitleColor = TitleColor;
             int order = 1;
             foreach (int CCId in ContentOrder)
             {
@@ -64,7 +60,7 @@ namespace Viber.Pages.MoodBoardPages {
             }
             _moodboardService.EditMoodboard(MoodBoard);
 
-            return RedirectToPage("/MoodBoardPages/ViewMoodBoard",  new { MBId = id });
+            return RedirectToPage("/MoodBoardPages/ViewMoodBoard",  new { MBId = MoodBoard.MoodboardId });
         }
 
 

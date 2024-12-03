@@ -2,6 +2,65 @@
 @model Viber.Pages.MoodBoardPages.ViewMoodBoardModel
 @{
 }
-<h1>
+<body>
+    <div class="p-5 border rounded-3 h-100 shadow-lg p-4 mb-4 " style="background-color:@Model.Moodboard.BackgroundColor">
 
-</h1>
+       
+        <h1 class="display-8 text-center mb-5 col-12" style="color:@Model.Moodboard.TitleColor" >@Model.Moodboard.Title</h1>
+
+
+        <div class="row g-2 d-flex justify-content-between">
+            @foreach(var CC in Model.ContentContainers){
+                @switch (CC.Type)
+                {
+                    case "text":
+                        <div id="@CC.ContentContainterId" class="col-5">
+                            <div class="pb-1">
+                                <div class=" mt-2">
+                                    <span class="shadow p-2 text-black" style="border-radius:5px">
+                                        @CC.Link
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        break;
+                    case "youtube":
+                        <div class="col-5" id="@CC.ContentContainterId">
+                            <div class="mt-2">
+                                <span class="ratio ratio-16x9" style="border-radius:5px">
+                                    <iframe src="https://www.youtube.com/embed/@CC.Link" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:5px"></iframe>
+                                </span>
+                            </div>
+                        </div>
+                        break;
+                    case "image":
+                        <div class="col-5" id="@CC.ContentContainterId">
+                            <div class="mt-2">
+                                <span class="shadow p-2" style="border-radius:5px">
+                                    <img src="@CC.Link" style="max-width:100%; height:auto" />
+                                </span>
+                            </div>
+                        </div>
+
+
+
+                        break;
+                    case "spotify":
+                        <div class="col-5 mt-2" id="@CC.ContentContainterId">
+                            <span style="border-radius:5px">
+                                <iframe src="https://open.spotify.com/embed/@CC.Link" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                            </span>
+                        </div>
+                        break;
+                    default:
+                        break;
+
+                }
+            }
+
+        </div>
+
+
+
+    </div>
+</body>
