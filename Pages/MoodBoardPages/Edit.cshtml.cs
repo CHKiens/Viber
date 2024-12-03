@@ -22,8 +22,6 @@ namespace Viber.Pages.MoodBoardPages {
 
         [BindProperty]
         public List<PrimaryTag> PrimaryTags { get; set; }
-        [BindProperty]
-        public List<ContentContainer> ContentContainers { get; set; }
 
         [BindProperty]
         public List<int> ContentOrder { get; set; }
@@ -33,11 +31,18 @@ namespace Viber.Pages.MoodBoardPages {
         {
             PrimaryTags = _primaryTagService.GetPrimaryTags();
             MoodBoard = _moodboardService.GetMoodboardAndCC(Id);
-            ContentContainers = MoodBoard.ContentContainers.ToList();
+            foreach (ContentContainer contentContainer in MoodBoard.ContentContainers)
+            {
+                contentContainer.OrderId = null;
+            }
         }
 
         public IActionResult OnPost()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
             int order = 1;
             foreach (int CCId in ContentOrder)
             {
@@ -47,6 +52,7 @@ namespace Viber.Pages.MoodBoardPages {
                 _contentContainerService.EditContainer(cc);
                 order++;
             }
+            _moodboardService.EditMoodboard(MoodBoard);
             return Page();
         }
 

@@ -62,9 +62,12 @@
                             </div>
 
                         </div>
-                        <button class="custom-button shadow-sm text-center mt-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-                            Add content containers
-                        </button>
+                        <div class="mt-2">
+                            <button class="custom-button shadow-sm text-center mt-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+                                Add content containers
+                            </button>
+                        </div>
+
 
 
 
@@ -88,15 +91,15 @@
                             <h1 class="offcanvas-title">Add content</h1>
 
                         </div>
-                        <div class="offcanvas-body">
-                            @foreach (var CC in Model.ContentContainers)
+                        <div class="offcanvas-body" id="initialContainer">
+                            @foreach (var CC in Model.MoodBoard.ContentContainers)
                             {
                                     
                                 
                                         @switch (CC.Type)
                                         {
                                             case "text":
-                                            <div id="@CC.ContentContainterId" class="col-4">
+                                            <div id="@CC.ContentContainterId" class="col-5">
                                                     <div class="pb-1">
                                                         <div class=" mt-2">
                                                             <span class="shadow p-2 text-black" style="border-radius:5px">
@@ -138,9 +141,11 @@
                                                 break;
 
                                         }
-                                <button onclick="Move(@CC.ContentContainterId)">Add to moodboard</button>
+                                <button onclick="Move(@CC.ContentContainterId)"  id="button-@CC.ContentContainterId">Add to moodboard</button>
                             }
+                            
                         </div>
+                        <button onclick="undoMove()" class="btn-danger">Undo</button>
                     </div>
                 </div>
             </div>
@@ -190,9 +195,26 @@
         //funktion til at flytte  kasse fra højre side til venstre fundet på https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_appendchild2
         function Move(ccId){
             const node = document.getElementById(ccId)
+            const button = document.getElementById(`button-${ccId}`)
             document.getElementById("dynamicRow").appendChild(node);
+            button.remove();
             addCCToArray(ccId);
             console.log("Updated contentOrder array:", contentOrder);
+        }
+
+        //til at fortryde at man flyttede den:
+            function undoMove() {
+            const lastMovedId = contentOrder.pop();
+            const node = document.getElementById(lastMovedId); //finder den sidst flyttede
+            document.getElementById("initialContainer").appendChild(node); //flytter den tilbage
+            //laver knappen der var slettet igen
+                const newButton = document.createElement("button");
+                newButton.id = `button-${lastMovedId}`;
+                newButton.className = "mt-2";
+                newButton.textContent = "Add to moodboard";
+                newButton.setAttribute("onclick", `Move(${lastMovedId})`);
+
+                document.getElementById("initialContainer").appendChild(newButton); //sætter flytter min nye knap så den står under contentcontaineren
         }
 
         //tilføjer hvert CC id til min liste i modellen. det gør jeg via hidden input. Det svare til et inputfelt som normalt. 

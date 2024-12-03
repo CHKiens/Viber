@@ -30,9 +30,15 @@ namespace Viber.Services.Services {
                 .Include(mb => mb.PrimaryTag)
                 .FirstOrDefault(mb => mb.MoodboardId == moodboardId);
                 }
+
+        public void EditMoodboard(Moodboard moodboard)
+        {
+            _context.Update(moodboard);
+            _context.SaveChanges();
+        }
         //
-        
-        
+
+
 
     }
 }
