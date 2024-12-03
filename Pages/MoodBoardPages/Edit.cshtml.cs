@@ -62,7 +62,7 @@ namespace Viber.Pages.MoodBoardPages {
             }
             _moodboardService.EditMoodboard(MoodBoard);
 
-            return RedirectToPage("/MoodBoardPages/ViewMoodBoard",  new { MBId = MoodBoard.MoodboardId });
+            return RedirectToPage("/MoodBoardPages/ViewMoodBoard",  new { Id = MoodBoard.MoodboardId });
         }
 
 
