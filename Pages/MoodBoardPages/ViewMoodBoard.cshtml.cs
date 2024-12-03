@@ -21,7 +21,7 @@ namespace Viber.Pages.MoodBoardPages
         public void OnGet(int MBId)
         {
             Moodboard = _moodboardService.GetMoodboardAndCC(MBId);
-            ContentContainers = Moodboard.ContentContainers.OrderBy(cc => cc.OrderId).ToList();
+            ContentContainers = Moodboard.ContentContainers.Where(cc=>cc.OrderId != null).OrderBy(cc => cc.OrderId).ToList();
         }
     }
 }

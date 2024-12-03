@@ -45,6 +45,8 @@ namespace Viber.Pages.MoodBoardPages {
         public IActionResult OnPost()
         {
             MoodBoard = _moodboardService.GetMoodboard(id);
+            MoodBoard.BackgroundColor = BackgroundColor;
+            MoodBoard.TitleColor = TitleColor;
             if (!ModelState.IsValid)
             {
                 return Page();
