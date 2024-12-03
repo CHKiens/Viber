@@ -66,20 +66,19 @@
                             Add content containers
                         </button>
 
-                        <div>
-                            <p>Enter a link for your thumbnail</p>
-                            <input asp-for="MoodBoard.Thumbnail" type="url" class="col-12" />
-                        </div>
-
 
 
                         @* Laver en linje til at adskille submit fra resten *@
                         <div class="border-top mt-3 border-dark">
                             <p></p>
                         </div>
+                        @*Til at lave mine javascript input*@
+                        <div id="hiddenInputs">
+
+                        </div>
                         @* Sender moodboard med i onpost *@
                         <div class="text-end">
-                            <button type="submit" class="custom-button-submit mt-2" asp-route-moodBoard="@Model.MoodBoard"> Submit moodboard </button>
+                            <button type="submit" class="custom-button-submit mt-2" onclick="createHiddenInputs()" asp-route-moodBoard="@Model.MoodBoard"> Submit moodboard </button>
                         </div>
 
                     </form>
@@ -90,7 +89,7 @@
 
                         </div>
                         <div class="offcanvas-body">
-                            @foreach (var CC in Model.MoodBoard.ContentContainers)
+                            @foreach (var CC in Model.ContentContainers)
                             {
                                     
                                 
@@ -196,7 +195,18 @@
             console.log("Updated contentOrder array:", contentOrder);
         }
 
+        //tilføjer hvert CC id til min liste i modellen. det gør jeg via hidden input. Det svare til et inputfelt som normalt. 
+        // Her er det bare javascript der udfylder værdierne med sit array i stedet for brugeren. derfor skjules den:
 
+        function createHiddenInputs() {
+            contentOrder.forEach((item, index) => {
+                const hiddenInput = document.createElement("input");
+                hiddenInput.type = "hidden";
+                hiddenInput.name = `ContentOrder[${index}]`;  // Binder til ContentOrder i modellen
+                hiddenInput.value = item;
+                document.getElementById("hiddenInputs").appendChild(hiddenInput);
+            });
+        }
 
         
         

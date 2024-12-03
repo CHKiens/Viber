@@ -22,6 +22,17 @@ namespace Viber.Services.Services {
             _context.ContentContainers.Remove(container);
         }
 
+        public ContentContainer GetContentContainerById(int id)
+        {
+            return _context.ContentContainers.FirstOrDefault(CC => CC.ContentContainterId == id);
+        }
+
+        public void EditContainer (ContentContainer contentContainer)
+        {
+            _context.Update(contentContainer);
+            _context.SaveChanges();
+        }
+
         //
 
 
