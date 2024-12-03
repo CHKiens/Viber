@@ -20,6 +20,8 @@ namespace Viber.Pages.MoodBoardPages {
 
         [BindProperty]
         public List<PrimaryTag> PrimaryTags { get; set; }
+        [BindProperty]
+        public List<string> ContentOrder { get; set; }
 
 
         public void OnGet(int Id)
@@ -29,6 +31,10 @@ namespace Viber.Pages.MoodBoardPages {
             
         }
 
+        public IActionResult onPost()
+        {
+
+        }
 
 
     }
