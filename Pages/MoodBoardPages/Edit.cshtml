@@ -44,12 +44,12 @@
                     <h1 class="display-8 text-center">Design</h1>
 
                     <form method="post">
-
+                        <input type="hidden" asp-for="id" />
                         <div class="row mt-3 g-2 text-center">
                             @* input til baggrundsfarve *@
                             <div class="col-5 border border-light me-5">
                                 <p>Background color</p>
-                                <input asp-for="MoodBoard.BackgroundColor" class="col-3" type="color" id="BackgroundColorPicker" />
+                                <input asp-for="BackgroundColor" class="col-3" type="color" id="BackgroundColorPicker" />
 
                             </div>
                             @*Input til titel farve*@
@@ -58,7 +58,7 @@
                                     Pick Title color
                                 </p>
 
-                                <input asp-for="MoodBoard.TitleColor" class="col-3 shadow" type="color" id="TitleColor" />
+                                <input asp-for="TitleColor" class="col-3 shadow" type="color" id="TitleColor" />
                             </div>
 
                         </div>
@@ -81,7 +81,7 @@
                         </div>
                         @* Sender moodboard med i onpost *@
                         <div class="text-end">
-                            <button type="submit" class="custom-button-submit mt-2" onclick="createHiddenInputs()" asp-route-moodBoard="@Model.MoodBoard"> Submit moodboard </button>
+                            <button type="submit" class="custom-button-submit mt-2" onclick="createHiddenInputs()" asp-route-MBId="@Model.MoodBoard.MoodboardId"> Submit moodboard </button>
                         </div>
 
                     </form>
