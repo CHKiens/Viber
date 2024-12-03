@@ -35,27 +35,24 @@ namespace Viber.Pages.MoodBoardPages {
         public void OnGet(int Id)
         {
             PrimaryTags = _primaryTagService.GetPrimaryTags();
-            MoodBoard = _moodboardService.GetMoodboard(Id);
             id = Id;
-            //MoodBoard = _moodboardService.GetMoodboardAndCC(Id);
-            //foreach (ContentContainer contentContainer in MoodBoard.ContentContainers)
-            //{
-            //    contentContainer.OrderId = null;
-            //}
-            
+            MoodBoard = _moodboardService.GetMoodboardAndCC(Id);
+            foreach (ContentContainer contentContainer in MoodBoard.ContentContainers)
+            {
+                contentContainer.OrderId = null;
+            }
+
         }
 
         public IActionResult OnPost()
         {
             MoodBoard = _moodboardService.GetMoodboard(id);
-            MoodBoard.BackgroundColor = BackgroundColor;  // Farven valgt af brugeren
-            MoodBoard.TitleColor = TitleColor;
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            //MoodBoard.BackgroundColor = BackgroundColor;
-            //MoodBoard.TitleColor = TitleColor;
+            MoodBoard.BackgroundColor = BackgroundColor;
+            MoodBoard.TitleColor = TitleColor;
             int order = 1;
             foreach (int CCId in ContentOrder)
             {
@@ -67,7 +64,7 @@ namespace Viber.Pages.MoodBoardPages {
             }
             _moodboardService.EditMoodboard(MoodBoard);
 
-            return RedirectToPage("/MoodBoardPages/ViewMoodBoard");
+            return RedirectToPage("/MoodBoardPages/ViewMoodBoard",  new { MBId = id });
         }
 
 
