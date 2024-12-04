@@ -45,6 +45,9 @@ public partial class Moodboard
     [Unicode(false)]
     public string Thumbnail { get; set; }
 
+    [Column("Is_Private")]
+    public bool? IsPrivate { get; set; }
+
     [InverseProperty("Moodboard")]
     public virtual ICollection<ContentContainer> ContentContainers { get; set; } = new List<ContentContainer>();
 
