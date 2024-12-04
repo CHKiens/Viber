@@ -10,10 +10,10 @@ namespace Viber.Services.Services {
             _context = context;
         }
 
-        public List<PrimaryTag> GetPrimaryTags()
-        {
+        public List<PrimaryTag> GetPrimaryTags() 
+        { 
             List<PrimaryTag> tagList = new List<PrimaryTag>();
-            foreach (var t in _context.PrimaryTags)
+            foreach(var t in _context.PrimaryTags)
             {
                 tagList.Add(t);
             }

@@ -27,7 +27,6 @@
                     @* //titlen sættes ind her baseret på input *@
                     <h1 class="display-8 text-center mb-5 col-12" id="DynamicTitle">@Model.MoodBoard.Title</h1>
 
-
                     <div class="row g-2 d-flex justify-content-between" id="dynamicRow">
                         @* her indsættes værdierne fra javascript *@
 
@@ -67,9 +66,6 @@
                                 Add content containers
                             </button>
                         </div>
-
-
-
 
                         @* Laver en linje til at adskille submit fra resten *@
                         <div class="border-top mt-3 border-dark">
@@ -149,15 +145,35 @@
                     </div>
                 </div>
             </div>
+            @*Laver hvad min modal skal indeholde, modalen fylder hele siden*@
+            <div class="modal" id="myModal">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add new content container</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body" id="AddContentContainer">
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success">submit</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <script>
-
-
-        // Vælg baggrundsfarve
-
-
         //vælg en farve til baggrunden:
         function BackgroundColor() {
             // Se hvad brugeren har valgt
@@ -179,7 +195,6 @@
         }
         //holder øje med om der er valgt en værdi og sætter den dynamisk
         document.getElementById('TitleColor').addEventListener('input', TitleColor);
-
 
 
         //Tilføj rækkefølge til en liste. (brug CC.Id for at vide hvilken kasse jeg flytter)
@@ -229,8 +244,5 @@
                 document.getElementById("hiddenInputs").appendChild(hiddenInput);
             });
         }
-
-        
-        
     </script>
 </body>

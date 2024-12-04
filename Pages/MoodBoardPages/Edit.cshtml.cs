@@ -37,7 +37,7 @@ namespace Viber.Pages.MoodBoardPages {
             PrimaryTags = _primaryTagService.GetPrimaryTags();
             id = Id;
             MoodBoard = _moodboardService.GetMoodboardAndCC(Id);
-            //sætter dem til null, hvis der er sat en order tidligere. Vælges en order ikke til sin contentcontainer vil den være null og vil ikke vises
+            //sï¿½tter dem til null, hvis der er sat en order tidligere. Vï¿½lges en order ikke til sin contentcontainer vil den vï¿½re null og vil ikke vises
             _contentContainerService.resetOrder(Id);
 
         }
@@ -54,7 +54,7 @@ namespace Viber.Pages.MoodBoardPages {
             int order = 1;
             foreach (int CCId in ContentOrder)
             {
-                // gemmer rækkefølgen
+                // gemmer rï¿½kkefï¿½lgen
                 ContentContainer cc = _contentContainerService.GetContentContainerById(CCId);
                 cc.OrderId = order;
                 _contentContainerService.EditContainer(cc);
@@ -64,8 +64,5 @@ namespace Viber.Pages.MoodBoardPages {
 
             return RedirectToPage("/MoodBoardPages/ViewMoodBoard",  new { Id = MoodBoard.MoodboardId });
         }
-
-
-
     }
 }

@@ -11,9 +11,10 @@ namespace Viber.Services.Services {
         {
             _context = context;
         }
-        //CRUD
-        public void CreateContainer(ContentContainer container)
+
+        public void CreateContainer(ContentContainer container, int moodboardid)
         {
+            container.MoodboardId = moodboardid;
             _context.ContentContainers.Add(container);
         }
 
@@ -42,6 +43,9 @@ namespace Viber.Services.Services {
                 .ForEach(cc => cc.OrderId = null);
             _context.SaveChanges();
         }
-
+        public ICollection<ContentContainer> GetContainers(int moodboardid)
+        {
+            return _context.ContentContainers.Where(c => c.MoodboardId == moodboardid).ToList();
+        }
     }
 }

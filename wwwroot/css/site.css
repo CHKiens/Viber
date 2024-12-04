@@ -98,6 +98,29 @@ body {
     display:flex;
 }
 
+.dropdown {
+    color: #E2DED7;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 18px;
+    max-height: fit-content;
+    padding: 8px 12px;
+    display: flex;
+    text-decoration: none;
+    background-image: linear-gradient(#a37b60, #8C583D);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: none;
+    letter-spacing: 1px;
+}
+
+.dropdown option{
+    color:darkslategrey;
+}
+
 .form-group {
     margin-bottom: 10px;
 }
@@ -282,6 +305,17 @@ h4 {
     font-size: 20px;
 }
 
+.subtags-container {
+    display: flex;        
+    gap: 10px;            
+    flex-wrap: wrap;      
+}
+
+.subtag-item {
+    padding: 5px;      
+    font-size: 16px;
+}
+
 p {
     color: #9c8a72;
     font-family: "Sora", sans-serif;
@@ -317,6 +351,17 @@ p2 {
     font-weight: normal;
     font-style: normal;
     font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+label {
+    color: #9c8a72;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 15px;
     margin-top: 10px;
     margin-bottom: 5px;
 }
