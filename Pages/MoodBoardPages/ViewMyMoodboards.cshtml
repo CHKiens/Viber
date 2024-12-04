@@ -1,0 +1,28 @@
+@page
+@using Microsoft.IdentityModel.Tokens
+@model Viber.Pages.MoodBoardPages.ViewMyMoodboards
+
+@{
+    ViewData["Title"] = "MyMoodboards";
+}
+
+
+
+<h4>My Moodboards</h4>
+
+<div class="square-row">
+    @if (!Model.MyMoodboards.IsNullOrEmpty())
+    {
+        var moodboards = Model.MyMoodboards;
+
+        @foreach (var mb in moodboards)
+        {
+            <div class="square">
+                <img src="@mb.Thumbnail" alt="Moodboard Image"/>
+                <div class="image-text">@mb.Title</div>
+            </div>
+        }
+    }
+</div>    
+
+

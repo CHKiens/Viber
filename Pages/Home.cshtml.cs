@@ -22,8 +22,8 @@ namespace Viber.Pages
         }
 
         public List<PrimaryTag> PrimaryTags { get; set; }
-        public List<SubTag> SubTags { get; set; } = new List<SubTag>();
-        public Dictionary<int, List<Moodboard>> MoodboardsByTag { get; set; } = new Dictionary<int, List<Moodboard>>();
+        public List<SubTag> SubTags { get; set; } = new();
+        public Dictionary<int, List<Moodboard>> MoodboardsByTag { get; set; } = new();
 
         public void OnGet() 
         { 
