@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Viber.Models;
 
 namespace Viber.Pages
 {
@@ -15,6 +16,7 @@ namespace Viber.Pages
         public IActionResult OnGet()
         {
             return RedirectToPage("/Home");
+
         }
     }
 }
