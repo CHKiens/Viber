@@ -28,6 +28,13 @@ namespace Viber.Services.Services
             return _context.Moodboards.FirstOrDefault(mb => mb.MoodboardId == moodboardId);
         }
 
+        public List<Moodboard> GetMoodboardByUserId(int userId)
+        {
+            return _context.Moodboards
+                .Where(mb => mb.UserId == userId)
+                .ToList();
+        }
+
         public void UpdateMoodboard(Moodboard moodboard)
         {
             moodboard.UpdateDate = DateTime.Now; 

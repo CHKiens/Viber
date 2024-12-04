@@ -37,7 +37,11 @@
             }
             @if (UserId != null && ViewData["Title"]?.ToString() != "CreateMoodboard")
             {
-                <a asp-page="/MoodBoardPages/Create" class="custom-button"><span class="login">Create Moodboard</span></a>
+                <div class="button-container">
+                    <a asp-page="/MoodBoardPages/Create" class="custom-button"><span class="login">Create Moodboard</span></a>
+                    <a asp-page="/MoodboardPages/ViewMyMoodboards" class="custom-button"><span class="login">My Moodboards</span></a>
+                </div>
+                
             }
             
             

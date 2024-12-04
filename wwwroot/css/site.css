@@ -35,6 +35,12 @@ body {
     text-decoration: none;
 }
 
+.custom-button span {
+    display: block; 
+    padding: 0; 
+    margin: 0; 
+}
+
 .custom-button-submit {
     color: #E2DED7;
     font-family: "Sora", sans-serif;
@@ -314,6 +320,13 @@ h4 {
 .subtag-item {
     padding: 5px;      
     font-size: 16px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+    gap: 10px; 
 }
 
 p {

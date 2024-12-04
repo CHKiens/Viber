@@ -10,6 +10,8 @@ namespace Viber.Services.Interfaces {
 
         public Moodboard GetMoodboard(int moodboardId);
 
+        public List<Moodboard> GetMoodboardByUserId(int userId);
+
         public void UpdateMoodboard(Moodboard moodboard);
 
         public void UpdateContainerList(Moodboard moodboard);
