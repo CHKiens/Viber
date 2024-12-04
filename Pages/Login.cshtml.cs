@@ -37,7 +37,7 @@ namespace Viber.Pages
                 {
                     // Authentication successful, set up session or authentication cookie
 
-                    HttpContext.Session.SetString("UserId", user.UserId.ToString());
+                    HttpContext.Session.SetInt32("UserId", user.UserId);
                     return RedirectToPage("/Home"); // Redirect to a dashboard or home page
                 }
                 ModelState.AddModelError(string.Empty, "Invalid username or password.");

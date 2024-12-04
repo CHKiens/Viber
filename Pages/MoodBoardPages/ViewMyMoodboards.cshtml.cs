@@ -18,10 +18,9 @@ public class ViewMyMoodboards : PageModel
     
     public void OnGet()
     {
-        string userIdStr = HttpContext.Session.GetString("UserId");
-        if (!string.IsNullOrEmpty(userIdStr) && int.TryParse(userIdStr, out int userId))
-        {
-            MyMoodboards = _context.GetMoodboardByUserId(userId);
-        }
+        int userIdInt = HttpContext.Session.GetInt32("UserId") ?? 0;
+        
+        MyMoodboards = _context.GetMoodboardByUserId(userIdInt);
+        
     }
 }

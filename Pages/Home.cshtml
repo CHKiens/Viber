@@ -24,10 +24,12 @@
 
             foreach (var moodboard in moodboards)
             {
-                <div class="square">
-                    <img src="@moodboard.Thumbnail" alt="Moodboard Image" />
-                    <div class="image-text">@moodboard.Title</div>
-                </div>
+                <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@moodboard.MoodboardId">
+                    <div class="square" >
+                        <img src="@moodboard.Thumbnail" alt="Moodboard Image"/>
+                        <div class="image-text">@moodboard.Title</div>
+                    </div>
+                </a>
             }
         }
     </div>
