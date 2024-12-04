@@ -2,25 +2,32 @@
 @model Viber.Pages.MoodBoardPages.EditModel
 @{
 }
-<body class="vh-100">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+</head>
+
+<div class="text-center">
+    Design your moodboard
+</div>
+<div class="d-flex justify-content-center mb-2 mt-0">
+    <i class="fa-regular fa-circle"></i>
+    <i class="fa-solid fa-circle"></i>
+    <i class="fa-regular fa-circle"></i>
+</div>
+<body class="vh-100 ">
     <div class="container-fluid h-100">
-        <div class="row h-100 g-3">
+        <div class="row h-100 g-3 ">
             <div class="col-8">
                 @* Venstre kasse *@
-                <div class="p-5 border rounded-3 h-100" id="Moodboard">
+                <div class="p-5 border rounded-3 h-100 shadow-lg p-4 mb-4" id="Moodboard">
                     <p>#Example</p>
 
                     @* //titlen sættes ind her baseret på input *@
-                    <h1 class="display-8 text-center mb-5 col-12" id="DynamicTitle"></h1>
+                    <h1 class="display-8 text-center mb-5 col-12" id="DynamicTitle">@Model.MoodBoard.Title</h1>
 
-                    <h1>@Model.MoodBoard.MoodboardId</h1>
-                    @foreach(var c in Model.MoodBoard.ContentContainers){
-                        <p2>@c.Type</p2>
-                        <p2>@c.Link</p2>
-                    }
-                    
-                    <h2></h2>
-                    <div class="row g-2" id="dynamicRow">
+                    <div class="row g-2 d-flex justify-content-between" id="dynamicRow">
                         @* her indsættes værdierne fra javascript *@
 
                     </div>
@@ -34,42 +41,108 @@
             <div class="col-4">
                 <div class="p-5 bg-light border rounded-3 h-100">
                     <h1 class="display-8 text-center">Design</h1>
-                    <p class="mt-2">Moodboard name:</p>
 
                     <form method="post">
-                        @* input til titel *@
-                        <input asp-for="MoodBoard.Title" class="col-12" id="titleInput" placeholder="@Model.MoodBoard.Title" />
-                        @* input til baggrundsfarve *@
-                        <p class="mt-2">Background color</p>
-                        <input asp-for="MoodBoard.BackgroundColor" class="col-3" type="color" id="BackgroundColorPicker" />
+                        <input type="hidden" asp-for="id" />
+                        <div class="row mt-3 g-2 text-center">
+                            @* input til baggrundsfarve *@
+                            <div class="col-5 border border-light me-5">
+                                <p>Background color</p>
+                                <input asp-for="BackgroundColor" class="col-3" type="color" id="BackgroundColorPicker" />
 
-                        <p>
-                            Pick a color for your title
-                        </p>
+                            </div>
+                            @*Input til titel farve*@
+                            <div class="col-5 border border-light">
+                                <p>
+                                    Pick Title color
+                                </p>
 
-                        <input asp-for="MoodBoard.TitleColor" class="col-3" type="color" id="TitleColor" />
+                                <input asp-for="TitleColor" class="col-3 shadow" type="color" id="TitleColor" />
+                            </div>
 
-                        <p class="mt-1">Add box to moodboard</p>
-                        @* Tilføj ny boks via modal *@
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                            Open modal
-                        </button>
-
-                        <p class="mt-2">Regret your placement? click here!</p>
-                        <div class="text-center mb-2">
-                            <button type="button" onclick="UndoLastBox()" class="btn-danger text-center">Regret last placement</button>
                         </div>
+                        <div class="mt-2">
+                            <button class="custom-button shadow-sm text-center mt-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+                                Add content containers
+                            </button>
+                        </div>
+
                         @* Laver en linje til at adskille submit fra resten *@
                         <div class="border-top mt-3 border-dark">
                             <p></p>
                         </div>
+                        @*Til at lave mine javascript input*@
+                        <div id="hiddenInputs">
+
+                        </div>
                         @* Sender moodboard med i onpost *@
                         <div class="text-end">
-                            <button type="submit" class="btn-success mt-2" asp-route-moodBoard="@Model.MoodBoard"> Submit moodboard </button>
+                            <button type="submit" class="custom-button-submit mt-2" onclick="createHiddenInputs()"> Submit moodboard </button>
                         </div>
 
                     </form>
+                    <div class="offcanvas offcanvas-end" id="demo">
+                        <button type="button" class="btn-close text-reset ms-auto" data-bs-dismiss="offcanvas"></button>
+                        <div class="offcanvas-header">
+                            <h1 class="offcanvas-title">Add content</h1>
 
+                        </div>
+                        <div class="offcanvas-body" id="initialContainer">
+                            @foreach (var CC in Model.MoodBoard.ContentContainers)
+                            {
+                                    
+                                
+                                        @switch (CC.Type)
+                                        {
+                                            case "text":
+                                            <div id="@CC.ContentContainterId" class="col-5">
+                                                    <div class="pb-1">
+                                                        <div class=" mt-2">
+                                                            <span class="shadow p-2 text-black" style="border-radius:5px">
+                                                                    @CC.Link
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                break;
+                                            case "youtube":
+                                                <div class="col-5" id="@CC.ContentContainterId">
+                                                    <div class="mt-2">
+                                                        <span class="ratio ratio-16x9" style="border-radius:5px">
+                                                            <iframe src="https://www.youtube.com/embed/@CC.Link" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:5px"></iframe>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                break;
+                                            case "image":
+                                                 <div class="col-5" id="@CC.ContentContainterId">
+                                                    <div class="mt-2">
+                                                        <span class="shadow p-2" style="border-radius:5px">
+                                                            <img src="@CC.Link" style="max-width:100%; height:auto" />
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                               
+
+                                                break;
+                                            case "spotify":
+                                                    <div class="col-5 mt-2" id="@CC.ContentContainterId">
+                                                        <span style="border-radius:5px">
+                                                            <iframe src="https://open.spotify.com/embed/@CC.Link" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                                                        </span>
+                                                    </div>
+                                                break;
+                                            default:
+                                                break;
+
+                                        }
+                                <button onclick="Move(@CC.ContentContainterId)"  id="button-@CC.ContentContainterId">Add to moodboard</button>
+                            }
+                            
+                        </div>
+                        <button onclick="undoMove()" class="btn-danger">Undo</button>
+                    </div>
                 </div>
             </div>
             @*Laver hvad min modal skal indeholde, modalen fylder hele siden*@
@@ -99,22 +172,8 @@
 
         </div>
     </div>
+
     <script>
-         //metode til at skrive overskriften
-        // skal skrive den i venstre side, når der er et input i højre side . DynamicTitle er venstre side(Moodboardsiden).
-        // titleInput er højre (bruger-området)
-        const dynamicTitle = document.getElementById("DynamicTitle");
-        const titleInput = document.getElementById("titleInput");
-        // Holder øje med Comment noget er skrevet i inputfeltet. Hvis der er laver den en function der skriver det ind.
-        // Er input null skriver den "Title".
-        titleInput.addEventListener("input", function () {
-            dynamicTitle.textContent = titleInput.value || "Title";
-        });
-
-
-        // Vælg baggrundsfarve
-
-
         //vælg en farve til baggrunden:
         function BackgroundColor() {
             // Se hvad brugeren har valgt
@@ -137,13 +196,53 @@
         //holder øje med om der er valgt en værdi og sætter den dynamisk
         document.getElementById('TitleColor').addEventListener('input', TitleColor);
 
-        //funktion til at flytte  kasse fra højre side til venstre fundet på https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_appendchild2
 
-        function MoveBox(){
-            const node = document.getElementById('MovableBox')
-            document.getElementById('dynamicRow').appendChild(node);
+        //Tilføj rækkefølge til en liste. (brug CC.Id for at vide hvilken kasse jeg flytter)
+
+        //laver et array fra https://www.w3schools.com/js/js_arrays.asp. Den er tom.
+
+        let contentOrder = [];
+
+        //laver en metode til at tilføje en kasses id til array
+        function addCCToArray(ccId){
+            contentOrder.push(ccId)
+        }
+        //funktion til at flytte  kasse fra højre side til venstre fundet på https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_appendchild2
+        function Move(ccId){
+            const node = document.getElementById(ccId)
+            const button = document.getElementById(`button-${ccId}`)
+            document.getElementById("dynamicRow").appendChild(node);
+            button.remove();
+            addCCToArray(ccId);
+            console.log("Updated contentOrder array:", contentOrder);
         }
 
+        //til at fortryde at man flyttede den:
+            function undoMove() {
+            const lastMovedId = contentOrder.pop();
+            const node = document.getElementById(lastMovedId); //finder den sidst flyttede
+            document.getElementById("initialContainer").appendChild(node); //flytter den tilbage
+            //laver knappen der var slettet igen
+                const newButton = document.createElement("button");
+                newButton.id = `button-${lastMovedId}`;
+                newButton.className = "mt-2";
+                newButton.textContent = "Add to moodboard";
+                newButton.setAttribute("onclick", `Move(${lastMovedId})`);
 
+                document.getElementById("initialContainer").appendChild(newButton); //sætter flytter min nye knap så den står under contentcontaineren
+        }
+
+        //tilføjer hvert CC id til min liste i modellen. det gør jeg via hidden input. Det svare til et inputfelt som normalt. 
+        // Her er det bare javascript der udfylder værdierne med sit array i stedet for brugeren. derfor skjules den:
+
+        function createHiddenInputs() {
+            contentOrder.forEach((item, index) => {
+                const hiddenInput = document.createElement("input");
+                hiddenInput.type = "hidden";
+                hiddenInput.name = `ContentOrder[${index}]`;  // Binder til ContentOrder i modellen
+                hiddenInput.value = item;
+                document.getElementById("hiddenInputs").appendChild(hiddenInput);
+            });
+        }
     </script>
 </body>

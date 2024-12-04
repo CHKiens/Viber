@@ -7,7 +7,10 @@ namespace Viber.Services.Interfaces {
         public void CreateContainer(ContentContainer container, int moodboardid);
 
         public void DeleteContainer(ContentContainer container);
+        public void EditContainer(ContentContainer contentContainer);
 
+        public ContentContainer GetContentContainerById(int id);
+        public void resetOrder(int moodboardId);
         public ICollection<ContentContainer> GetContainers(int moodboardid);
     }
 }
