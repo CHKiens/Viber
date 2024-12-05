@@ -16,11 +16,7 @@ public class ViewMyMoodboards : PageModel
     
     public List<Moodboard> MyMoodboards { get; set; } = new();
 
-    [BindProperty]
-    public Moodboard moodboard { get; set; }
 
-    [BindProperty]
-    public bool MySwitch { get; set; }
     
     public void OnGet()
     {
@@ -30,7 +26,6 @@ public class ViewMyMoodboards : PageModel
     }
     public IActionResult OnPost()
     {
-        _context.DeleteMoodboard(moodboard.MoodboardId);
         return Page();
     }
             

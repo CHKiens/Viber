@@ -24,5 +24,11 @@ namespace Viber.Pages.MoodBoardPages
             ContentContainers = Moodboard.ContentContainers.Where(cc=>cc.OrderId != null).OrderBy(cc => cc.OrderId).ToList();
         }
 
+        public IActionResult OnPost(int moodboardId)
+        {
+            this.Moodboard = _moodboardService.GetMoodboard(moodboardId);
+            _moodboardService.DeleteMoodboard(Moodboard);
+            return RedirectToPage("/MoodboardPages/ViewMyMoodboards");
+        }
     }
 }

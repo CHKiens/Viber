@@ -72,10 +72,9 @@ namespace Viber.Services.Services
                 .ToList();
         }
 
-        public void DeleteMoodboard(int moodboardId)
+        public void DeleteMoodboard(Moodboard moodboard)
         {
-            
-            _context.Remove(moodboardId);
+            _context.Remove(moodboard);
             _context.SaveChanges();
         }
     }

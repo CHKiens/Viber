@@ -23,45 +23,12 @@
 
             @foreach (var mb in moodboards)
             {
-
                 <div class="square">
-
                     <img src="@mb.Thumbnail" alt="Moodboard Image" />
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" data-moodboard-title="@mb.Title" >
-                        <i class="fa-solid fa-dumpster-fire"></i>
-                    </button>
                     <div class="image-text">@mb.Title</div>
                 </div>
             }
         }
-    </div>
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <form method="post">
-                <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Delete moodboard</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        Are you sure you wish to permanently delete this moodboard?
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger">Yes </button>
-                        <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
-                        
-                    </div>
-
-                </div>
-            </form>
-
-        </div>
     </div>
 </body>
 
