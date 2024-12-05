@@ -54,7 +54,7 @@ namespace Viber.Pages.MoodBoardPages {
             int order = 1;
             foreach (int CCId in ContentOrder)
             {
-                // gemmer r�kkef�lgen
+                // gemmer r�kkefølgen af hver contentcontainer der er valgt af brugeren
                 ContentContainer cc = _contentContainerService.GetContentContainerById(CCId);
                 cc.OrderId = order;
                 _contentContainerService.EditContainer(cc);
