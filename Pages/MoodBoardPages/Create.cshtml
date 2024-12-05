@@ -9,9 +9,24 @@
         <div class="col-sm">
             <form method="post" id="submitform">
                 <div class="form-group" style="width: 100%">
-                    <p2>Moodboard Title</p2>
+
+                    <div class="tooltip">
+                        Moodboard Title <i class="bi bi-info-circle"></i>
+                        <span class="tooltiptext">
+                            The name of your moodboard. Think of it as the headline for your ideas.
+                        </span>
+                    </div>
                     <input type="text" asp-for="Moodboard.Title" class="form-control" placeholder="Enter moodboard title">
-                    <p2>Primary Tag</p2>
+
+                    <div class="tooltip">
+                        Primary Tag <i class="bi bi-info-circle"></i>
+                        <span class="tooltiptext">
+                            Select the main category that best describes your moodboard's theme.
+                        </span>
+                    </div>
+
+                    
+
                     <select asp-for="PrimaryTag" class="dropdown">
                         <option>Click here to select a primary tag</option>
                         @foreach (var primaryTag in Model.PrimaryTags)
@@ -21,11 +36,27 @@
                     </select>
                     <input type="hidden" asp-for="Moodboard.UserId" value="@Model.Moodboard.UserId" />
                     <input type="hidden" asp-for="Moodboard.MoodboardId" value="@Model.Moodboard.MoodboardId" />
+
+                    <div class="tooltip">
+                        Sub Tags <i class="bi bi-info-circle"></i>
+                        <span class="tooltiptext">
+                            Add more specific tags to further define your moodboard's content. @* sub tag mangler implementering *@
+                        </span>
+                    </div>
+                    <input type="text" @* asp-for="Moodboard.MoodboardSubTags" *@ class="form-control" placeholder="Enter subtags">
+
+                    <div class="tooltip">
+                        Configure Content <i class="bi bi-info-circle"></i>
+                        <span class="tooltiptext">
+                            Add content to your moodboard by selecting a type (text, image, Spotify, or YouTube) and providing the relevant text, link, or media. Customize each box to reflect your theme.
+                        </span>
+                    </div>
+
+                    <div class="form-group" id="objectContainer">
+                    </div> <!-- This will hold the dynamic inputs -->
+                    <button type="button" class="dropdown" onclick="addObject()">Add Content Box</button>
                 </div>
-                <p2>Configure Content</p2>
-                <div class="form-group" id="objectContainer">
-                </div> <!-- This will hold the dynamic inputs -->
-                <button type="button" class="dropdown" onclick="addObject()">Add Content Box</button>                
+                              
 
             </form>
         </div>

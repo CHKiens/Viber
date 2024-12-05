@@ -190,9 +190,9 @@ textarea:focus, input:focus{
     width: 155px;
     min-height: 5%;
     min-height: 5%;
-    margin:8px;
-    background-image: linear-gradient(transparent, #24130d);
-    box-shadow: inset 0px 0px 6px #24130d, 0 5px 10px #24130d, 0 15px 40px #24130d;
+    margin: 8px;
+    background-image: linear-gradient(transparent, #281107);
+    box-shadow: inset 0px 0px 6px #281107, 0 5px 10px #3b190a, 0 15px 20px #281107;
 }
 
 .square img {
@@ -237,9 +237,43 @@ textarea:focus, input:focus{
     color: #d4c6b4;
     font-weight: bold;
     text-align: left;
-    text-shadow: -6px 0px #a37b60,-10px 4px 10px #75341a;
-    
+    text-shadow: -3px 0px #a37b60,-5px 0px 5px #75341a,0 0 1em #9F4E7C, 0 0 0.2em #543029;
 }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    opacity: 100; /* ved ikke hvorfor den skal have opacity. Den er usynlig hvis man ikke definere det på forhånd*/
+    color: #9c8a72;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+    /* Tooltip text */
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        font-size:15px;
+        width: 200px;
+        background-color: #6D4B69;
+        color: #fff;
+        text-align: center;
+        margin: 10px;
+        padding: 5px 0;
+        border-radius: 6px;
+        /* Position the tooltip text - see examples below! */
+        position: absolute;
+        z-index: 1;
+    }
+
+    /* Show the tooltip text when you mouse over the tooltip container */
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+    }
 
 .login {
     display: block;
