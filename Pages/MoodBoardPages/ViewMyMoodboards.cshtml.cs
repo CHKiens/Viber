@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Viber.Models;
 using Viber.Services.Interfaces;
@@ -14,13 +15,18 @@ public class ViewMyMoodboards : PageModel
     }
     
     public List<Moodboard> MyMoodboards { get; set; } = new();
-    
+
+
     
     public void OnGet()
     {
         int userIdInt = HttpContext.Session.GetInt32("UserId") ?? 0;
-        
         MyMoodboards = _context.GetMoodboardByUserId(userIdInt);
         
     }
+    public IActionResult OnPost()
+    {
+        return Page();
+    }
+            
 }

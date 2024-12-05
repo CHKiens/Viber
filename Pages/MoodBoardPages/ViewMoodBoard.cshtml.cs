@@ -8,20 +8,34 @@ namespace Viber.Pages.MoodBoardPages
     public class ViewMoodBoardModel : PageModel
     {
         IMoodboardService _moodboardService;
-        public ViewMoodBoardModel(IMoodboardService moodboardService)
+        IUserService _userService;
+        public ViewMoodBoardModel(IMoodboardService moodboardService, IUserService userService)
         {
             _moodboardService = moodboardService;
+            _userService = userService;
         }
         [BindProperty]
         public Moodboard Moodboard { get; set; }
+        [BindProperty]
+
+        public bool Authorized { get; set; }
 
         [BindProperty]
         public List<ContentContainer> ContentContainers { get; set; }
 
         public void OnGet(int Id)
         {
+            int userId = HttpContext.Session.GetInt32("UserId") ?? 0;
             Moodboard = _moodboardService.GetMoodboardAndCC(Id);
+            Authorized = _userService.CheckUserId(Moodboard.UserId, userId);
             ContentContainers = Moodboard.ContentContainers.Where(cc=>cc.OrderId != null).OrderBy(cc => cc.OrderId).ToList();
+        }
+
+        public IActionResult OnPost(int moodboardId)
+        {
+            this.Moodboard = _moodboardService.GetMoodboard(moodboardId);
+            _moodboardService.DeleteMoodboard(Moodboard);
+            return RedirectToPage("/MoodboardPages/ViewMyMoodboards");
         }
     }
 }

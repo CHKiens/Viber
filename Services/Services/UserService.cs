@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Viber.Models;
 using Viber.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Viber.Services.Services {
     public class UserService : IUserService{
@@ -41,5 +43,15 @@ namespace Viber.Services.Services {
         
 
         //Andet
+
+        public bool CheckUserId (int Xid, int userid)
+        {
+            bool result = false;
+            if (userid == Xid)
+            {
+                result = true;
+            }
+            return result;
+        }
     }
 }

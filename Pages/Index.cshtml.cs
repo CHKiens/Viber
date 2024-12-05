@@ -16,7 +16,7 @@ namespace Viber.Pages
         public IActionResult OnGet()
         {
             return RedirectToPage("/Home");
-
+            //return RedirectToPage("/MoodBoardPages/ViewMoodBoard", new { Id = 19 });
         }
     }
 }

@@ -30,21 +30,18 @@ namespace Viber.Pages.MoodBoardPages {
         public string BackgroundColor {  get; set; }
         [BindProperty]
         public string TitleColor { get; set; }
-        [BindProperty]
-        public int id { get; set; }
         public void OnGet(int Id)
         {
             PrimaryTags = _primaryTagService.GetPrimaryTags();
-            id = Id;
             MoodBoard = _moodboardService.GetMoodboardAndCC(Id);
             //s�tter dem til null, hvis der er sat en order tidligere. V�lges en order ikke til sin contentcontainer vil den v�re null og vil ikke vises
             _contentContainerService.resetOrder(Id);
 
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost(int Id)
         {
-            MoodBoard = _moodboardService.GetMoodboard(id);
+            MoodBoard = _moodboardService.GetMoodboard( Id);
             MoodBoard.BackgroundColor = BackgroundColor;
             MoodBoard.TitleColor = TitleColor;
             if (!ModelState.IsValid)
@@ -54,7 +51,7 @@ namespace Viber.Pages.MoodBoardPages {
             int order = 1;
             foreach (int CCId in ContentOrder)
             {
-                // gemmer r�kkef�lgen
+                // gemmer r�kkefølgen af hver contentcontainer der er valgt af brugeren
                 ContentContainer cc = _contentContainerService.GetContentContainerById(CCId);
                 cc.OrderId = order;
                 _contentContainerService.EditContainer(cc);
