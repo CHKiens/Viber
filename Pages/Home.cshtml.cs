@@ -22,22 +22,23 @@ namespace Viber.Pages
         }
 
         public List<PrimaryTag> PrimaryTags { get; set; }
-        public List<SubTag> SubTags { get; set; } = new();
+        
+        
+        public Dictionary<int, List<SubTag>> SubTagsByPrimaryTag { get; set; } = new();
+        
         public Dictionary<int, List<Moodboard>> MoodboardsByTag { get; set; } = new();
 
         public void OnGet() 
         { 
             PrimaryTags = _primaryTagService.GetPrimaryTags();
-            SubTags = _subTagService.GetSubTags();
 
             foreach (var tag in PrimaryTags)
             {
-                // Fetch first 14 moodboards for this tag
                 var moodboards = _context.GetMoodboardsByPrimaryTagId(tag.PrimaryTagId);
-
-                MoodboardsByTag[tag.PrimaryTagId] = moodboards;
+                MoodboardsByTag[tag.PrimaryTagId] = moodboards; 
                 
-                var subTags = _subTagService.GetSubTagsByPrimaryTagId(tag.PrimaryTagId);
+                var subtags = _subTagService.GetSubTags(tag.PrimaryTagId);
+                SubTagsByPrimaryTag[tag.PrimaryTagId] = subtags;
             }
         }
     }
