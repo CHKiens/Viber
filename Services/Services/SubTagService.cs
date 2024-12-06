@@ -39,28 +39,34 @@ namespace Viber.Services.Services {
             
         }
 
-        public void CreateSubTag(string tagName, int primaryTagId, int mooodboardId) 
+        public void CreateSubTag(string tagName, int primaryTagId, int moodboardId)
         {
-            SubTag subTag = new SubTag()
+            // tjekker først hvis subtag allerede findes med samme navn+primarytag kombination
+            var newSubTag = _context.SubTags
+                .FirstOrDefault(s => s.Name == tagName && s.PrimaryTagId == primaryTagId);
+
+            // laver nyt subtag hvis det ikke findes allerede
+            if (newSubTag == null)
             {
-                Name = tagName,
-                PrimaryTagId = primaryTagId,
-            };
-            if(!_context.SubTags. //hvis subtag ikke allerede findes, tilføjes den
-            {
-                _context.SubTags.Add(subTag);
-                _context.SaveChanges();
+                newSubTag = new SubTag
+                {
+                    Name = tagName,
+                    PrimaryTagId = primaryTagId,
+                };
+                _context.SubTags.Add(newSubTag);
+                _context.SaveChanges(); 
             }
-            MoodboardSubTag moodboardSubTag = new MoodboardSubTag()
+
+            MoodboardSubTag moodboardSubTag = new MoodboardSubTag
             {
-                MoodboardId = mooodboardId,
-                SubtagId = _context.SubTags
-                .FirstOrDefault(s => s.Name == tagName)
-                .SubTagId
+                MoodboardId = moodboardId,
+                SubtagId = newSubTag.SubTagId
             };
+
             _context.MoodboardSubTags.Add(moodboardSubTag);
             _context.SaveChanges();
         }
+
 
     }
 }
