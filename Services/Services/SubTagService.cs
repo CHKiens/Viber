@@ -28,5 +28,39 @@ namespace Viber.Services.Services {
                 .ToList();
         }
 
+        public void SplitSubtagInput(string input, int primaryTagId, int moodboardId)
+        {
+            string[] substrings = input.Split(' ');
+            foreach(string s in substrings)
+            {
+                CreateSubTag(s, primaryTagId, moodboardId);
+            }
+            
+            
+        }
+
+        public void CreateSubTag(string tagName, int primaryTagId, int mooodboardId) 
+        {
+            SubTag subTag = new SubTag()
+            {
+                Name = tagName,
+                PrimaryTagId = primaryTagId,
+            };
+            if(!_context.SubTags. //hvis subtag ikke allerede findes, tilføjes den
+            {
+                _context.SubTags.Add(subTag);
+                _context.SaveChanges();
+            }
+            MoodboardSubTag moodboardSubTag = new MoodboardSubTag()
+            {
+                MoodboardId = mooodboardId,
+                SubtagId = _context.SubTags
+                .FirstOrDefault(s => s.Name == tagName)
+                .SubTagId
+            };
+            _context.MoodboardSubTags.Add(moodboardSubTag);
+            _context.SaveChanges();
+        }
+
     }
 }

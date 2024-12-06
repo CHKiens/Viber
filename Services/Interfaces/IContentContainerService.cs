@@ -6,6 +6,8 @@ namespace Viber.Services.Interfaces {
 
         public void CreateContainer(ContentContainer container, int moodboardid);
 
+        public void AddContainersToMoodboard(List<string> type, List<string> link, Moodboard moodboard);
+
         public void DeleteContainer(ContentContainer container);
         public void EditContainer(ContentContainer contentContainer);
 
