@@ -61,18 +61,65 @@
             </form>
         </div>
         <div class="col-sm" style="margin-left: 30px">
-            <h4>
-                Info
-            </h4>
-            <p> Her kan du lave dit moodboard blablablablablablablablablablablablablablabla
-                blablablablablablablablablabl blablablablablabla balbalbablabalblablalblabl
-                ablalblablalbla
-                ablalbablalblablablalblalblablababla alblalblabllab
-                ablablabllablalbabl
+            <div>
+                <h4>How to Use the Moodboard Creator</h4>
+                <p>
+                    Welcome to the Moodboard Creator! Follow these steps to design your perfect moodboard,
+                    complete with images, text, and other content types. Below, we’ll guide you through the entire
+                    process, including how to use content containers for adding links, images, and text.
+                </p>
 
-                labalblablalb
-                lbalablabllbalablabla
-            </p>
+                <h4 style="font-size: 25px">Step 1: Adding Subtags and a Primary Tag</h4>
+                <p>
+                    <strong>Primary Tag:</strong> Select the main theme for your moodboard from the dropdown menu.
+                </p>
+                <p>
+                    <strong>Subtags:</strong> Use the subtag input field to add keywords or topics related to your moodboard.
+                    These help organize your content better. To add a subtag, simply write a word or a phrase (without spaces) 
+                    and repeat for each tag. <em>(Note: make sure that a phrase like "I like ice cream" is written as such "Ilikeicecream"
+                        , since pressing space will start the next tag)</em>
+                    
+                </p>
+
+                <h4 style="font-size: 25px">Step 2: Adding Content to Your Moodboard</h4>
+                <p>
+                    Your moodboard can include different types of content, each added using a
+                    <em>content container</em>. Here's how each type works:
+                </p>
+
+                <h3>1. Images</h3>
+                <p>
+                    Find an image you like online. Right-click the image and select
+                    <strong>"Copy Image Address"</strong> (or "Copy Image Link" depending on your browser).
+                    Paste the copied link into the input field for images. Once added, the image will appear in your moodboard.
+                </p>
+
+                <h3>2. Spotify Playlists</h3>
+                <p>
+                    Want to set the mood with music? Add Spotify playlists! Here's how:
+                </p>
+                <ul>
+                    <li>Open your Spotify app or web browser.</li>
+                    <li>Go to your playlist.</li>
+                    <li>Click <strong>Share</strong> and then select <strong>Copy Link</strong>.</li>
+                    <li>Paste the link into the input field for Spotify.</li>
+                </ul>
+                <p><em>Note:</em> Only playlist links are supported.</p>
+
+                <h3>3. Text</h3>
+                <p>
+                    Add personalized text to your moodboard for descriptions, quotes, or other notes:
+                </p>
+                <p>
+                    Type directly into the input field for text content. The text will display in your moodboard as you enter it.
+                </p>
+                <h4 style="font-size: 25px">Step 3: Review and Save</h4>
+                <p>
+                    After adding all your content, review your moodboard. If everything looks good, hit <strong>Save</strong> to
+                    finalize it. You can always come back to edit or add more content later.
+                </p>
+            </div>
+
             <button type="submit" form="submitform" class="dropdown">Proceed to Moodboard Designer</button>
         </div>
     </div>
@@ -94,7 +141,6 @@
         div.innerHTML = `
             <label style="width:20%">
                 <select class="dropdown" style="padding:5px 10px" name="ContainerType[]" onchange="adjustInputField(this)">
-                    <option>Select type</option>
                     <option value="text">Text</option>
                     <option value="image">Image</option>
                     <option value="spotify">Spotify</option>
