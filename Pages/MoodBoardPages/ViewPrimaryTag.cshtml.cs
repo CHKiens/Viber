@@ -17,24 +17,28 @@ public class ViewPrimaryTag : PageModel
         _subTagService = subTagService;
     }
     
-    public List<PrimaryTag> PrimaryTags { get; set; } = new();
+    public PrimaryTag PrimaryTag { get; set; } = new();
     public List<SubTag> SubTags { get; set; } = new();
     
     public Dictionary<int, List<Moodboard>> MoodboardsBySubTag { get; set; } = new();
     
     public void OnGet(int PrimaryTagId)
     {
+        this.PrimaryTag = _primaryTagService.GetPrimaryTag(PrimaryTagId);
+
         SubTags = _subTagService.GetSubTags(PrimaryTagId);
-        
 
-        /*foreach (var tag in SubTags)
+        foreach (var subTag in SubTags)
         {
-            // Fetch first 14 moodboards for this tag
-            var moodboards = _context.GetMoodboardBySubTags(tag.SubTagId);
+            var moodboards = _context.GetMoodboardBySubTags(subTag.SubTagId);
+            MoodboardsBySubTag[subTag.SubTagId] = moodboards;
+        }
 
-            MoodboardsByTag[tag.PrimaryTagId] = moodboards;
-                
-            var subTags = _subTagService.GetSubTagsByPrimaryTagId(tag.PrimaryTagId);
-        }*/
+        //foreach (var tag in PrimaryTags)
+        //{
+        //    var moodboards = _context.GetMoodboardsByPrimaryTagId(tag.PrimaryTagId);
+        //    MoodboardsByTag[tag.PrimaryTagId] = moodboards;
+
+        //}
     }
 }

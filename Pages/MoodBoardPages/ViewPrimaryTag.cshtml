@@ -11,6 +11,7 @@
     </div>
 </div>
 
+<h1>@Model.PrimaryTag.Name</h1>
 
 @foreach (var tag in Model.SubTags)
 {
@@ -19,7 +20,7 @@
     <div class="square-row">
         @if (Model.MoodboardsBySubTag.ContainsKey(tag.SubTagId))
         {
-            var moodboards = Model.MoodboardsBySubTag[tag.PrimaryTagId];
+            var moodboards = Model.MoodboardsBySubTag[tag.SubTagId];
 
             foreach (var moodboard in moodboards)
             {

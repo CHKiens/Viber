@@ -19,5 +19,9 @@ namespace Viber.Services.Services {
             }
             return tagList;
         }
+        public PrimaryTag GetPrimaryTag(int primarytagId)
+        {
+            return _context.PrimaryTags.FirstOrDefault(pt => pt.PrimaryTagId == primarytagId);
+        }
     }
 }

@@ -15,7 +15,10 @@
 
 @foreach (var tag in Model.PrimaryTags)
 {
-    <h4>@tag.Name</h4>
+    <a asp-page="/MoodBoardPages/ViewPrimaryTag" asp-route-PrimaryTagId="@tag.PrimaryTagId">
+        <h4>@tag.Name</h4>
+    </a>
+    
 
     <div class="square-row">
         @if (Model.MoodboardsByTag.ContainsKey(tag.PrimaryTagId))
