@@ -28,7 +28,6 @@ namespace Viber.Pages.MoodBoardPages
         [BindProperty]
         public int PrimaryTag { get; set; }
 
-        //public int searchId { get; set; } tænker ikke at vi bruger denne
         [BindProperty]
         public List<string> Subtags { get; set; }
         [BindProperty]
@@ -60,41 +59,10 @@ namespace Viber.Pages.MoodBoardPages
             Moodboard.PrimaryTagId = PrimaryTag;
             moodboardService.CreateMoodboard(Moodboard);
             _subtagService.SplitSubtagInput(subtaginput, Moodboard.PrimaryTagId, Moodboard.MoodboardId);
-            //if (Moodboard.UserId == 0)
-            //{
-            //    int userId = HttpContext.Session.GetInt32("UserId") ?? 0;
-            //    Moodboard.UserId = userId;
-            //}
-
-            //for (int i = 0; i < ContainerType.Count; i++)
-            //{
-            //    switch (ContainerType[i])
-            //    {
-            //        case "youtube":
-            //            ContainerText[i] = ContainerText[i].Split("?v=")[1];
-            //            break;
-            //        case "spotify":
-            //            ContainerText[i] = ContainerText[i].Split("com/")[1].Split("si=")[0]+"utm_source=generator";
-            //            break;
-            //        default : break;
-            //    }
-            //    var container = new ContentContainer
-            //    {
-            //        Type = ContainerType[i],
-            //        Link = ContainerText[i],
-            //        MoodboardId = Moodboard.MoodboardId
-                    
-            //    };
-            //    _contentContainerService.CreateContainer(container, Moodboard.MoodboardId);
-            //    Moodboard.ContentContainers.Add(container);
-            //}
+      
             _contentContainerService.AddContainersToMoodboard(ContainerType, ContainerText, Moodboard);
             moodboardService.UpdateMoodboard(Moodboard);
 
-
-
-
-            /*TempData["MoodboardData"] = JsonSerializer.Serialize(Moodboard); *///Gemmer moodboard i tempdata som kan l�ses af Edit siden. 
             return RedirectToPage("/MoodBoardPages/Edit", new { Id = Moodboard.MoodboardId });
             
         }
