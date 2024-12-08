@@ -60,7 +60,7 @@
 
             </form>
             <div style="display:block; margin-bottom:30px"></div>
-            <h4 style="font-size: 25px">Step 2: Adding Content to Your Moodboard</h4>
+            <h4 style="font-size: 25px">Adding Content to Your Moodboard</h4>
             <p>
                 Your moodboard can include different types of content, each added using a
                 <em>content container</em>. Here's how each type works:
@@ -103,7 +103,7 @@
                     process, including how to use content containers for adding links, images, and text.
                 </p>
 
-                <h4 style="font-size: 25px">Step 1: Adding Subtags and a Primary Tag</h4>
+                <h4 style="font-size: 25px">Adding Subtags and a Primary Tag</h4>
                 <p>
                     <strong>Primary Tag:</strong> Select the main theme for your moodboard from the dropdown menu.
                 </p>
@@ -116,7 +116,7 @@
                 </p>
 
                 
-                <h4 style="font-size: 25px">Step 3: Review and Save</h4>
+                <h4 style="font-size: 25px">Review and Save</h4>
                 <p>
                     After adding all your content, review your moodboard. If everything looks good, hit <strong>Proceed to Moodboard Designer</strong> to
                     finalize it. You can always come back to add more content later.
@@ -154,11 +154,17 @@
             <label style="width:80%" display="flex">
                 <input type="text" class="form-control" name="ContainerText[]" placeholder="No content type selected" style="height: 30px;">
             </label>
+            <button type="button" class="dropdown" style="margin-left: 10px; display: inline; height:100%; width:100px ; padding:2px;" onclick="deleteObject(this)"><i class="bi bi-trash"></i></button>
         `;
 
         // Append the new div to the container
         container.appendChild(div);
     }
+    function deleteObject(button) {
+        const container = button.parentElement; // Get the parent div of the delete button
+        container.remove(); // Remove the container
+    }
+
 
     function adjustInputField(selectElement) {
         const container = selectElement.parentElement.nextElementSibling;
