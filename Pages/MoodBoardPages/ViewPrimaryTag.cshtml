@@ -15,7 +15,7 @@
 
 @foreach (var tag in Model.SubTags)
 {
-    <h4>@tag.Name</h4>
+    <h4>#@tag.Name</h4>
 
     <div class="square-row">
         @if (Model.MoodboardsBySubTag.ContainsKey(tag.SubTagId))
