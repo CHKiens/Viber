@@ -18,11 +18,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+
 </head>
 @{ var UserId = Context.Session.GetString("UserId"); }
+
 <body>
+    <div class="stripes"></div>
     <div class="container"> 
         <div class="header">
+            
             @if (ViewData["Title"]?.ToString() == "CreateUser")
             {
                 <span class="title-frontpage">viber</span>
@@ -33,28 +41,42 @@
             }
             @if (ViewData["Title"]?.ToString() != "Login" && UserId == null ) //Viser kun login hvis man ikke allerede er logget ind
             {
-                <a asp-page="/Login" class="custom-button"><span class="login"><i class="bi bi-person"></i>Login</span></a>
+                <nav class="navbar navbar-expand">
+
+                    <div class="container-fluid">
+                        <!-- Links -->
+                        <ul class="nav nav-pills">
+                            <li class="nav-item me-2">
+                                <a asp-page="/Login" class="custom-nav-link focus"><span><i class="bi bi-person"></i>Login</span></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </nav>
+                
             }
             @if (UserId != null && ViewData["Title"]?.ToString() != "CreateMoodboard")
             {
 
                 <nav class="navbar navbar-expand">
-
+                    
                     <div class="container-fluid">
+
                         <!-- Links -->
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item me-2">
-                                <a asp-page="/MoodboardPages/ViewMyMoodboards" class="custom-button nav-link"><span class="login">My Moodboards</span></a>
+                        <ul class="nav nav-pills">
+                            <li class="nav-item me-2" >
+                                <a asp-page="/MoodboardPages/ViewMyMoodboards" class="custom-nav-link one">My Moodboards</a>
                             </li>
                             <li class="nav-item me-2">
-                                <a asp-page="/MoodBoardPages/Create" class="custom-button nav-link"><span class="login">Create Moodboard</span></a>
+                                <a asp-page="/MoodBoardPages/Create" class="custom-nav-link two">Create Moodboard</a>
                             </li>
 
                             <li class="nav-item me-2">
-                                <a asp-page="/Logout" class="custom-button nav-link active "><span class="login">Logout</span></a>
+                                <a asp-page="/Logout" class="custom-nav-link focus">Logout</a>
                             </li>
                         </ul>
                     </div>
+                   
 
                 </nav>
                 

@@ -12,6 +12,9 @@
     <p>Filter by: &nbsp</p><p id="p-filter"> Date, Popularity, Rating</p> @* filtering af søgeresultater implementeres her *@
 </div>
 
+@{
+    Random rand = new Random();
+}
 
 @foreach (var tag in Model.PrimaryTags)
 {
@@ -26,8 +29,18 @@
             {
                 <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@moodboard.MoodboardId">
                     <div class="square" >
-                        <img src="@moodboard.Thumbnail" alt="Moodboard Image"/>
-                        <div class="image-text">@moodboard.Title</div>
+                        @if (moodboard.Thumbnail == null)
+                        {
+                            
+                            int randNumber = rand.Next(1, 200);
+
+                            <img src="https://picsum.photos/200/300?=3&random={@randNumber}">
+                        }
+                        else 
+                        {
+                            <img src="@moodboard.Thumbnail" /> 
+                        }
+                        <span class="image-text">@moodboard.Title</span>
                     </div>
                 </a>
             }
@@ -37,7 +50,7 @@
         @foreach (var st in Model.SubTags.Where(SubTag => SubTag.PrimaryTagId == tag.PrimaryTagId))
         {
             <span class="subtag-item">
-            <h5>#@st.Name</h5>
+            <p2>#@st.Name</p2>
         </span>
         }
     </div>

@@ -6,6 +6,10 @@
     ViewData["Title"] = "MyMoodboards";
 }
 
+@{
+    Random rand = new Random();
+}
+
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -24,7 +28,18 @@
             @foreach (var mb in moodboards)
             {
                 <div class="square">
-                    <img src="@mb.Thumbnail" alt="Moodboard Image" />
+                    @if (mb.Thumbnail == null)
+                    {
+
+                        int randNumber = rand.Next(1, 200);
+
+                        <img src="https://picsum.photos/200/300?grayscale=3&random={@randNumber}">
+                    }
+                    else
+                    {
+                        <img src="@mb.Thumbnail" />
+                    }
+                    <span class="image-text">@mb.Title</span>
                     <div class="image-text">@mb.Title</div>
                 </div>
             }
