@@ -48,6 +48,14 @@
                     <input type="text" asp-for="@Model.subtaginput" class="form-control" placeholder="Enter subtags">
 
                     <div class="tooltip">
+                        Thumbnail Image <i class="bi bi-info-circle"></i>
+                        <span class="tooltiptext">
+                            The thumbnail image will represent your Moodboard, along with your title on the Moodboard overview. 
+                        </span>
+                    </div>
+                    <input type="text" asp-for="Moodboard.Thumbnail" class="form-control" placeholder="Enter image address">
+
+                    <div class="tooltip">
                         Configure Content <i class="bi bi-info-circle"></i>
                         <span class="tooltiptext">
                             Add content to your moodboard by selecting a type (text, image, Spotify, or YouTube) and providing the relevant text, link, or media. Customize each box to reflect your theme.
@@ -55,7 +63,7 @@
                     </div>
 
                     <div class="form-group" id="objectContainer">
-                    </div> <!-- This will hold the dynamic inputs -->
+                    </div> <!-- her tilføjes content containers -->
                     <button type="button" class="dropdown" onclick="addObject()">Add Content Box</button>
                 </div>
                               
@@ -144,7 +152,7 @@
             <label style="width:80%" display="flex">
                 <input type="text" class="form-control" name="ContainerText[]" placeholder="No content type selected" style="height: 30px;">
             </label>
-            <button type="button" class="dropdown" style="margin-left: 10px; display: inline; height:100%; width:15% ; padding:2px;" onclick="deleteObject(this)"><i class="bi bi-trash"></i></button>
+            <button type="button" class="dropdown delete" style="margin-left: 10px; display: inline; height:100%; width:15% ; padding:2px;" onclick="deleteObject(this)"><i class="bi bi-trash"></i></button>
         `;
 
         // Append the new div to the container

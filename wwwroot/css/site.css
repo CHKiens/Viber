@@ -135,13 +135,17 @@ body {
     padding: 8px 12px;
     display: flex;
     text-decoration: none;
-    background-image: linear-gradient(45deg, #DA3C29, #C91B24);
+    background-image: linear-gradient(45deg, #1F1917, #585858);
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     border: none;
     letter-spacing: 1px;
 }
+
+    .dropdown.delete {
+        background-image: linear-gradient(45deg, #DDB348, #C91B24);
+    }
 
 .dropdown option{
     color:darkslategrey;
@@ -214,7 +218,7 @@ textarea:focus, input:focus{
     min-height: 5%;
     margin: 8px;
     background-image: linear-gradient(transparent, #1F1917);
-    box-shadow: inset 0px 0px 1px #1F1917, 0 5px 15px #1F1917, 0 15px 18px #1F1917;
+    box-shadow: inset 0px 0px 1px #1F1917, 0 5px 15px #1F1917/*, 0 15px 18px #1F1917*/;
 }
     .square:hover {
         transform: scale(1.05, 1.05);
