@@ -15,7 +15,9 @@
                 <option value="true">Moodboards</option>
                 <option value="false">Tags</option>
             </select>
-            <a class="custom-button-search"><i class="bi bi-search"></i></a>
+            <button type="submit" class="custom-button-search">
+                <i class="bi bi-search"></i>
+            </button>
         </div>
     </div>
 </form>
@@ -40,19 +42,31 @@
     }
     else
     {
-        <div>
-            @foreach (var st in Model.SearchResultSubTag)
+        foreach (var tag in Model.SearchResultSubTag)
+        {
+            <a asp-page="/MoodBoardPages/ViewSubTag" asp-route-Id="@tag.SubTagId" class="text-decoration-none">
+                <h4>#@tag.Name</h4>
+            </a>
+            <div class="square-row">
+            @if (Model.MoodboardsByTag.ContainsKey(tag.SubTagId))
             {
-                <span class="subtag-item">
-                    <a asp-page="/MoodBoardPages/ViewSubTag" asp-route-Id="@st.SubTagId" class="text-decoration-none">
-                        <p2>#@st.Name</p2>
+                var moodboards = Model.MoodboardsByTag[tag.SubTagId];
+
+                foreach (var moodboard in moodboards)
+                {
+                    <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@moodboard.MoodboardId">
+                        <div class="square">
+                            <img src="@moodboard.Thumbnail" alt="Moodboard Image"/>
+                            <div class="image-text">@moodboard.Title</div>
+                        </div>
                     </a>
-                    
-                </span>
+
+                }
             }
         </div>
+        }
+
     }
-    
 }
 
 @if (Model.SearchTerm == null)
@@ -77,7 +91,6 @@
                             <div class="image-text">@moodboard.Title</div>
                         </div>
                     </a>
-
                 }
             }
         </div>

@@ -24,9 +24,9 @@ namespace Viber.Pages
 
         public bool IsMoodboard { get; set; } = true;
         
-        public List<Moodboard> SearchResultMoodboards { get; set; }
-        
-        public List <SubTag> SearchResultSubTag { get; set; }
+        public List<Moodboard> SearchResultMoodboards { get; set; } = new();
+
+        public List<SubTag> SearchResultSubTag { get; set; } = new(); 
         
         public List<PrimaryTag> PrimaryTags { get; set; }
         
@@ -38,7 +38,7 @@ namespace Viber.Pages
         { 
             SearchTerm = searchTerm;
             IsMoodboard = isMoodboard;
-            PrimaryTags = _primaryTagService.GetPrimaryTags();
+            PrimaryTags = _primaryTagService.GetPrimaryTags();    
 
             foreach (var tag in PrimaryTags)
             {
@@ -57,10 +57,17 @@ namespace Viber.Pages
             if (!string.IsNullOrEmpty(searchTerm) && !IsMoodboard)
             {
                 SearchResultSubTag = _subTagService.SearchForSubTags(SearchTerm);
-                /*foreach (var subtag in SearchResultSubTag)
+                
+                foreach (var tag in SearchResultSubTag)
                 {
-                    SearchResultMoodboards.Add(subtag.mo);
-                }*/
+                    List<Moodboard> mbs = new List<Moodboard>();
+                    foreach (var mbst in tag.MoodboardSubTags)
+                    {
+                        mbs.Add(mbst.Moodboard);
+                    }
+                    MoodboardsByTag[tag.SubTagId] = mbs.ToList();
+                }
+                
             }
             return Page();
         }
