@@ -27,7 +27,7 @@ html {
     position: relative;
     min-height: 100%;
     /*background: linear-gradient(rgba(31,31,31,1) 0%, rgba(54,54,54,1) 30%, rgba(31,31,31,1) 90%);*/
-    background: linear-gradient(#EFEBDB 0%,#9a9487 80%, #746A62 99%);
+    background: linear-gradient(#28201e,#3d312e, #1F1917);
     background-attachment: fixed;
     background-repeat: no-repeat;
 }
@@ -39,13 +39,14 @@ body {
 
 .stripes {
     position: absolute;
-    z-index: -100;
+    z-index: 100;
     top: 0%;
     left: 0%;
     width: 50px;
     height: 100%;
     background: linear-gradient(#DDB348 0px,#DDB348 50px,#DA3C29 50px,#DA3C29 100px,#C91B24 100px,#C91B24 150px,#971A3C 150px, #971A3C 200px,#601035 200px, #601035 250px,  #1F1917 250px);
 }
+
 
 .custom-button {
     display:flex;
@@ -250,7 +251,7 @@ textarea:focus, input:focus{
     font-style: normal;
     font-size: 90px;
     letter-spacing: -7px;
-    color: #1F1917;
+    color: white;
     font-weight: bold;
     text-align: left;
 }
@@ -262,7 +263,7 @@ textarea:focus, input:focus{
     font-style: normal;
     font-size: 200px;
     letter-spacing: -7px;
-    color: #1F1917; 
+    color: white; 
     text-align: left;
 }
 
@@ -385,12 +386,12 @@ textarea:focus, input:focus{
 h1 {
     font-size: 70px;
     letter-spacing: -7px;
-    color: #1F1917;
+    color: white;
     font-weight: bold;
 }
 
 h2 {
-    color: #1F1917;
+    color: white;
 }
 
 
@@ -398,11 +399,11 @@ h3 {
     font-size: 22px;
     text-align: center;
     font-weight: 700;
-    color: #1F1917;
+    color: white;
 }
 
 h4 {
-    color: #1F1917;
+    color: white;
     font-size: 40px;
     font-family: "Sora", sans-serif;
     font-optical-sizing: auto;
