@@ -7,5 +7,7 @@ namespace Viber.Services.Interfaces {
 
         public SubTag GetSubTagById(int SubTagId);
 
+        public List<SubTag> SearchForSubTags(string searchTerm);
+
     }
 }

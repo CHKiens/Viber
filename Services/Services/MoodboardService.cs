@@ -42,7 +42,7 @@ namespace Viber.Services.Services
             return _context.Moodboards
                 .Include(mb => mb.ContentContainers)
                 .Include(mb => mb.PrimaryTag)
-                .FirstOrDefault(mb => mb.MoodboardId == moodboardId);
+                .FirstOrDefault(mb => mb.MoodboardId == moodboardId)!;
                 }
 
         public void EditMoodboard(Moodboard moodboard)
@@ -91,6 +91,13 @@ namespace Viber.Services.Services
                 .ToList();
             
                 return MoodboardBySubTag;
+        }
+
+        public List<Moodboard> SearchForMoodboards(string searchTerm)
+        {
+            return _context.Moodboards
+                .Where(mb => mb.Title.ToLower().Contains(searchTerm.ToLower()))
+                .ToList();
         }
 
     }

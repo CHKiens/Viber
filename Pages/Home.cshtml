@@ -3,52 +3,94 @@
 @model Viber.Pages.HomeModel
 @{
 }
-<div class="container">
-    <div class="search-style">
-        <input class="search" type="search" placeholder="Search here... e.g. sad, happy, angry"><a href="#" class="custom-button-search"><i class="bi bi-search"></i></a>
+<form method="get" class="d-flex">
+    <div class="container">
+        <div class="search-style">
+                    
+            <input class="search" type="search" asp-for="SearchTerm" placeholder="Search here... e.g. sad, happy, angry">
+            <select class="dropdown" asp-for="IsMoodboard">
+                <option>
+                    Search options:
+                </option>
+                <option value="true">Moodboards</option>
+                <option value="false">Tags</option>
+            </select>
+            <a class="custom-button-search"><i class="bi bi-search"></i></a>
+        </div>
     </div>
-</div>
+    
+</form>
+
 <div style="display:flex; margin-left:30px; margin-top:10px">
     <p>Filter by: &nbsp</p><p id="p-filter"> Date, Popularity, Rating</p> @* filtering af søgeresultater implementeres her *@
 </div>
 
 
-@foreach (var tag in Model.PrimaryTags)
+@if (Model.SearchTerm != null)
 {
-    <a asp-page="/MoodBoardPages/ViewPrimaryTag" asp-route-PrimaryTagId="@tag.PrimaryTagId" class="text-decoration-none">
-        <h4>@tag.Name</h4>
-    </a>
+    if (Model.IsMoodboard)
+    {
+        <div>
+            @foreach (var mb in Model.SearchResultMoodboards)
+            {
+                <p>
+                    @mb.Title
+                </p>
+            }
+        </div>
+    }
+    else
+    {
+        <div>
+            @foreach (var st in Model.SearchResultSubTag)
+            {
+                <p>
+                    @st.Name
+                </p>
+            }
+        </div>
+    }
     
-
-    <div class="square-row">
-        @if (Model.MoodboardsByTag.ContainsKey(tag.PrimaryTagId))
-        {
-            var moodboards = Model.MoodboardsByTag[tag.PrimaryTagId];
-
-            foreach (var moodboard in moodboards)
-            {
-                <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@moodboard.MoodboardId">
-                    <div class="square" >
-                        <img src="@moodboard.Thumbnail" alt="Moodboard Image"/>
-                        <div class="image-text">@moodboard.Title</div>
-                    </div>
-                </a>
-                
-            }
-        }
-    </div>
-    <div class="subtags-container">
-        @if (Model.SubTagsByPrimaryTag.ContainsKey(tag.PrimaryTagId))
-        {
-            var subtags = Model.SubTagsByPrimaryTag[tag.PrimaryTagId];
-
-            foreach (var subtag in subtags)
-            {
-                <span class="subtag-item">
-                    <p2>#@subtag.Name</p2>
-                </span>
-            }
-        }
-    </div>
 }
+
+
+@foreach (var tag in Model.PrimaryTags)
+    {
+        <a asp-page="/MoodBoardPages/ViewPrimaryTag" asp-route-PrimaryTagId="@tag.PrimaryTagId" class="text-decoration-none">
+            <h4>@tag.Name</h4>
+        </a>
+
+
+        <div class="square-row">
+            @if (Model.MoodboardsByTag.ContainsKey(tag.PrimaryTagId))
+            {
+                var moodboards = Model.MoodboardsByTag[tag.PrimaryTagId];
+
+                foreach (var moodboard in moodboards)
+                {
+                    <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@moodboard.MoodboardId">
+                        <div class="square">
+                            <img src="@moodboard.Thumbnail" alt="Moodboard Image"/>
+                            <div class="image-text">@moodboard.Title</div>
+                        </div>
+                    </a>
+
+                }
+            }
+        </div>
+        <div class="subtags-container">
+            @if (Model.SubTagsByPrimaryTag.ContainsKey(tag.PrimaryTagId))
+            {
+                var subtags = Model.SubTagsByPrimaryTag[tag.PrimaryTagId];
+
+                foreach (var subtag in subtags)
+                {
+                    <span class="subtag-item">
+                        <p2>#@subtag.Name</p2>
+                    </span>
+                }
+            }
+        </div>
+    }
+    
             
