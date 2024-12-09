@@ -69,9 +69,10 @@ namespace Viber.Services.Services
         {
             return _context.Moodboards
                 .Where(mb => mb.PrimaryTagId == primaryTagId)
+                .OrderByDescending(mb => mb.DateOfCreation)
                 .Include(mb => mb.MoodboardSubTags)
                 .ThenInclude(mbst => mbst.Subtag)
-                .Take(limit) 
+                .Take(limit)
                 .ToList();
         }
 

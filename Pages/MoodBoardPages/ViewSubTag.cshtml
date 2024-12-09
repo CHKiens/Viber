@@ -1,0 +1,20 @@
+@page
+@model Viber.Pages.MoodBoardPages.ViewSubTag
+
+@{
+    ViewData["Title"] = "ViewSubTag";
+}
+
+<h1>@Model.SubTag.Name</h1>
+
+    <div class="square-row">
+        @foreach (var mb in Model.Moodboards)
+        {
+        <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@mb.MoodboardId">
+            <div class="square" >
+                <img src="@mb.Thumbnail" alt="Moodboard Image"/>
+                <div class="image-text">@mb.Title</div>
+            </div>
+        </a>
+        }
+    </div>

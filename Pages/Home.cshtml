@@ -18,7 +18,6 @@
             <a class="custom-button-search"><i class="bi bi-search"></i></a>
         </div>
     </div>
-    
 </form>
 
 <div style="display:flex; margin-left:30px; margin-top:10px">
@@ -44,17 +43,21 @@
         <div>
             @foreach (var st in Model.SearchResultSubTag)
             {
-                <p>
-                    @st.Name
-                </p>
+                <span class="subtag-item">
+                    <a asp-page="/MoodBoardPages/ViewSubTag" asp-route-Id="@st.SubTagId" class="text-decoration-none">
+                        <p2>#@st.Name</p2>
+                    </a>
+                    
+                </span>
             }
         </div>
     }
     
 }
 
-
-@foreach (var tag in Model.PrimaryTags)
+@if (Model.SearchTerm == null)
+{
+    @foreach (var tag in Model.PrimaryTags)
     {
         <a asp-page="/MoodBoardPages/ViewPrimaryTag" asp-route-PrimaryTagId="@tag.PrimaryTagId" class="text-decoration-none">
             <h4>@tag.Name</h4>
@@ -86,11 +89,13 @@
                 foreach (var subtag in subtags)
                 {
                     <span class="subtag-item">
-                        <p2>#@subtag.Name</p2>
+                        <a asp-page="/MoodBoardPages/ViewSubTag" asp-route-Id="@subtag.SubTagId" class="text-decoration-none">
+                            <p2>#@subtag.Name</p2>
+                        </a>
                     </span>
                 }
             }
         </div>
     }
-    
+}    
             

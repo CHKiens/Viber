@@ -9,7 +9,6 @@ namespace Viber.Pages
 {
     public class HomeModel : PageModel
     {
-
         private readonly IMoodboardService _context;
         private readonly IPrimaryTagService _primaryTagService;
         private readonly ISubTagService _subTagService;
@@ -58,6 +57,10 @@ namespace Viber.Pages
             if (!string.IsNullOrEmpty(searchTerm) && !IsMoodboard)
             {
                 SearchResultSubTag = _subTagService.SearchForSubTags(SearchTerm);
+                /*foreach (var subtag in SearchResultSubTag)
+                {
+                    SearchResultMoodboards.Add(subtag.mo);
+                }*/
             }
             return Page();
         }
