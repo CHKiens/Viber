@@ -8,7 +8,7 @@
         <div class="search-style">
                     
             <input class="search" type="search" asp-for="SearchTerm" placeholder="Search here... e.g. sad, happy, angry">
-            <select class="dropdown" asp-for="IsMoodboard">
+            <select class="custom-button-search" asp-for="IsMoodboard">
                 <option value="true">Moodboards</option>
                 <option value="false">Tags</option>
             </select>
@@ -26,7 +26,6 @@
 @{
     Random rand = new Random();
 }
-
 @if (Model.SearchTerm != null)
 {
     if (Model.IsMoodboard)
@@ -56,8 +55,18 @@
                 {
                     <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@moodboard.MoodboardId">
                         <div class="square">
-                            <img src="@moodboard.Thumbnail" alt="Moodboard Image"/>
-                            <div class="image-text">@moodboard.Title</div>
+                                @if (moodboard.Thumbnail == null)
+                                {
+
+                                    int randNumber = rand.Next(1, 200);
+
+                                    <img src="https://picsum.photos/200/300?=3&random={@randNumber}">
+                                }
+                                else
+                                {
+                                    <img src="@moodboard.Thumbnail" />
+                                }
+                                <span class="image-text">@moodboard.Title</span>
                         </div>
                     </a>
 
@@ -71,7 +80,15 @@
 
 @if (Model.SearchTerm == null)
 {
-    <h4 style="margin-left:20px; margin-top:20px;margin-bottom:0px;">@tag.Name</h4>
+    @foreach (var tag in Model.PrimaryTags)
+    {
+
+            <a asp-page="/MoodBoardPages/ViewPrimaryTag" asp-route-PrimaryTagId="@tag.PrimaryTagId" class="text-decoration-none" style="">
+                <h4>@tag.Name</h4>
+            </a>
+
+        
+
 
         <div class="square-row">
             @if (Model.MoodboardsByTag.ContainsKey(tag.PrimaryTagId))
@@ -100,13 +117,20 @@
             }
         </div>
         <div class="subtags-container">
-            @foreach (var st in Model.SubTags.Where(SubTag => SubTag.PrimaryTagId == tag.PrimaryTagId))
+            @if (Model.SubTagsByPrimaryTag.ContainsKey(tag.PrimaryTagId))
             {
-                <span class="subtag-item">
-                    <p2>#@st.Name</p2>
-                </span>
+                var subtags = Model.SubTagsByPrimaryTag[tag.PrimaryTagId];
+
+                foreach (var subtag in subtags)
+                {
+                    <span class="subtag-item">
+                        <a asp-page="/MoodBoardPages/ViewSubTag" asp-route-Id="@subtag.SubTagId" class="text-decoration-none">
+                            <p2>#@subtag.Name</p2>
+                        </a>
+                    </span>
+                }
             }
         </div>
-        <div class="stripe-horizontal" style="height:4px; margin-top:30px;"></div> //den passer nok ikke lige ind, men følte at der manglede farve. bliver nok fjernet igen
+    }
 }    
             
