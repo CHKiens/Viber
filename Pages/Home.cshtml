@@ -19,7 +19,7 @@
 @foreach (var tag in Model.PrimaryTags)
 {
 
-        <h4>@tag.Name</h4>
+        <h4 style="margin-left:20px; margin-top:20px;margin-bottom:0px;">@tag.Name</h4>
 
         <div class="square-row">
             @if (Model.MoodboardsByTag.ContainsKey(tag.PrimaryTagId))
@@ -55,6 +55,7 @@
                 </span>
             }
         </div>
+        <div class="stripe-horizontal" style="height:4px; margin-top:30px;"></div> //den passer nok ikke lige ind, men følte at der manglede farve. bliver nok fjernet igen
 
    
 }

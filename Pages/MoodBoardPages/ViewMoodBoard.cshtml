@@ -6,17 +6,30 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-@if(Model.Authorized){
-    <div class="text-end">
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
-            <span>Delete Moodboard </span><i class="fa-solid fa-dumpster-fire"></i>
-        </button>
+
+    <div class="d-flex justify-content-between">
+
+        <div>
+            <p2 style="font-size:24px">Created by @Model.Moodboard.UserId </p2> @* skal have gjort så den henter navn i stedet for bare at tage Id *@
+        </div>
+    @if (Model.Authorized)
+    {
+        <div>
+            <a asp-page="/MoodBoardPages/Edit" asp-route-Id="@Model.Moodboard.MoodboardId" class="btn btn-primary">
+                Edit Moodboard
+            </a>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
+                <span>Delete Moodboard </span><i class="fa-solid fa-dumpster-fire"></i>
+            </button>
+        </div>
+    }
     </div>
-}
+    
+
 
 
 <body>
-    <div class="p-5 border rounded-3 h-100 shadow-lg p-4 mb-4 " style="background-color:@Model.Moodboard.BackgroundColor; margin-top:10px">
+    <div style="background-color:@Model.Moodboard.BackgroundColor; margin-top:20px; margin-bottom:20px;padding:30px; width:100%; height:100%; border-radius:5px; box-shadow: 0px 0px 5px black" >
         
         <h1 class="display-8 text-center mb-5 col-12" style="color:@Model.Moodboard.TitleColor" >@Model.Moodboard.Title</h1>
 

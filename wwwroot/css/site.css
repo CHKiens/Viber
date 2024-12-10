@@ -46,7 +46,15 @@ body {
     height: 100%;
     background: linear-gradient(#DDB348 0px,#DDB348 50px,#DA3C29 50px,#DA3C29 100px,#C91B24 100px,#C91B24 150px,#971A3C 150px, #971A3C 200px,#601035 200px, #601035 250px, transparent 300px);
 }
-
+.stripe-horizontal {
+    margin-bottom:40px;
+    width:100%; 
+    height:12px; 
+    border-radius:5px;
+    top:auto; 
+    left:auto;
+    background-image:linear-gradient(90deg,#DDB348,#DA3C29 ,#C91B24 ,#971A3C, #601035);
+}
 .logo-stripe {
     margin-top: 10px;
     width: 200px;
