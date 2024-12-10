@@ -23,10 +23,12 @@
 
             @foreach (var mb in moodboards)
             {
-                <div class="square">
-                    <img src="@mb.Thumbnail" alt="Moodboard Image" />
-                    <div class="image-text">@mb.Title</div>
-                </div>
+                <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@mb.MoodboardId">
+                    <div class="square">
+                        <img src="@mb.Thumbnail" alt="Moodboard Image" />
+                        <div class="image-text">@mb.Title</div>
+                    </div>
+                </a>
             }
         }
     </div>
