@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="utf-8" />
@@ -18,43 +18,82 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+
 </head>
 @{ var UserId = Context.Session.GetString("UserId"); }
+
 <body>
     <div class="container"> 
         <div class="header">
+            
             @if (ViewData["Title"]?.ToString() == "CreateUser")
             {
-                <span class="title-frontpage">viber</span>
+                
+                <div class="row justify-content-start" style="margin-bottom:50px;">
+                    <div class="col" style="text-align:center">
+                        <span class="title-frontpage">viber</span>
+                    </div>
+                    <div class="col" style=";align-content:center">
+                        <div class="logo-stripe" style="margin-top:20px;margin-left:20px;width:600px; height:120px"></div>
+                    </div>
+                </div>
             }
             else
             {
-                <a asp-page="/Home" class="custom-button"><span class="title">viber</span></a>
+                <div class="row justify-content-start">
+                    <div class="col" style="text-align:center">
+                        <a asp-page="/Home" class="custom-button"><span class="title">viber</span></a>
+                    </div>
+                    <div class="col" style=";align-content:center">
+                        <div class="logo-stripe"></div>
+                    </div>
+                    
+                    
+                </div>
+                
             }
-            @if (ViewData["Title"]?.ToString() != "Login" && UserId == null ) //Viser kun login hvis man ikke allerede er logget ind
+            @if (ViewData["Title"]?.ToString() != "Login" && ViewData["Title"]?.ToString() != "CreateUser" && UserId == null)//Viser kun login hvis man ikke allerede er logget ind
             {
-                <a asp-page="/Login" class="custom-button"><span class="login"><i class="bi bi-person"></i>Login</span></a>
+                <nav class="navbar navbar-expand" style="height:100px">
+                    <div class="container-fluid d-flex align-items-center" style="height: 100%;">
+                        <!-- Links -->
+                        <ul class="nav nav-pills">
+                            <li class="nav-item me-2">
+                                <a asp-page="/Login" class="custom-nav-link focus">
+                                    <span><i class="bi bi-person"></i> Login</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                
             }
             @if (UserId != null && ViewData["Title"]?.ToString() != "CreateMoodboard")
             {
 
-                <nav class="navbar navbar-expand">
+                <nav class="navbar navbar-expand" style="height:100px">
 
-                    <div class="container-fluid">
+                    <div class="container-fluid d-flex align-items-center">
+
                         <!-- Links -->
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item me-2">
-                                <a asp-page="/MoodboardPages/ViewMyMoodboards" class="custom-button nav-link"><span class="login">My Moodboards</span></a>
+                        <ul class="nav nav-pills">
+                            <li class="nav-item me-2" >
+                                <a asp-page="/MoodboardPages/ViewMyMoodboards" class="custom-nav-link one">My Profile</a>
                             </li>
                             <li class="nav-item me-2">
-                                <a asp-page="/MoodBoardPages/Create" class="custom-button nav-link"><span class="login">Create Moodboard</span></a>
+                                <a asp-page="/MoodBoardPages/Create" class="custom-nav-link two">+ Create Moodboard</a>
                             </li>
 
                             <li class="nav-item me-2">
-                                <a asp-page="/Logout" class="custom-button nav-link active "><span class="login">Logout</span></a>
+                                <a asp-page="/Logout" class="custom-nav-link focus">Logout</a>
                             </li>
                         </ul>
                     </div>
+                   
 
                 </nav>
                 

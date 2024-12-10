@@ -3,16 +3,33 @@
 @{
     ViewData["Title"] = "CreateMoodboard";
 }
+<style>
 
-<div class="container">
+</style>
+<div class="container" >
     <div class="row">
         <div class="col-sm">
             <form method="post" id="submitform">
                 <div class="form-group" style="width: 100%">
-                    <p2>Moodboard Title</p2>
+
+                    <div class="tooltip">
+                        Moodboard Title <i class="bi bi-info-circle"></i>
+                        <span class="tooltiptext">
+                            The name of your moodboard. Think of it as the headline for your ideas.
+                        </span>
+                    </div>
                     <input type="text" asp-for="Moodboard.Title" class="form-control" placeholder="Enter moodboard title">
-                    <p2>Primary Tag</p2>
-                    <select asp-for="PrimaryTag" class="dropdown">
+
+                    <div class="tooltip">
+                        Primary Tag <i class="bi bi-info-circle"></i>
+                        <span class="tooltiptext">
+                            Select the main category that best describes your moodboard's theme.
+                        </span>
+                    </div>
+
+                    
+
+                    <select asp-for="PrimaryTag" class="dropdown" style="width:100%">
                         <option>Click here to select a primary tag</option>
                         @foreach (var primaryTag in Model.PrimaryTags)
                         {
@@ -21,28 +38,91 @@
                     </select>
                     <input type="hidden" asp-for="Moodboard.UserId" value="@Model.Moodboard.UserId" />
                     <input type="hidden" asp-for="Moodboard.MoodboardId" value="@Model.Moodboard.MoodboardId" />
+
+                    <div class="tooltip">
+                        Sub Tags <i class="bi bi-info-circle"></i>
+                        <span class="tooltiptext">
+                            Add more specific tags to further define your moodboard's content. 
+                        </span>
+                    </div>
+                    <input type="text" asp-for="@Model.subtaginput" class="form-control" placeholder="Enter subtags">
+
+                    <div class="tooltip">
+                        Thumbnail Image <i class="bi bi-info-circle"></i>
+                        <span class="tooltiptext">
+                            The thumbnail image will represent your Moodboard, along with your title on the Moodboard overview. 
+                        </span>
+                    </div>
+                    <input type="text" asp-for="Moodboard.Thumbnail" class="form-control" placeholder="Enter image address">
+
+                    <div class="tooltip">
+                        Configure Content <i class="bi bi-info-circle"></i>
+                        <span class="tooltiptext">
+                            Add content to your moodboard by selecting a type (text, image, Spotify, or YouTube) and providing the relevant text, link, or media. Customize each box to reflect your theme.
+                        </span>
+                    </div>
+
+                    <div class="form-group" id="objectContainer">
+                    </div> <!-- her tilføjes content containers -->
+                    <button type="button" class="dropdown" onclick="addObject()">Add Content Box</button>
                 </div>
-                <p2>Configure Content</p2>
-                <div class="form-group" id="objectContainer">
-                </div> <!-- This will hold the dynamic inputs -->
-                <button type="button" class="dropdown" onclick="addObject()">Add Content Box</button>                
+                              
 
             </form>
-        </div>
-        <div class="col-sm" style="margin-left: 30px">
-            <h4>
-                Info
-            </h4>
-            <p> Her kan du lave dit moodboard blablablablablablablablablablablablablablabla
-                blablablablablablablablablabl blablablablablabla balbalbablabalblablalblabl
-                ablalblablalbla
-                ablalbablalblablablalblalblablababla alblalblabllab
-                ablablabllablalbabl
-
-                labalblablalb
-                lbalablabllbalablabla
+            <div style="margin-bottom:20px;margin-top:40px;width:100%; height:12px; border-radius:5px;top:auto; left:auto;background-image:linear-gradient(90deg,#DDB348,#DA3C29 ,#C91B24 ,#971A3C);"></div>
+            <div style="display:block; margin-bottom:30px"></div>
+            <h4 style="font-size: 25px">Review and Save</h4>
+            <p>
+                After adding all your content, review your moodboard. If everything looks good, hit <strong>Proceed to Moodboard Designer</strong> to
+                finalize it. You can always come back to add more content later.
             </p>
             <button type="submit" form="submitform" class="dropdown">Proceed to Moodboard Designer</button>
+        </div>
+        <div class="col-sm" style="margin-left: 30px; border-radius:8px; margin:10px;">
+            <div>
+                <br />
+                <h4>How to Use the Moodboard Creator</h4>
+                <p>
+                    Welcome to the Moodboard Creator! Follow these steps to design your perfect moodboard,
+                    complete with images, text, and other content types. Below, we’ll guide you through the entire
+                    process, including how to use content containers for adding links, images, and text.
+                </p>
+                
+                <h4 style="font-size: 25px">Adding Content to Your Moodboard</h4>
+                <p>
+                    Your moodboard can include different types of content, each added using a
+                    <em>content container</em>. Here's how each type works:
+                </p>
+
+                <h3>1. Images</h3>
+                <p>
+                    Find an image you like online. Right-click the image and select
+                    <strong>"Copy Image Address"</strong> (or "Copy Image Link" depending on your browser).
+                    Paste the copied link into the input field for images. Once added, the image will appear in your moodboard.
+                </p>
+
+                <h3>2. Spotify Playlists</h3>
+                <p>
+                    Want to set the mood with music? Add Spotify playlists! Here's how:
+                </p>
+                <ul>
+                    <li>Open your Spotify app or web browser.</li>
+                    <li>Go to your playlist.</li>
+                    <li>Click <strong>Share</strong> and then select <strong>Copy Link</strong>.</li>
+                    <li>Paste the link into the input field for Spotify.</li>
+                </ul>
+                <p><em>Note:</em> Only playlist links are supported.</p>
+
+                <h3>3. Text</h3>
+                <p>
+                    Add personalized text to your moodboard for descriptions, quotes, or other notes:
+                </p>
+                <p>
+                    Type directly into the input field for text content.
+                </p>
+            </div>
+
+            
         </div>
     </div>
 </div>
@@ -55,15 +135,15 @@
     function addObject() {
         const container = document.getElementById('objectContainer');
 
-        // Create a new div for the container fields
+        // laver et nyt div element som kan indeholde vores container input
         const div = document.createElement('div');
         div.className = "object";
 
-        // Add the dropdown for 'Type' and the input field
+        // tilføjer dropdown menu hvor container type kan vælges, og input kan tilføjes
         div.innerHTML = `
             <label style="width:20%">
                 <select class="dropdown" style="padding:5px 10px" name="ContainerType[]" onchange="adjustInputField(this)">
-                    <option>Select type</option>
+                    <option>None</option>
                     <option value="text">Text</option>
                     <option value="image">Image</option>
                     <option value="spotify">Spotify</option>
@@ -71,38 +151,44 @@
                 </select>
             </label>
             <label style="width:80%" display="flex">
-                <input type="text" class="form-control" name="ContainerText[]" placeholder="Enter text or link" style="height: 30px;">
+                <input type="text" class="form-control no-pointer" name="ContainerText[]" placeholder="No content type selected" style="height: 30px;">
             </label>
+            <button type="button" class="dropdown delete" style="margin-left: 10px; display: inline; height:100%; width:15%;
+                padding:2px;" onclick="deleteObject(this)"><i class="bi bi-trash"></i></button>
         `;
 
-        // Append the new div to the container
+        // tilføjer vores div til dets parent div element
         container.appendChild(div);
     }
+    function deleteObject(button) {
+        const container = button.parentElement; 
+        container.remove(); 
+    }
+
 
     function adjustInputField(selectElement) {
         const container = selectElement.parentElement.nextElementSibling;
         const inputField = container.querySelector('input');
 
         if (selectElement.value === 'text') {
-            // Replace input with a textarea
+            // erstatter input med textarea hvis "text" typen er valgt
             const textarea = document.createElement('textarea');
             textarea.name = 'ContainerText[]';
             textarea.className = 'form-control';
             textarea.placeholder = 'Enter your text here...';
-            textarea.style.height = '100px'; // Set post-it note height
-            textarea.style.width = '100%'; // Full width for clarity
-            textarea.style.resize = 'none'; // Prevent resizing
+            textarea.style.height = '100px'; 
+            textarea.style.width = '100%'; 
+            textarea.style.resize = 'none'; 
 
-            // Replace input with textarea
             container.replaceChild(textarea, inputField);
         } else {
-            // Replace textarea back with input for other types
+            // erstat textarea med input felt hvis man ikke har valgt "text" typen
             const newInput = document.createElement('input');
             newInput.type = 'text';
             newInput.name = 'ContainerText[]';
             newInput.className = 'form-control';
             newInput.placeholder = 'Paste your link here...';
-            newInput.style.height = '30px'; // Default height
+            newInput.style.height = '30px'; 
             container.replaceChild(newInput, inputField || container.querySelector('textarea'));
         }
     }

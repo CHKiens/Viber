@@ -12,21 +12,54 @@ main {
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #D2B179;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #C81A23;
 }
 
-html {
+/*html {
     position: relative;
     min-height: 100%;
     background: linear-gradient(#c78383, #260f05), radial-gradient(circle, transparent, #9d49cc), radial-gradient(1000px at left top, #44356e, #bc86bd);
     background-blend-mode: darken;
     background-attachment: fixed;
     background-repeat: no-repeat;
+}*/
+html {
+    position: relative;
+    min-height: 100%;
+    /*background: linear-gradient(rgba(31,31,31,1) 0%, rgba(54,54,54,1) 30%, rgba(31,31,31,1) 90%);*/
+    background: linear-gradient(#141413,#262423 30%, #141413 60%);
+    background-attachment:fixed;
+    background-repeat: no-repeat;
 }
 
 
 body {
     background-color: transparent;
+}
+
+.stripes { /*bruges ikke - til farvetest*/
+    position: absolute;
+    z-index: -100;
+    top: 0%;
+    left: 0%;
+    width: 50px;
+    height: 100%;
+    background: linear-gradient(#DDB348 0px,#DDB348 50px,#DA3C29 50px,#DA3C29 100px,#C91B24 100px,#C91B24 150px,#971A3C 150px, #971A3C 200px,#601035 200px, #601035 250px, transparent 300px);
+}
+.stripe-horizontal {
+    margin-bottom:40px;
+    width:100%; 
+    height:12px; 
+    border-radius:5px;
+    top:auto; 
+    left:auto;
+    background-image:linear-gradient(90deg,#DDB348,#DA3C29 ,#C91B24 ,#971A3C, #601035);
+}
+.logo-stripe {
+    margin-top: 10px;
+    width: 200px;
+    height: 50px;
+    background-image: linear-gradient(90deg, #DDB348 0%, transparent 18%,transparent 20%, #DA3C29 20%, transparent 38%, transparent 40%, #C91B24 40%, transparent 58%,transparent 60%, #971A3C 60%, transparent 78%,transparent 80%, #601035 80%,transparent 98%, transparent 100%);
 }
 
 .custom-button {
@@ -43,14 +76,14 @@ body {
 
 .custom-button-submit {
     color: #E2DED7;
-    font-family: "Sora", sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-optical-sizing: auto;
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
     font-size: 18px;
     max-height: fit-content;
     text-decoration: none;
-    background-image: linear-gradient(#a37b60, #8C583D);
+    background-image: linear-gradient(45deg, #DA3C29, #C91B24);
     margin-top: 20px;
     padding: 2px 20px;
     border-radius: 5px;
@@ -59,17 +92,33 @@ body {
     letter-spacing: 1px;
 }
 
+    .custom-button-submit.link {
+        color: #585858;
+        background: none;
+        text-decoration: underline;
+        padding: 0px;
+        margin: 0px;
+        margin-top: 20px;
+        margin-right: 20px;
+    }
+
+        .custom-button-submit.link:hover {
+            background-image: none;
+            text-shadow: none;
+            color: ivory;
+        }
+
 .custom-button-search {
     float: right;
     color: #E2DED7;
-    font-family: "Sora", sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-optical-sizing: auto;
     font-weight: normal;
     font-style: normal;
     font-size: 18px;
     max-height: fit-content;
     text-decoration: none;
-    background-image: linear-gradient(#a37b60, #8C583D);
+    background-image: linear-gradient(45deg, #DA3C29, #C91B24);
     padding: 3px 30px;
     border-radius: 5px;
     border: none;
@@ -77,15 +126,17 @@ body {
 }
 
 .custom-button-submit:hover {
-    background-image: linear-gradient(#b0876b, #996245);
+    background-image: linear-gradient(45deg, #DDB348, #C91B24);
     text-shadow: #D4C6B4 1px 0 7px;
     color: ivory;
 }
 .custom-button-search:hover {
-    background-image: linear-gradient(#b0876b, #996245);
+    background-image: linear-gradient(45deg, #DDB348, #C91B24);
     text-shadow: #D4C6B4 1px 0 7px;
     color: ivory;
 }
+
+
 
 .form-control {
     font-family: "Sora", sans-serif;
@@ -93,19 +144,24 @@ body {
     font-weight: normal;
     font-style: normal;
     font-size: 15px;
-    color: #5B352E;
+    color: #1F1917;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     border: none;
-    background-image: linear-gradient(white, #fcb69f);
-    box-shadow: inset 3px 3px 12px #8c5a82;
+    /*background-image: linear-gradient(white, #D4C6B4);
+    box-shadow: inset 2px 2px 3px #746A62;*/
+    background-image: linear-gradient( white 10%, #D4C6B4);
+    box-shadow: inset 1px 1px 3px #746A62;
     padding: 8px 12px;
-    display:flex;
+    display: flex;
+}
+.form-control.no-pointer{
+    pointer-events:none;
 }
 
 .dropdown {
-    color: #E2DED7;
+    color: white;
     font-family: "Sora", sans-serif;
     font-optical-sizing: auto;
     font-weight: normal;
@@ -115,13 +171,17 @@ body {
     padding: 8px 12px;
     display: flex;
     text-decoration: none;
-    background-image: linear-gradient(#a37b60, #8C583D);
+    background-image: linear-gradient(45deg, #545454, #8a8a8a);
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     border: none;
     letter-spacing: 1px;
 }
+
+    .dropdown.delete {
+        background-image: linear-gradient(45deg, #C91B24,#971A3C);
+    }
 
 .dropdown option{
     color:darkslategrey;
@@ -135,6 +195,9 @@ body {
     justify-content: space-between;
 }
 
+
+
+
 .search {
     background: none;
     border: none;
@@ -146,7 +209,7 @@ body {
     font-size: 15px;
     margin-top: 5px;
     margin-left: 10px;
-    flex-grow:1;
+    flex-grow: 1;
 }
 
 textarea:focus, input:focus{
@@ -160,20 +223,20 @@ textarea:focus, input:focus{
     font-weight: normal;
     font-style: normal;
     font-size: 15px;
-    color: #5B352E;
+    color: #1F1917;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     border: none;
-    background-image: linear-gradient(white, #fcb69f);
-    box-shadow: inset 3px 3px 12px #8c5a82;
+    background-image: linear-gradient(#DA3C29 12%, white 12%, #b8b8b8);
+    box-shadow: inset 1px -1px 3px #746A62;
     padding: 10px 10px;
     margin-top: 10px;
 }
 
 
 .span-left {
-    float:left;
+    float: left;
 }
 
 .span-right {
@@ -185,15 +248,20 @@ textarea:focus, input:focus{
     align-items: flex-end;
     justify-content: flex-start;
     position: relative;
-    border-radius: 8px;
+    border-radius: 5px;
     height: 155px;
     width: 155px;
     min-height: 5%;
     min-height: 5%;
-    margin:8px;
-    background-image: linear-gradient(transparent, #24130d);
-    box-shadow: inset 0px 0px 6px #24130d, 0 5px 10px #24130d, 0 15px 40px #24130d;
+    margin: 8px;
+    background-image: linear-gradient(transparent 30%, #1a1a1a );
+    box-shadow: inset 0px 0px 1px #0f0f0f, 0 5px 15px #0f0f0f;
 }
+    .square:hover {
+        transform: scale(1.05, 1.05);
+        background-image: linear-gradient(transparent, #0f0f0f);
+        box-shadow: inset 0px 0px 1px #0f0f0f, 0 5px 20px #0f0f0f;
+    }
 
 .square img {
     border-radius:inherit;
@@ -220,11 +288,9 @@ textarea:focus, input:focus{
     font-style: normal;
     font-size: 90px;
     letter-spacing: -7px;
-    color: #d4c6b4;
+    color: white;
     font-weight: bold;
     text-align: left;
-    text-shadow: -3px 0px #a37b60,-5px 0px 5px #75341a,0 0 1em #9F4E7C, 0 0 0.2em #543029;
-
 }
 
 .title-frontpage {
@@ -234,82 +300,173 @@ textarea:focus, input:focus{
     font-style: normal;
     font-size: 200px;
     letter-spacing: -7px;
-    color: #d4c6b4;
-    font-weight: bold;
+    color: white;
     text-align: left;
-    text-shadow: -6px 0px #a37b60,-10px 4px 10px #75341a;
-    
 }
 
-.login {
-    display: block;
-    font-family: "Sora", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: normal;
-    font-style: normal;
-    font-size: 25px;
-    text-align: left;
-    color: #d4c6b4;
-    margin-top: 100px
-}
-    .login:hover {
-        text-shadow: #D4C6B4 1px 0 7px;
-        color: ivory;
-    }
-
-
-
-.tag {
-    color: #9c8a72;
+.tooltip {
+    position: relative;
+    display: inline-block;
+    opacity: 100; /* ved ikke hvorfor den skal have opacity. Den er usynlig hvis man ikke definere det på forhånd*/
+    color: #bdbdbd;
     font-family: "Sora", sans-serif;
     font-optical-sizing: auto;
     font-weight: normal;
     font-style: normal;
     font-size: 20px;
-    margin-top:5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+    /* Tooltip text */
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        font-size: 15px;
+        width: 200px;
+        background-color: #DA3C29;
+        color: #fff;
+        text-align: center;
+        margin: 10px;
+        padding: 5px 0;
+        border-radius: 5px;
+        position: absolute;
+        z-index: 100;
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+    }
+
+
+.custom-nav-link {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    top: 50%;
+    display: inline-flex;
+    margin-bottom: 30px;
+    padding: 10px;
+    padding-right: 30px;
+    padding-left: 30px;
+    border-radius: 5px;
+    position: relative;
+    /*color: white;*/
+    text-decoration: none;
+    /*background-image: linear-gradient(#DDB348, #DA3C29);*/
+    background-image: linear-gradient(45deg,#E2DECE 10%, #CDC8BA);
+    color: #1F1917;
+}
+    .custom-nav-link.one {
+
+    }
+
+    .custom-nav-link.two {
+
+    }
+
+    .custom-nav-link:hover {
+        background-image: linear-gradient(45deg, white 10%, #D8D4C4);
+        color: #1F1917;
+    }
+
+    .custom-nav-link:active {
+        background-image: linear-gradient(45 deg, #D8D4C4 10%, #9D978A);
+    }
+
+    .custom-nav-link.focus {
+        background-image: linear-gradient(45deg, #f75845, #DA3C29);
+        color: white;
+    }
+        .custom-nav-link.focus:hover {
+            background-image: linear-gradient(45deg, #DDB348, #DA3C29);
+            text-shadow: #D4C6B4 1px 0 7px;
+            color: white;
+        }
+
+    .custom-nav-link:active {
+        transform: scale(0.95,0.95);
+    }
+
+/*    .custom-nav-link.focus {
+        background-image: linear-gradient(#E2DECE 10%, #CDC8BA);
+        color: #1F1917;
+
+    }
+
+        .custom-nav-link.focus:hover {
+            background-image: linear-gradient(white 10%, #D8D4C4);
+        }
+        .custom-nav-link.focus:active {
+            background-image: linear-gradient(#D8D4C4 10%, #9D978A);
+            
+
+        }*/
+
+    
+
+
+   
+
+
+.tag {
+    color: #DA3C29;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+    margin-top: 5px;
 }
 
 h1 {
+    font-family: "Sora", sans-serif;
     font-size: 70px;
     letter-spacing: -7px;
-    color: #d4c6b4;
+    color: white;
     font-weight: bold;
 }
 
 h2 {
-    color: #d4c6b4;
+    font-family: "Sora", sans-serif;
+    color: white;
 }
 
 
 h3 {
-    font-size: 20px;
-    text-align: right;
-    color: #d4c6b4;
+    font-family: "Sora", sans-serif;
+    font-size: 22px;
+    text-align: center;
+    font-weight: 700;
+    color: white;
 }
 
 h4 {
-    color: #d4c6b4;
+    color: white;
     font-size: 40px;
-    font-family: "Quicksand", sans-serif;
+    font-family: "Sora", sans-serif;
     font-optical-sizing: auto;
     font-weight: bold;
-    letter-spacing: -2px;
+    letter-spacing: 1px;
     font-style: normal;
-    text-shadow: -3px 0 4px #75341a, 0px 0px 5px #c4894f ;
 }
 
 .image-text {
     position: absolute;
-    color: #CBC8C6;
-    margin-left: 11px;
-    margin-right: 11px;
+    color: white;
+    margin-left: 5%;
     margin-bottom: 5px;
     font-family: "Sora", sans-serif;
     font-optical-sizing: auto;
     font-weight: bold;
     font-style: normal;
     font-size: 20px;
+    width: 140px;
+    word-wrap: break-word;
 }
+    .image-text:hover {
+        text-shadow: #1F1917 3px 0px;
+    }
+
 
 .subtags-container {
     display: flex;        
@@ -330,16 +487,16 @@ h4 {
 }
 
 p {
-    color: #9c8a72;
+    color: #bdbdbd;
     font-family: "Sora", sans-serif;
     font-optical-sizing: auto;
     font-weight: normal;
     font-style: normal;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 #p-filter {
-    color: #DC9C98;
+    color: #DA3C29;
     font-family: "Sora", sans-serif;
     font-optical-sizing: auto;
     font-weight: normal;
@@ -348,28 +505,33 @@ p {
 }
 
 #p-underline {
-    color: #DC9C98;
+    color: #585858;
     font-family: "Sora", sans-serif;
     font-optical-sizing: auto;
     font-weight: normal;
     font-style: normal;
     font-size: 20px;
-    text-decoration:underline;
+    text-decoration: underline;
 }
 
 p2 {
-    color: #9c8a72;
+    color: #585858;
     font-family: "Sora", sans-serif;
     font-optical-sizing: auto;
-    font-weight: normal;
+    font-weight: bold;
     font-style: normal;
     font-size: 20px;
     margin-top: 10px;
     margin-bottom: 5px;
 }
+    p2.link {
+        color: #585858;
+        background: none;
+        text-decoration: underline
+    }
 
 label {
-    color: #9c8a72;
+    color: #585858;
     font-family: "Sora", sans-serif;
     font-optical-sizing: auto;
     font-weight: normal;
@@ -377,6 +539,15 @@ label {
     font-size: 15px;
     margin-top: 10px;
     margin-bottom: 5px;
+}
+
+ul {
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 18px;
+    color: #bdbdbd;
 }
 
 @media (max-width: 800px) {

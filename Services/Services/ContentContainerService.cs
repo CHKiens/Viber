@@ -18,6 +18,33 @@ namespace Viber.Services.Services {
             _context.ContentContainers.Add(container);
         }
 
+        public void AddContainersToMoodboard(List<string> type, List<string> link, Moodboard moodboard)
+        {
+            for (int i = 0; i < type.Count; i++)
+            {
+                switch (type[i])
+                {
+                    case "youtube":
+                        link[i] = link[i].Split("?v=")[1];
+                        break;
+                    case "spotify":
+                        link[i] = link[i].Split("com/")[1].Split("si=")[0] + "utm_source=generator";
+                        break;
+                    default: break;
+                }
+                var container = new ContentContainer
+                {
+                    Type = type[i],
+                    Link = link[i],
+                    MoodboardId = moodboard.MoodboardId
+
+                };
+                CreateContainer(container, moodboard.MoodboardId);
+                moodboard.ContentContainers.Add(container);
+            }
+        }
+
+
         public void DeleteContainer(ContentContainer container)
         {
             _context.ContentContainers.Remove(container);
