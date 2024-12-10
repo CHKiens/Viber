@@ -10,7 +10,7 @@
                 <p>
                     Your go-to platform for creating and sharing moodboards
                     that reflect your unique tastes! With Viber,
-                    you can craft personalized vibeboards filled with your favorite music,
+                    you can craft personalized moodboards filled with your favorite music,
                     movies, and inspirations, all tagged to help you and others discover the perfect fit for every mood.
                     <br /><br />Join our vibrant community, explore new vibes, and let your creativity shine!
                 </p>
@@ -29,10 +29,19 @@
                     <p2>Password</p2>
                     <input asp-for="User.Password" class="form-control" placeholder="Enter password">
                     <span asp-validation-for="User.Password" class="text-danger"></span>
-                    <a asp-page="/Home" class="custom-button-submit" style="float:left">ENTER AS GUEST</a>
-                    <button type="submit" class="custom-button-submit" style="float:right">SUBMIT</button>
+                    <div class="d-flex justify-content-between">
+                        <a asp-page="/Home" class="custom-button-submit">ENTER AS GUEST</a>
+                        <button type="submit" class="custom-button-submit">SUBMIT</button>
+                    </div>
                 </form>
+            <div style="text-align:left">
+                <div class="d-flex justify-content-start">
+                    <a asp-page="/Login" class="custom-button-submit link">Already got a profile?</a>
+                </div>
+             </div>
+            
             </div>
+            
         </div>
     </div>
 

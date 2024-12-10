@@ -18,41 +18,44 @@
 
 @foreach (var tag in Model.PrimaryTags)
 {
-    <h4>@tag.Name</h4>
 
-    <div class="square-row">
-        @if (Model.MoodboardsByTag.ContainsKey(tag.PrimaryTagId))
-        {
-            var moodboards = Model.MoodboardsByTag[tag.PrimaryTagId];
+        <h4>@tag.Name</h4>
 
-            foreach (var moodboard in moodboards)
+        <div class="square-row">
+            @if (Model.MoodboardsByTag.ContainsKey(tag.PrimaryTagId))
             {
-                <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@moodboard.MoodboardId">
-                    <div class="square" >
-                        @if (moodboard.Thumbnail == null)
-                        {
-                            
-                            int randNumber = rand.Next(1, 200);
+                var moodboards = Model.MoodboardsByTag[tag.PrimaryTagId];
 
-                            <img src="https://picsum.photos/200/300?=3&random={@randNumber}">
-                        }
-                        else 
-                        {
-                            <img src="@moodboard.Thumbnail" /> 
-                        }
-                        <span class="image-text">@moodboard.Title</span>
-                    </div>
-                </a>
+                foreach (var moodboard in moodboards)
+                {
+                    <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@moodboard.MoodboardId">
+                        <div class="square">
+                            @if (moodboard.Thumbnail == null)
+                            {
+
+                                int randNumber = rand.Next(1, 200);
+
+                                <img src="https://picsum.photos/200/300?=3&random={@randNumber}">
+                            }
+                            else
+                            {
+                                <img src="@moodboard.Thumbnail" />
+                            }
+                            <span class="image-text">@moodboard.Title</span>
+                        </div>
+                    </a>
+                }
             }
-        }
-    </div>
-    <div class="subtags-container">
-        @foreach (var st in Model.SubTags.Where(SubTag => SubTag.PrimaryTagId == tag.PrimaryTagId))
-        {
-            <span class="subtag-item">
-            <p2>#@st.Name</p2>
-        </span>
-        }
-    </div>
+        </div>
+        <div class="subtags-container">
+            @foreach (var st in Model.SubTags.Where(SubTag => SubTag.PrimaryTagId == tag.PrimaryTagId))
+            {
+                <span class="subtag-item">
+                    <p2>#@st.Name</p2>
+                </span>
+            }
+        </div>
+
+   
 }
             
