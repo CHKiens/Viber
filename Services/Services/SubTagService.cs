@@ -37,6 +37,16 @@ namespace Viber.Services.Services {
         {
             return _context.SubTags.FirstOrDefault(st => st.SubTagId == SubTagId);
         }
+        
+        public List<SubTag> SearchForSubTags(string searchTerm)
+        {
+            return _context.SubTags
+                .Where(st => st.Name.ToLower().Contains(searchTerm.ToLower()))
+                .Include(st => st.MoodboardSubTags)
+                .ThenInclude(mbst => mbst.Moodboard)
+                .ToList();
+        }
+
 
     }
 }

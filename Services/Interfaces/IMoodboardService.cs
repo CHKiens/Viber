@@ -21,6 +21,8 @@ namespace Viber.Services.Interfaces {
         public void DeleteMoodboard(Moodboard moodboard);
 
         public List<Moodboard> GetMoodboardBySubTags(int subTagId, int limit = 8);
+
+        public List<Moodboard> SearchForMoodboards(string searchTerm);
     }
     
 }
