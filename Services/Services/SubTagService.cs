@@ -1,8 +1,10 @@
-﻿using Viber.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Viber.Models;
 using Viber.Services.Interfaces;
 
 namespace Viber.Services.Services {
     public class SubTagService : ISubTagService{
+        
         private readonly finsby_dk_db_viberContext _context;
 
         public SubTagService(finsby_dk_db_viberContext context)
@@ -10,21 +12,38 @@ namespace Viber.Services.Services {
             _context = context;
         }
         
-        public List<SubTag> GetSubTags() 
-        { 
-            List<SubTag> tagList = new List<SubTag>();
-            foreach(var t in _context.SubTags)
+        public List<SubTag> GetSubTags(int PrimaryTagId, int limit = 8)
+        {
+            var subtagIds = _context.MoodboardSubTags
+                .Include(mst => mst.Subtag)
+                .Where(mst => mst.Subtag.PrimaryTagId == PrimaryTagId)
+                .GroupBy(x => x.SubtagId)
+                .OrderByDescending(g => g.Count())
+                .Take(limit)
+                .Select(g => g.Key)
+                .ToList();
+            
+                    
+            List<SubTag> mostFrequentSubTags = new List<SubTag>();
+            foreach (var subtagId in subtagIds)
             {
-                tagList.Add(t);
+                mostFrequentSubTags.Add(GetSubTagById(subtagId));
             }
-            return tagList;
+            
+            return mostFrequentSubTags;
+        }
+
+        public SubTag GetSubTagById(int SubTagId)
+        {
+            return _context.SubTags.FirstOrDefault(st => st.SubTagId == SubTagId);
         }
         
-        public List<SubTag> GetSubTagsByPrimaryTagId(int primaryTagId, int limit = 5)
+        public List<SubTag> SearchForSubTags(string searchTerm)
         {
             return _context.SubTags
-                .Where(st => st.PrimaryTagId == primaryTagId)
-                .Take(limit)
+                .Where(st => st.Name.ToLower().Contains(searchTerm.ToLower()))
+                .Include(st => st.MoodboardSubTags)
+                .ThenInclude(mbst => mbst.Moodboard)
                 .ToList();
         }
 

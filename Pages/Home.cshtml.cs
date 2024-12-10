@@ -9,7 +9,6 @@ namespace Viber.Pages
 {
     public class HomeModel : PageModel
     {
-
         private readonly IMoodboardService _context;
         private readonly IPrimaryTagService _primaryTagService;
         private readonly ISubTagService _subTagService;
@@ -21,24 +20,56 @@ namespace Viber.Pages
             _subTagService = subTagService;
         }
 
+        public string SearchTerm { get; set; }
+
+        public bool IsMoodboard { get; set; } = true;
+        
+        public List<Moodboard> SearchResultMoodboards { get; set; } = new();
+
+        public List<SubTag> SearchResultSubTag { get; set; } = new(); 
+        
         public List<PrimaryTag> PrimaryTags { get; set; }
-        public List<SubTag> SubTags { get; set; } = new();
+        
+        public Dictionary<int, List<SubTag>> SubTagsByPrimaryTag { get; set; } = new();
+        
         public Dictionary<int, List<Moodboard>> MoodboardsByTag { get; set; } = new();
 
-        public void OnGet() 
+        public IActionResult OnGet(string searchTerm, bool isMoodboard)
         { 
-            PrimaryTags = _primaryTagService.GetPrimaryTags();
-            SubTags = _subTagService.GetSubTags();
+            SearchTerm = searchTerm;
+            IsMoodboard = isMoodboard;
+            PrimaryTags = _primaryTagService.GetPrimaryTags();    
 
             foreach (var tag in PrimaryTags)
             {
-                // Fetch first 14 moodboards for this tag
                 var moodboards = _context.GetMoodboardsByPrimaryTagId(tag.PrimaryTagId);
-
-                MoodboardsByTag[tag.PrimaryTagId] = moodboards;
+                MoodboardsByTag[tag.PrimaryTagId] = moodboards; 
                 
-                var subTags = _subTagService.GetSubTagsByPrimaryTagId(tag.PrimaryTagId);
+                var subtags = _subTagService.GetSubTags(tag.PrimaryTagId);
+                SubTagsByPrimaryTag[tag.PrimaryTagId] = subtags;
             }
+
+            if (!string.IsNullOrEmpty(SearchTerm) && IsMoodboard) 
+            {
+                SearchResultMoodboards = _context.SearchForMoodboards(SearchTerm);
+            }
+
+            if (!string.IsNullOrEmpty(searchTerm) && !IsMoodboard)
+            {
+                SearchResultSubTag = _subTagService.SearchForSubTags(SearchTerm);
+                
+                foreach (var tag in SearchResultSubTag)
+                {
+                    List<Moodboard> mbs = new List<Moodboard>();
+                    foreach (var mbst in tag.MoodboardSubTags)
+                    {
+                        mbs.Add(mbst.Moodboard);
+                    }
+                    MoodboardsByTag[tag.SubTagId] = mbs.ToList();
+                }
+                
+            }
+            return Page();
         }
     }
 }

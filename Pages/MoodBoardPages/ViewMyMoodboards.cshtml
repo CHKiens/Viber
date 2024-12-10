@@ -89,21 +89,22 @@
 
             @foreach (var mb in moodboards)
             {
-                <div class="square">
-                    @if (mb.Thumbnail == null)
-                    {
+                <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@mb.MoodboardId">
+                    <div class="square">
+                        @if (mb.Thumbnail == null)
+                        {
 
-                        int randNumber = rand.Next(1, 200);
+                            int randNumber = rand.Next(1, 200);
 
-                        <img src="https://picsum.photos/200/300?grayscale=3&random={@randNumber}">
-                    }
-                    else
-                    {
-                        <img src="@mb.Thumbnail" />
-                    }
-                    <span class="image-text">@mb.Title</span>
-                    <div class="image-text">@mb.Title</div>
-                </div>
+                            <img src="https://picsum.photos/200/300?grayscale=3&random={@randNumber}">
+                        }
+                        else
+                        {
+                            <img src="@mb.Thumbnail" />
+                        }
+                        <span class="image-text">@mb.Title</span>
+                    </div>
+                </a>
             }
         }
     </div>
