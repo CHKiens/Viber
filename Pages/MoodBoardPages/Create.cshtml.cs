@@ -51,7 +51,7 @@ namespace Viber.Pages.MoodBoardPages
             Moodboard.UserId = userId;
             
             PrimaryTags = _primaryTagService.GetPrimaryTags();
-
+            
         }
 
         public IActionResult OnPost()

@@ -39,12 +39,12 @@ body {
 
 .stripes {
     position: absolute;
-    z-index: 100;
+    z-index: -100;
     top: 0%;
     left: 0%;
     width: 50px;
     height: 100%;
-    background: linear-gradient(#DDB348 0px,#DDB348 50px,#DA3C29 50px,#DA3C29 100px,#C91B24 100px,#C91B24 150px,#971A3C 150px, #971A3C 200px,#601035 200px, #601035 250px,  #1F1917 250px);
+    background: linear-gradient(#DDB348 0px,#DDB348 50px,#DA3C29 50px,#DA3C29 100px,#C91B24 100px,#C91B24 150px,#971A3C 150px, #971A3C 200px,#601035 200px, #601035 250px, transparent 300px);
 }
 
 
@@ -450,7 +450,7 @@ h4 {
 }
 
 p {
-    color: #585858;
+    color: white;
     font-family: "Sora", sans-serif;
     font-optical-sizing: auto;
     font-weight: normal;

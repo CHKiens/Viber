@@ -8,15 +8,15 @@
 </head>
 @if(Model.Authorized){
     <div class="text-end">
-        <button type="button" class="btn btn-danger data-bs-toggle="modal" data-bs-target="#myModal">
-            <i class="fa-solid fa-dumpster-fire"></i>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
+            <span>Delete Moodboard </span><i class="fa-solid fa-dumpster-fire"></i>
         </button>
     </div>
 }
 
 
 <body>
-    <div class="p-5 border rounded-3 h-100 shadow-lg p-4 mb-4 " style="background-color:@Model.Moodboard.BackgroundColor">
+    <div class="p-5 border rounded-3 h-100 shadow-lg p-4 mb-4 " style="background-color:@Model.Moodboard.BackgroundColor; margin-top:10px">
         
         <h1 class="display-8 text-center mb-5 col-12" style="color:@Model.Moodboard.TitleColor" >@Model.Moodboard.Title</h1>
 
