@@ -30,6 +30,10 @@ namespace Viber.Pages.MoodBoardPages {
         public string BackgroundColor {  get; set; }
         [BindProperty]
         public string TitleColor { get; set; }
+        
+        [BindProperty]
+        public string TextboxColor { get; set; }
+        
         public void OnGet(int Id)
         {
             PrimaryTags = _primaryTagService.GetPrimaryTags();
@@ -42,8 +46,14 @@ namespace Viber.Pages.MoodBoardPages {
         public IActionResult OnPost(int Id)
         {
             MoodBoard = _moodboardService.GetMoodboard( Id);
+            if (BackgroundColor == "#000000")
+            {
+                BackgroundColor = "#1de0e0";
+            }
+            
             MoodBoard.BackgroundColor = BackgroundColor;
             MoodBoard.TitleColor = TitleColor;
+            
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -54,6 +64,12 @@ namespace Viber.Pages.MoodBoardPages {
                 // gemmer r�kkefølgen af hver contentcontainer der er valgt af brugeren
                 ContentContainer cc = _contentContainerService.GetContentContainerById(CCId);
                 cc.OrderId = order;
+                
+                if (cc.Type == "text")
+                {
+                    cc.TextColor = TextboxColor;
+                }
+                
                 _contentContainerService.EditContainer(cc);
                 order++;
             }

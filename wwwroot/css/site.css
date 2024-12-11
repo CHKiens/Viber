@@ -368,6 +368,16 @@ p2 {
     margin-bottom: 5px;
 }
 
+p3{
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
 label {
     color: #9c8a72;
     font-family: "Sora", sans-serif;

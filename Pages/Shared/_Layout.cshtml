@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Viber.Models
+@using Viber.Services.Interfaces
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -33,7 +35,7 @@
             }
             @if (ViewData["Title"]?.ToString() != "Login" && UserId == null ) //Viser kun login hvis man ikke allerede er logget ind
             {
-                <a asp-page="/Login" class="custom-button"><span class="login"><i class="bi bi-person"></i>Login</span></a>
+                <a asp-page="/Login" class="custom-button" style="height: 25px"><span class="login"><i class="bi bi-person"></i>Login</span></a>
             }
             @if (UserId != null && ViewData["Title"]?.ToString() != "CreateMoodboard")
             {
