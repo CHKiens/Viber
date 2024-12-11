@@ -41,12 +41,9 @@ public partial class Moodboard
     [Column("PrimaryTag_Id")]
     public int PrimaryTagId { get; set; }
 
-    [StringLength(255)]
+    [StringLength(1000)]
     [Unicode(false)]
     public string Thumbnail { get; set; }
-
-    [Column("Is_Private")]
-    public bool? IsPrivate { get; set; }
 
     [InverseProperty("Moodboard")]
     public virtual ICollection<ContentContainer> ContentContainers { get; set; } = new List<ContentContainer>();

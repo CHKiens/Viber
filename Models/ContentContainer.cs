@@ -26,11 +26,6 @@ public partial class ContentContainer
     [Unicode(false)]
     public string Link { get; set; }
 
-    [Column("Display_Text")]
-    [StringLength(300)]
-    [Unicode(false)]
-    public string DisplayText { get; set; }
-
     [Column("Order_Id")]
     public int? OrderId { get; set; }
 

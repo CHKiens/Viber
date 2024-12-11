@@ -38,8 +38,6 @@ public partial class finsby_dk_db_viberContext : DbContext
         {
             entity.HasKey(e => e.MoodboardId).HasName("PK__tmp_ms_x__A52F4D9F2CA4D9EA");
 
-            entity.Property(e => e.IsPrivate).HasDefaultValue(false);
-
             entity.HasOne(d => d.PrimaryTag).WithMany(p => p.Moodboards)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Moodboard__Prima__4AB81AF0");
