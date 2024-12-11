@@ -9,5 +9,9 @@ namespace Viber.Services.Interfaces {
 
         public List<SubTag> SearchForSubTags(string searchTerm);
 
+        public void SplitSubtagInput(string input, int primaryTagId, int moodboardId);
+
+        public void CreateSubTag(string tagName, int primaryTagId, int moodboardId);
+
     }
 }

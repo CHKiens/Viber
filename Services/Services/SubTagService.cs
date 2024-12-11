@@ -47,6 +47,45 @@ namespace Viber.Services.Services {
                 .ToList();
         }
 
+        public void SplitSubtagInput(string input, int primaryTagId, int moodboardId)
+        {
+            string[] substrings = input.Split(' ');
+            foreach(string s in substrings)
+            {
+                CreateSubTag(s, primaryTagId, moodboardId);
+            }
+            
+            
+        }
+
+        public void CreateSubTag(string tagName, int primaryTagId, int moodboardId)
+        {
+            // tjekker først hvis subtag allerede findes med samme navn+primarytag kombination
+            var newSubTag = _context.SubTags
+                .FirstOrDefault(s => s.Name == tagName && s.PrimaryTagId == primaryTagId);
+
+            // laver nyt subtag hvis det ikke findes allerede
+            if (newSubTag == null)
+            {
+                newSubTag = new SubTag
+                {
+                    Name = tagName,
+                    PrimaryTagId = primaryTagId,
+                };
+                _context.SubTags.Add(newSubTag);
+                _context.SaveChanges(); 
+            }
+
+            MoodboardSubTag moodboardSubTag = new MoodboardSubTag
+            {
+                MoodboardId = moodboardId,
+                SubtagId = newSubTag.SubTagId
+            };
+
+            _context.MoodboardSubTags.Add(moodboardSubTag);
+            _context.SaveChanges();
+        }
+
 
     }
 }
