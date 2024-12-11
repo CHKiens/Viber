@@ -24,14 +24,12 @@ namespace Viber.Pages.MoodBoardPages
         public List<PrimaryTag> PrimaryTags { get; set; }
 
         [BindProperty]
-        [Required(ErrorMessage = "Please select a primary tag.")]
         public int PrimaryTag { get; set; }
 
         [BindProperty]
         public List<string> Subtags { get; set; }
 
         [BindProperty]
-        [Required(ErrorMessage = "Please enter at least one subtag.")]
         public string subtaginput { get; set; }
 
         [BindProperty]

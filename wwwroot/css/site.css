@@ -317,6 +317,7 @@ textarea:focus, input:focus{
     font-size: 20px;
     margin-top: 10px;
     margin-bottom: 5px;
+    z-index:101;
 }
 
     /* Tooltip text */
@@ -324,14 +325,16 @@ textarea:focus, input:focus{
         visibility: hidden;
         font-size: 15px;
         width: 200px;
-        background-color: #DA3C29;
-        color: #fff;
+        background-color: white;
+        color: black;
         text-align: center;
         margin: 10px;
         padding: 5px 0;
         border-radius: 5px;
         position: absolute;
-        z-index: 100;
+        z-index: 102;
+        top: 0%;
+        left: 110%;
     }
 
     .tooltip:hover .tooltiptext {
