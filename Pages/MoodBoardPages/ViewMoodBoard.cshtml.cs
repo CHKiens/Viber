@@ -20,6 +20,8 @@ namespace Viber.Pages.MoodBoardPages
         [BindProperty] 
         public User User { get; set; } = new();
         
+        public User Creator { get; set; }
+
         [BindProperty]
         public bool Authorized { get; set; }
 
@@ -28,9 +30,11 @@ namespace Viber.Pages.MoodBoardPages
 
         public void OnGet(int Id)
         {
+            
             int userId = HttpContext.Session.GetInt32("UserId") ?? 0;
             User = _userService.GetUser(userId);
             Moodboard = _moodboardService.GetMoodboardAndCC(Id);
+            Creator = _userService.GetUser(Moodboard.UserId);
             Authorized = _userService.CheckUserId(Moodboard.UserId, userId);
             ContentContainers = Moodboard.ContentContainers.Where(cc=>cc.OrderId != null).OrderBy(cc => cc.OrderId).ToList();
         }

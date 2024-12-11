@@ -15,7 +15,7 @@
 </head>
 <body>
     <div class="d-flex justify-content-between align-items-center">
-        <h4 class="">My Profile</h4>
+        <h4 class="">Profile</h4>
     </div>
     <div class="container"style="height:100%; width:100%">
         <div class="row" style="margin-bottom:30px">
@@ -23,7 +23,8 @@
                 <div class="square" style="height:250px; width:250px">
                     <img src="https://picsum.photos/id/513/250/250" />
                 </div>
-                <p style="margin:15px;font-size:20px;"> @@Lars Jensen</p>
+                <p style="margin-left:15px; margin-bottom:0px;margin-top:15px;font-size:15px;color:#474747">Username</p>
+                <p style="margin-left:15px;font-size:20px;"> @Model.Username</p>
             </div>
             <div class="col" style="margin:15px">
                 <h2 style="font-size:20px;font-weight:bold;color:#BDBDBD">About me</h2>
@@ -54,16 +55,16 @@
                     </div>
                     <div class="col">
                         <p>
-                            Lars Jensen
+                            @Model.Username
                         </p>
                         <p>
-                            @@larsJensen
+                            @@@Model.Username
                         </p>
                         <p>
-                            larsjensen
+                            @Model.Username
                         </p>
                         <p>
-                            @@Lars_Jensen
+                            @@@Model.Username
                         </p>
                     </div>
                 </div>
@@ -78,14 +79,14 @@
     
     <div class="row">
         <div class="d-flex justify-content-between align-items-center">
-            <h4 class="">My Moodboards</h4>
+            <h4 class="">Moodboards</h4>
         </div>
     </div>
 
     <div class="square-row">
-        @if (!Model.MyMoodboards.IsNullOrEmpty())
+        @if (!Model.Moodboards.IsNullOrEmpty())
         {
-            var moodboards = Model.MyMoodboards;
+            var moodboards = Model.Moodboards;
 
             @foreach (var mb in moodboards)
             {
