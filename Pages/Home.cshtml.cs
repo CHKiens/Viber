@@ -12,17 +12,21 @@ namespace Viber.Pages
         private readonly IMoodboardService _context;
         private readonly IPrimaryTagService _primaryTagService;
         private readonly ISubTagService _subTagService;
+        private readonly IUserService _userService;
 
-        public HomeModel(IMoodboardService context, IPrimaryTagService primaryTagService, ISubTagService subTagService)
+        public HomeModel(IMoodboardService context, IPrimaryTagService primaryTagService, ISubTagService subTagService, IUserService userService)
         {
             _context = context;
             _primaryTagService = primaryTagService;
             _subTagService = subTagService;
+            _userService = userService;
         }
 
         public string SearchTerm { get; set; }
 
         public bool IsMoodboard { get; set; } = true;
+
+        public User User { get; set; } = new();
         
         public List<Moodboard> SearchResultMoodboards { get; set; } = new();
 
@@ -38,7 +42,10 @@ namespace Viber.Pages
         { 
             SearchTerm = searchTerm;
             IsMoodboard = isMoodboard;
-            PrimaryTags = _primaryTagService.GetPrimaryTags();    
+            PrimaryTags = _primaryTagService.GetPrimaryTags();
+            int userIdInt = HttpContext.Session.GetInt32("UserId") ?? 0;
+            
+            User = _userService.GetUser(userIdInt);
 
             foreach (var tag in PrimaryTags)
             {

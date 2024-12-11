@@ -83,11 +83,11 @@
     @foreach (var tag in Model.PrimaryTags)
     {
 
-            <a asp-page="/MoodBoardPages/ViewPrimaryTag" asp-route-PrimaryTagId="@tag.PrimaryTagId" class="text-decoration-none" style="">
+        <div class="custom-button">
+            <a asp-page="/MoodBoardPages/ViewPrimaryTag" asp-route-PrimaryTagId="@tag.PrimaryTagId" class="text-decoration-none">
                 <h4>@tag.Name</h4>
             </a>
-
-        
+        </div>
 
 
         <div class="square-row">
@@ -132,5 +132,15 @@
             }
         </div>
     }
-}    
+}
+@if (Model.User != null && Model.User.Role == "Mod")
+{
+    <footer>
+        <div>
+            <a asp-page="/UserPages/Mod">
+                <p2>Admin Page</p2>
+            </a>
+        </div>
+    </footer>    
+}
             

@@ -1,5 +1,6 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
+
 
 <head>
     <meta charset="utf-8" />
@@ -58,6 +59,7 @@
             }
             @if (ViewData["Title"]?.ToString() != "Login" && ViewData["Title"]?.ToString() != "CreateUser" && UserId == null)//Viser kun login hvis man ikke allerede er logget ind
             {
+
                 <nav class="navbar navbar-expand" style="height:100px">
                     <div class="container-fluid d-flex align-items-center" style="height: 100%;">
                         <!-- Links -->
@@ -71,6 +73,7 @@
                     </div>
                 </nav>
                 
+
             }
             @if (UserId != null && ViewData["Title"]?.ToString() != "CreateMoodboard")
             {

@@ -49,6 +49,15 @@
                                 </p>
 
                                 <input asp-for="TitleColor" class="col-3 shadow" type="color" id="TitleColor"/>
+
+                            </div>
+                            
+                            @*Input til at vælge textfarve i et textfelt*@
+                            <div class="col-5 border border-color-light">
+                                <p>
+                                    Pick your textbox color
+                                </p>
+                                <input asp-for="TextboxColor" class="col-3 shadow" type="color" id="TextboxColorPicker" />
                             </div>
 
                         </div>
@@ -81,16 +90,14 @@
                         <div class="offcanvas-body" id="initialContainer">
                             @foreach (var CC in Model.MoodBoard.ContentContainers)
                             {
-                                    
-                                
                                         @switch (CC.Type)
                                         {
                                             case "text":
                                             <div id="@CC.ContentContainterId" class="col-5">
                                                     <div class="pb-1">
                                                         <div class=" mt-2">
-                                                            <span class="shadow p-2 text-black" style="border-radius:5px">
-                                                                    @CC.Link
+                                                            <span id="TextboxColor" class="shadow p-2" style="border-radius:5px">
+                                                                <p3 id="TextboxColor">@CC.Link</p3>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -186,6 +193,14 @@
         }
         //holder øje med om der er valgt en værdi og sætter den dynamisk
         document.getElementById('TitleColor').addEventListener('input', TitleColor);
+        
+        function TextboxColor(){
+            //color er lig med inputtet i TextboxColorPicker værdi feltet
+            var color = document.getElementById('TextboxColorPicker').value;
+            document.getElementById('TextboxColor').style.color = color
+        }
+        //holder øje med om der er valgt en værdi og sætter den dynamisk
+        document.getElementById('TextboxColorPicker').addEventListener('input', TextboxColor);
 
 
         //Tilføj rækkefølge til en liste. (brug CC.Id for at vide hvilken kasse jeg flytter)

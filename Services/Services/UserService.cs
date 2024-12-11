@@ -23,6 +23,17 @@ namespace Viber.Services.Services {
             _context.Users.Add(user);
             _context.SaveChanges();
         }
+
+        public void DeleteUser(User user)
+        {
+            _context.Users.Remove(user);
+            _context.SaveChanges();
+        }
+
+        public List<User> GetAllUsers()
+        {
+            return _context.Users.ToList();
+        }
         
         public User AuthenticateUser(string username, string password)
         {
@@ -51,7 +62,13 @@ namespace Viber.Services.Services {
             {
                 result = true;
             }
+            
             return result;
+        }
+
+        public User GetUser(int userid)
+        {
+            return _context.Users.FirstOrDefault(User => User.UserId == userid);
         }
     }
 }
