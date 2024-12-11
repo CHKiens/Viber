@@ -57,6 +57,7 @@ body {
 }
 .logo-stripe {
     margin-top: 10px;
+    border-radius:5px;
     width: 200px;
     height: 50px;
     background-image: linear-gradient(90deg, #DDB348 0%, transparent 18%,transparent 20%, #DA3C29 20%, transparent 38%, transparent 40%, #C91B24 40%, transparent 58%,transparent 60%, #971A3C 60%, transparent 78%,transparent 80%, #601035 80%,transparent 98%, transparent 100%);

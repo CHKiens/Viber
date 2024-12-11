@@ -39,12 +39,13 @@ namespace Viber.Pages.MoodBoardPages {
             PrimaryTags = _primaryTagService.GetPrimaryTags();
             MoodBoard = _moodboardService.GetMoodboardAndCC(Id);
             //s�tter dem til null, hvis der er sat en order tidligere. V�lges en order ikke til sin contentcontainer vil den v�re null og vil ikke vises
-            _contentContainerService.resetOrder(Id);
+            
 
         }
 
         public IActionResult OnPost(int Id)
         {
+            _contentContainerService.resetOrder(Id);
             MoodBoard = _moodboardService.GetMoodboard( Id);
             if (BackgroundColor == "#000000")
             {
