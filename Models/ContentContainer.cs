@@ -29,11 +29,6 @@ public partial class ContentContainer
     [Column("Order_Id")]
     public int? OrderId { get; set; }
 
-    [Column("Background_Color")]
-    [StringLength(7)]
-    [Unicode(false)]
-    public string BackgroundColor { get; set; }
-
     [Column("Text_Color")]
     [StringLength(7)]
     [Unicode(false)]
