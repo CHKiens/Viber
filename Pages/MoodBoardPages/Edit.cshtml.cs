@@ -8,26 +8,22 @@ using Viber.Services.Services;
 namespace Viber.Pages.MoodBoardPages {
     public class EditModel : PageModel {
         IMoodboardService _moodboardService;
-        IPrimaryTagService _primaryTagService;
         IContentContainerService _contentContainerService;
 
-        public EditModel(IMoodboardService moodboardService, IPrimaryTagService primaryTagService, IContentContainerService contentContainerService)
+        public EditModel(IMoodboardService moodboardService, IContentContainerService contentContainerService)
         {
             _moodboardService = moodboardService;
-            _primaryTagService = primaryTagService;
             _contentContainerService = contentContainerService;
         }
         [BindProperty]
         public Moodboard MoodBoard { get; set; }
 
         [BindProperty]
-        public List<PrimaryTag> PrimaryTags { get; set; }
-
-        [BindProperty]
         public List<int> ContentOrder { get; set; }
 
         [BindProperty]
         public string BackgroundColor {  get; set; }
+        
         [BindProperty]
         public string TitleColor { get; set; }
         
@@ -36,9 +32,8 @@ namespace Viber.Pages.MoodBoardPages {
         
         public void OnGet(int Id)
         {
-            PrimaryTags = _primaryTagService.GetPrimaryTags();
             MoodBoard = _moodboardService.GetMoodboardAndCC(Id);
-            //s�tter dem til null, hvis der er sat en order tidligere. V�lges en order ikke til sin contentcontainer vil den v�re null og vil ikke vises
+            //Setter dem til null, hvis der er sat en order tidligere. Vælges en order ikke til sin contentcontainer vil den v�re null og vil ikke vises
             
 
         }

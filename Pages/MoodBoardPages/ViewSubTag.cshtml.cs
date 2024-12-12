@@ -9,9 +9,9 @@ public class ViewSubTag : PageModel
     private readonly IMoodboardService _moodboardService;
     private readonly ISubTagService _subTagService;
 
-    public ViewSubTag(IMoodboardService context, ISubTagService subTagService)
+    public ViewSubTag(IMoodboardService moodboardService, ISubTagService subTagService)
     {
-        _moodboardService = context;
+        _moodboardService = moodboardService;
         _subTagService = subTagService;
     }
     

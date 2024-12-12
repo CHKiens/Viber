@@ -7,7 +7,7 @@ namespace Viber.Pages.UserPages
 {
     public class CreateModel : PageModel
     {
-        IUserService _userService;
+        private IUserService _userService;
 
         [BindProperty]
         public User User { get; set; }

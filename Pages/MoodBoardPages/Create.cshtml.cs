@@ -13,12 +13,12 @@ namespace Viber.Pages.MoodBoardPages
     public class CreateModel : PageModel
     {
         public IPrimaryTagService _primaryTagService { get; set; }
-        public IMoodboardService moodboardService { get; set; }
+        public IMoodboardService _moodboardService { get; set; }
         public ISubTagService _subtagService { get; set; }
         public IContentContainerService _contentContainerService { get; set; }
 
         [BindProperty]
-        public Moodboard Moodboard { get; set; } = new Moodboard();
+        public Moodboard Moodboard { get; set; } = new();
 
         [BindProperty]
         public List<PrimaryTag> PrimaryTags { get; set; }
@@ -41,7 +41,7 @@ namespace Viber.Pages.MoodBoardPages
         public CreateModel(IPrimaryTagService primaryTagService, IMoodboardService service, IContentContainerService contentContainerService, ISubTagService subTagService)
         {
             _primaryTagService = primaryTagService;
-            moodboardService = service;
+            _moodboardService = service;
             _contentContainerService = contentContainerService;
             _subtagService = subTagService;
         }
@@ -62,11 +62,11 @@ namespace Viber.Pages.MoodBoardPages
             }
 
             Moodboard.PrimaryTagId = PrimaryTag;
-            moodboardService.CreateMoodboard(Moodboard);
+            _moodboardService.CreateMoodboard(Moodboard);
             _subtagService.SplitSubtagInput(subtaginput, Moodboard.PrimaryTagId, Moodboard.MoodboardId);
 
             _contentContainerService.AddContainersToMoodboard(ContainerType, ContainerText, Moodboard);
-            moodboardService.UpdateMoodboard(Moodboard);
+            _moodboardService.UpdateMoodboard(Moodboard);
 
             return RedirectToPage("/MoodBoardPages/Edit", new { Id = Moodboard.MoodboardId });
         }

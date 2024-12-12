@@ -14,6 +14,7 @@ namespace Viber.Pages.MoodBoardPages
             _moodboardService = moodboardService;
             _userService = userService;
         }
+        
         [BindProperty]
         public Moodboard Moodboard { get; set; }
 

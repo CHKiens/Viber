@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Viber.Models;
 using Viber.Services.Interfaces;
 
 namespace Viber.Pages
@@ -9,29 +10,23 @@ namespace Viber.Pages
         private readonly IUserService _userService;
         
         [BindProperty]
-        public LoginInputModel LoginInput { get; set; }
+        public User User { get; set; }
         
         public LoginModel(IUserService userService)
         {
             _userService = userService;
         }
         
-        public class LoginInputModel
-        {
-            public string Username { get; set; }
-            public string Password { get; set; }
-        }
-
-        
         public void OnGet()
         {
+            
         }
         
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
-                var user = _userService.AuthenticateUser(LoginInput.Username, LoginInput.Password);
+                var user = _userService.AuthenticateUser(User.Username, User.Password);
                 
                 if (user != null)
                 {

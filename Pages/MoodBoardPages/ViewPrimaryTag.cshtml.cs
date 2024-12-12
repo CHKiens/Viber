@@ -6,13 +6,13 @@ namespace Viber.Pages.MoodBoardPages;
 
 public class ViewPrimaryTag : PageModel
 {
-    private readonly IMoodboardService _context;
+    private readonly IMoodboardService _moodboardService;
     private readonly IPrimaryTagService _primaryTagService;
     private readonly ISubTagService _subTagService;
 
-    public ViewPrimaryTag(IMoodboardService context, IPrimaryTagService primaryTagService, ISubTagService subTagService)
+    public ViewPrimaryTag(IMoodboardService moodboardService, IPrimaryTagService primaryTagService, ISubTagService subTagService)
     {
-        _context = context;
+        _moodboardService = moodboardService;
         _primaryTagService = primaryTagService;
         _subTagService = subTagService;
     }
@@ -30,15 +30,8 @@ public class ViewPrimaryTag : PageModel
 
         foreach (var subTag in SubTags)
         {
-            var moodboards = _context.GetMoodboardBySubTags(subTag.SubTagId);
+            var moodboards = _moodboardService.GetMoodboardBySubTags(subTag.SubTagId);
             MoodboardsBySubTag[subTag.SubTagId] = moodboards;
         }
-
-        //foreach (var tag in PrimaryTags)
-        //{
-        //    var moodboards = _context.GetMoodboardsByPrimaryTagId(tag.PrimaryTagId);
-        //    MoodboardsByTag[tag.PrimaryTagId] = moodboards;
-
-        //}
     }
 }

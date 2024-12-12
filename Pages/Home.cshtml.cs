@@ -9,14 +9,14 @@ namespace Viber.Pages
 {
     public class HomeModel : PageModel
     {
-        private readonly IMoodboardService _context;
+        private readonly IMoodboardService _moodboardService;
         private readonly IPrimaryTagService _primaryTagService;
         private readonly ISubTagService _subTagService;
         private readonly IUserService _userService;
 
-        public HomeModel(IMoodboardService context, IPrimaryTagService primaryTagService, ISubTagService subTagService, IUserService userService)
+        public HomeModel(IMoodboardService moodboardService, IPrimaryTagService primaryTagService, ISubTagService subTagService, IUserService userService)
         {
-            _context = context;
+            _moodboardService = moodboardService;
             _primaryTagService = primaryTagService;
             _subTagService = subTagService;
             _userService = userService;
@@ -49,7 +49,7 @@ namespace Viber.Pages
 
             foreach (var tag in PrimaryTags)
             {
-                var moodboards = _context.GetMoodboardsByPrimaryTagId(tag.PrimaryTagId);
+                var moodboards = _moodboardService.GetMoodboardsByPrimaryTagId(tag.PrimaryTagId);
                 MoodboardsByTag[tag.PrimaryTagId] = moodboards; 
                 
                 var subtags = _subTagService.GetSubTags(tag.PrimaryTagId);
@@ -58,7 +58,7 @@ namespace Viber.Pages
 
             if (!string.IsNullOrEmpty(SearchTerm) && IsMoodboard) 
             {
-                SearchResultMoodboards = _context.SearchForMoodboards(SearchTerm);
+                SearchResultMoodboards = _moodboardService.SearchForMoodboards(SearchTerm);
             }
 
             if (!string.IsNullOrEmpty(searchTerm) && !IsMoodboard)

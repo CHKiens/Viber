@@ -8,12 +8,12 @@
 <form method="post">
     <div class="form-group">
         <p2>Username</p2>
-        <input type="text" asp-for="LoginInput.Username" class="form-control" placeholder="Enter username">
+        <input type="text" asp-for="User.Username" class="form-control" placeholder="Enter username">
     </div>
     
     <p2>Password</p2>
     <div class="form-group">
-        <input type="password" asp-for="LoginInput.Password" class="form-control" placeholder="Enter password">
+        <input type="password" asp-for="User.Password" class="form-control" placeholder="Enter password">
     </div>
 
     @if (!string.IsNullOrEmpty(ModelState[""]?.Errors.FirstOrDefault()?.ErrorMessage))
