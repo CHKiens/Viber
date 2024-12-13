@@ -25,7 +25,7 @@ namespace Viber.Services.Services {
                 switch (type[i])
                 {
                     case "youtube":
-                        link[i] = link[i].Split("?v=")[1];
+                        link[i] = link[i].Split(".be/")[1];
                         break;
                     case "spotify":
                         link[i] = link[i].Split("com/")[1].Split("si=")[0] + "utm_source=generator";
