@@ -33,13 +33,13 @@ namespace Viber.Pages.MoodBoardPages {
         public void OnGet(int Id)
         {
             MoodBoard = _moodboardService.GetMoodboardAndCC(Id);
-            //Setter dem til null, hvis der er sat en order tidligere. Vælges en order ikke til sin contentcontainer vil den v�re null og vil ikke vises
+           
             
 
         }
 
         public IActionResult OnPost(int Id)
-        {
+        { //Sætter dem til null, hvis der er sat en order tidligere. Vælges en order ikke til sin contentcontainer vil den v�re null og vil ikke vises
             _contentContainerService.resetOrder(Id);
             MoodBoard = _moodboardService.GetMoodboard( Id);
             if (BackgroundColor == "#000000")
