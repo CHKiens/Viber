@@ -33,9 +33,6 @@ namespace Viber.Pages.MoodBoardPages {
         public void OnGet(int Id)
         {
             MoodBoard = _moodboardService.GetMoodboardAndCC(Id);
-           
-            
-
         }
 
         public IActionResult OnPost(int Id)
