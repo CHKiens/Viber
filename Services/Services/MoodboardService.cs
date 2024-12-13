@@ -59,20 +59,15 @@ namespace Viber.Services.Services
             _context.SaveChanges();
         }
 
-        public void UpdateContainerList(Moodboard moodboard)
-        {
-            
 
-        }
 
         public List<Moodboard> GetMoodboardsByPrimaryTagId(int primaryTagId, int limit = 14)
         {
             return _context.Moodboards
                 .Where(mb => mb.PrimaryTagId == primaryTagId)
                 .OrderByDescending(mb => mb.DateOfCreation)
-                .Include(mb => mb.MoodboardSubTags)
-                .ThenInclude(mbst => mbst.Subtag)
                 .Take(limit)
+                .AsNoTracking()
                 .ToList();
         }
 
