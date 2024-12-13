@@ -85,8 +85,7 @@ namespace Viber.Services.Services
         public List<Moodboard> GetMoodboardBySubTags(int subTagId, int limit = 8)
         {
             List<Moodboard> MoodboardBySubTag = _context.MoodboardSubTags
-                .Where(mbst => mbst.SubtagId == subTagId)
-                .Include(mbst => mbst.Moodboard)
+                .Where(mbst => mbst.SubtagId == subTagId)  
                 .Select(mbst => mbst.Moodboard)
                 .Take(limit)
                 .ToList();
