@@ -27,6 +27,10 @@ namespace Viber
             builder.Services.AddScoped<ISubTagService, SubTagService>();
             builder.Services.AddScoped<IContentContainerService, ContentContainerService>();
             
+            builder.Logging.ClearProviders();
+            builder.Logging.AddConsole(); 
+            builder.Logging.AddDebug();
+            
             builder.Services.AddDistributedMemoryCache();
             builder.Services.AddSession(options =>
             {

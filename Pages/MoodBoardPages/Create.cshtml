@@ -10,6 +10,7 @@
     <div class="row">
         <div class="col-sm">
             <form method="post" id="submitform">
+                <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group" style="width: 100%">
 
                     <div class="tooltip">
@@ -17,6 +18,7 @@
                         <span class="tooltiptext">
                             The name of your moodboard. Think of it as the headline for your ideas.
                         </span>
+                        <span asp-validation-for="Moodboard.Title" class="text-danger"></span>
                     </div>
                     <input type="text" asp-for="Moodboard.Title" class="form-control" placeholder="Enter moodboard title" required maxlength="100">
                     <span asp-validation-for="Moodboard.Title" class="text-danger"></span>
@@ -36,8 +38,8 @@
                     </select>
                     <span asp-validation-for="PrimaryTag" class="text-danger"></span>
 
-                    <input type="hidden" asp-for="Moodboard.UserId" value="@Model.Moodboard.UserId" />
-                    <input type="hidden" asp-for="Moodboard.MoodboardId" value="@Model.Moodboard.MoodboardId" />
+                    <input type="hidden" asp-for="Moodboard.UserId" value="@Model.Moodboard.UserId"/>
+                    <input type="hidden" asp-for="Moodboard.MoodboardId" value="@Model.Moodboard.MoodboardId"/>
 
                     <div class="tooltip">
                         Sub Tags <i class="bi bi-info-circle"></i><h6>(ex: Tag1 Tag2 Tag3)</h6>
@@ -67,8 +69,6 @@
                     </div> <!-- her tilføjes content containers -->
                     <button type="button" class="dropdown" onclick="addObject()">Add Content Box</button>
                 </div>
-
-
             </form>
             <div style="margin-bottom:20px;margin-top:40px;width:100%; height:12px; border-radius:5px;top:auto; left:auto;background-image:linear-gradient(90deg,#DDB348,#DA3C29 ,#C91B24 ,#971A3C);"></div>
             <div style="display:block; margin-bottom:30px"></div>

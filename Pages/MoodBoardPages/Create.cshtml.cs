@@ -56,29 +56,37 @@ namespace Viber.Pages.MoodBoardPages
 
         public IActionResult OnPost()
         {
+
+            try
+            {
+                Moodboard.PrimaryTagId = PrimaryTag;
+                _moodboardService.CreateMoodboard(Moodboard);
+                _subtagService.SplitSubtagInput(subtaginput, Moodboard.PrimaryTagId, Moodboard.MoodboardId);
+
+                _contentContainerService.AddContainersToMoodboard(ContainerType, ContainerText, Moodboard);
+                _moodboardService.UpdateMoodboard(Moodboard);
+
+                return RedirectToPage("/MoodBoardPages/Edit", new { Id = Moodboard.MoodboardId });
+            }
+
+            catch(ArgumentException ex)
+            {
+                ModelState.AddModelError(nameof(Moodboard.Title), ex.Message);
+            }
+            
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "An unexpected error occurred. Please try again.");
+            }
+            
+            PrimaryTags = _primaryTagService.GetPrimaryTags();
+            
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-
-            Moodboard.PrimaryTagId = PrimaryTag;
-            _moodboardService.CreateMoodboard(Moodboard);
-            _subtagService.SplitSubtagInput(subtaginput, Moodboard.PrimaryTagId, Moodboard.MoodboardId);
-
-            _contentContainerService.AddContainersToMoodboard(ContainerType, ContainerText, Moodboard);
-            _moodboardService.UpdateMoodboard(Moodboard);
-
-            return RedirectToPage("/MoodBoardPages/Edit", new { Id = Moodboard.MoodboardId });
-        }
-
-        public IActionResult OnPostCreateContainer()
-        {
-            ContentContainer container = new ContentContainer()
-            {
-                MoodboardId = Moodboard.MoodboardId
-            };
-            Moodboard.ContentContainers.Add(container);
-            return RedirectToPage();
+            
+            return Page();
         }
     }
 }

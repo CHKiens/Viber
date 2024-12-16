@@ -27,7 +27,17 @@ namespace Viber.Pages.UserPages
             {
                 return Page();
             }
-            _userService.CreateUser(User);
+
+            try
+            {
+                _userService.CreateUser(User);
+            }
+
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "An error occurred while processing your request.");
+            }
+            
             return RedirectToPage("/Login");
         }
     }
