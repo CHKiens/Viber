@@ -36,24 +36,23 @@
         <h4 class="display-8 text-center mb-5 col-12" style="color:@Model.Moodboard.TitleColor; text-space: 1" >@Model.Moodboard.Title</h4>
 
 
-        <div class="row g-2 d-flex justify-content-between">
+        <div class="row g-3 align-items-center">
             @foreach(var CC in Model.ContentContainers){
                 @switch (CC.Type)
                 {
                     case "text":
-                        <div id="@CC.ContentContainterId" class="col-5">
-                            <div class="pb-1 shadow">
-                                <div class=" mt-2">
-                                    <span id="TextboxColor" class="p-2" style="border-radius:5px">
-                                        <p3 style="color:@CC.TextColor">@CC.Link</p3>
-                                    </span>
-                                </div>
-                            </div>
+                        <div id="@CC.ContentContainterId" class="col-md-6">
+
+
+                            <span id="TextboxColor" class="p-2" style="border-radius:5px">
+                                <p3 class="TextboxColor">@CC.Link</p3>
+                            </span>
+
                         </div>
                         break;
                     case "youtube":
-                        <div class="col-5" id="@CC.ContentContainterId">
-                            <div class="mt-2">
+                        <div class="col-md-6" id="@CC.ContentContainterId">
+                            <div class="">
                                 <span class="ratio ratio-16x9" style="border-radius:5px">
                                     <iframe src="https://www.youtube.com/embed/@CC.Link" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:5px"></iframe>
                                 </span>
@@ -61,10 +60,10 @@
                         </div>
                         break;
                     case "image":
-                        <div class="col-5" id="@CC.ContentContainterId">
+                        <div class="col-md-6" id="@CC.ContentContainterId">
                             <div class="mt-2">
-                                <span class="p-2" style="border-radius:5px">
-                                    <img src="@CC.Link" style="max-width:100%; height:auto" class="shadow"/>
+                                <span class=" p-2" style="border-radius:5px">
+                                    <img src="@CC.Link" style="max-width:100%; height:auto" class="shadow" />
                                 </span>
                             </div>
                         </div>
@@ -73,7 +72,7 @@
 
                         break;
                     case "spotify":
-                        <div class="col-5 mt-2" id="@CC.ContentContainterId">
+                        <div class="col-md-6" id="@CC.ContentContainterId">
                             <span style="border-radius:5px">
                                 <iframe src="https://open.spotify.com/embed/@CC.Link" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                             </span>
