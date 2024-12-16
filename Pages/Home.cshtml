@@ -27,7 +27,7 @@
 {
     if (Model.IsMoodboard)
     {
-        <div>
+        <div style="margin-top:30px">
             @foreach (var moodboard in Model.SearchResultMoodboards)
             {
                 <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@moodboard.MoodboardId">
@@ -51,20 +51,21 @@
     }
     else
     {
-        foreach (var tag in Model.SearchResultSubTag)
-        {
+        <div style="margin-top:30px">
+            foreach (var tag in Model.SearchResultSubTag)
+            {
             <a asp-page="/MoodBoardPages/ViewSubTag" asp-route-Id="@tag.SubTagId" class="text-decoration-none">
                 <h4>#@tag.Name</h4>
             </a>
             <div class="square-row">
-            @if (Model.MoodboardsByTag.ContainsKey(tag.SubTagId))
-            {
-                var moodboards = Model.MoodboardsByTag[tag.SubTagId];
-
-                foreach (var moodboard in moodboards)
+                @if (Model.MoodboardsByTag.ContainsKey(tag.SubTagId))
                 {
-                    <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@moodboard.MoodboardId">
-                        <div class="square">
+                    var moodboards = Model.MoodboardsByTag[tag.SubTagId];
+
+                    foreach (var moodboard in moodboards)
+                    {
+                        <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@moodboard.MoodboardId">
+                            <div class="square">
                                 @if (moodboard.Thumbnail == null)
                                 {
 
@@ -77,71 +78,76 @@
                                     <img src="@moodboard.Thumbnail" />
                                 }
                                 <span class="image-text">@moodboard.Title</span>
-                        </div>
-                    </a>
+                            </div>
+                        </a>
 
+                    }
                 }
+            </div>
             }
         </div>
-        }
+        
 
     }
 }
 
 @if (Model.SearchTerm == null)
 {
-    @foreach (var tag in Model.PrimaryTags)
-    {
+    <div style="margin-top:30px">
+        @foreach (var tag in Model.PrimaryTags)
+        {
 
-        <div class="custom-button">
-            <a asp-page="/MoodBoardPages/ViewPrimaryTag" asp-route-PrimaryTagId="@tag.PrimaryTagId" class="text-decoration-none">
-                <h4>@tag.Name</h4>
-            </a>
-        </div>
+            <div class="custom-button">
+                <a asp-page="/MoodBoardPages/ViewPrimaryTag" asp-route-PrimaryTagId="@tag.PrimaryTagId" class="text-decoration-none">
+                    <h4>@tag.Name</h4>
+                </a>
+            </div>
 
 
-        <div class="square-row">
-            @if (Model.MoodboardsByTag.ContainsKey(tag.PrimaryTagId))
-            {
-                var moodboards = Model.MoodboardsByTag[tag.PrimaryTagId];
-
-                foreach (var moodboard in moodboards)
+            <div class="square-row">
+                @if (Model.MoodboardsByTag.ContainsKey(tag.PrimaryTagId))
                 {
-                    <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@moodboard.MoodboardId">
-                        <div class="square">
-                            @if (moodboard.Thumbnail == null)
-                            {
+                    var moodboards = Model.MoodboardsByTag[tag.PrimaryTagId];
 
-                                int randNumber = rand.Next(1, 200);
+                    foreach (var moodboard in moodboards)
+                    {
+                        <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@moodboard.MoodboardId">
+                            <div class="square">
+                                @if (moodboard.Thumbnail == null)
+                                {
 
-                                <img src="https://picsum.photos/200/300?grayscale=3&random={@randNumber}">
-                            }
-                            else
-                            {
-                                <img src="@moodboard.Thumbnail" />
-                            }
-                            <span class="image-text">@moodboard.Title</span>
-                        </div>
-                    </a>
-                }
-            }
-        </div>
-        <div class="subtags-container">
-            @if (Model.SubTagsByPrimaryTag.ContainsKey(tag.PrimaryTagId))
-            {
-                var subtags = Model.SubTagsByPrimaryTag[tag.PrimaryTagId];
+                                    int randNumber = rand.Next(1, 200);
 
-                foreach (var subtag in subtags)
-                {
-                    <span class="subtag-item">
-                        <a asp-page="/MoodBoardPages/ViewSubTag" asp-route-Id="@subtag.SubTagId" class="text-decoration-none">
-                            <p2>#@subtag.Name</p2>
+                                    <img src="https://picsum.photos/200/300?grayscale=3&random={@randNumber}">
+                                }
+                                else
+                                {
+                                    <img src="@moodboard.Thumbnail" />
+                                }
+                                <span class="image-text">@moodboard.Title</span>
+                            </div>
                         </a>
-                    </span>
+                    }
                 }
-            }
-        </div>
-    }
+            </div>
+            <div class="subtags-container">
+                @if (Model.SubTagsByPrimaryTag.ContainsKey(tag.PrimaryTagId))
+                {
+                    var subtags = Model.SubTagsByPrimaryTag[tag.PrimaryTagId];
+
+                    foreach (var subtag in subtags)
+                    {
+                        <span class="subtag-item">
+                            <a asp-page="/MoodBoardPages/ViewSubTag" asp-route-Id="@subtag.SubTagId" class="text-decoration-none">
+                                <p2>#@subtag.Name</p2>
+                            </a>
+                        </span>
+                    }
+                }
+            </div>
+        }
+    </div>
+    
 }
 @if (Model.User != null && Model.User.Role == "Mod")
 {
