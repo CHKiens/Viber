@@ -9,8 +9,8 @@
                     
             <input class="search" type="search" asp-for="SearchTerm" placeholder="Search here... e.g. sad, happy, angry">
             <select class="custom-button-search" asp-for="IsMoodboard">
-                <option value="true">Moodboards</option>
-                <option value="false">Tags</option>
+                <option value="true" style="color:black">Moodboards</option>
+                <option value="false" style="color:black">Tags</option>
             </select>
             <button type="submit" class="custom-button-search">
                 <i class="bi bi-search"></i>
@@ -28,6 +28,7 @@
     if (Model.IsMoodboard)
     {
         <div style="margin-top:30px">
+            <h4>Showing results for "@Model.SearchTerm"</h4>
             @foreach (var moodboard in Model.SearchResultMoodboards)
             {
                 <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@moodboard.MoodboardId">
@@ -52,7 +53,7 @@
     else
     {
         <div style="margin-top:30px">
-            foreach (var tag in Model.SearchResultSubTag)
+            @foreach (var tag in Model.SearchResultSubTag)
             {
             <a asp-page="/MoodBoardPages/ViewSubTag" asp-route-Id="@tag.SubTagId" class="text-decoration-none">
                 <h4>#@tag.Name</h4>
