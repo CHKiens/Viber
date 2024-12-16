@@ -9,18 +9,50 @@ namespace Viber.Services.Services
     public class MoodboardService : IMoodboardService
     {
         private readonly finsby_dk_db_viberContext _context;
+        private readonly ILogger<MoodboardService> _logger;
 
-        public MoodboardService(finsby_dk_db_viberContext context)
+        public MoodboardService(finsby_dk_db_viberContext context, ILogger<MoodboardService> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         //CRUD
         public void CreateMoodboard(Moodboard moodboard)
         {
-            moodboard.DateOfCreation = DateTime.Now;
-            _context.Moodboards.Add(moodboard);
-            _context.SaveChanges();
+            if (moodboard == null)
+            {
+                _logger.LogWarning("Attempted to create a moodboard, but the moodboard object was null.");
+                throw new ArgumentNullException(nameof(moodboard), "The moodboard object cannot be null.");
+            }
+
+            if (string.IsNullOrWhiteSpace(moodboard.Title))
+            {
+                _logger.LogWarning("Attempted to create a moodboard, but the title was null or empty.");
+                throw new ArgumentException("The moodboard must have a title.");
+            }
+
+            try
+            {
+                moodboard.DateOfCreation = DateTime.Now;
+                _logger.LogInformation("Creating a new moodboard with title: {Title} for user ID: {UserId}", moodboard.Title, moodboard.UserId);
+                
+                _context.Moodboards.Add(moodboard);
+                _context.SaveChanges();
+                
+                _logger.LogInformation("Moodboard created successfully with ID: {MoodboardId}", moodboard.MoodboardId);
+                
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex, "Database update error occurred while creating a moodboard with title: {Title}", moodboard.Title);
+                throw new Exception("An error occurred while saving the moodboard to the database. See inner exception for details.", ex);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unexpected error occurred while creating a moodboard with title: {Title}", moodboard.Title);
+                throw new Exception("An unexpected error occurred while creating the moodboard.", ex);
+            }
         }
 
 

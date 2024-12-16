@@ -47,22 +47,33 @@ namespace Viber.Pages.MoodBoardPages {
             {
                 return Page();
             }
+            
             int order = 1;
-            foreach (int CCId in ContentOrder)
+
+            try
             {
-                // gemmer r�kkefølgen af hver contentcontainer der er valgt af brugeren
-                ContentContainer cc = _contentContainerService.GetContentContainerById(CCId);
-                cc.OrderId = order;
-                
-                if (cc.Type == "text")
+                foreach (int CCId in ContentOrder)
                 {
-                    cc.TextColor = TextboxColor;
+                    // gemmer r�kkefølgen af hver contentcontainer der er valgt af brugeren
+                    ContentContainer cc = _contentContainerService.GetContentContainerById(CCId);
+                    cc.OrderId = order;
+
+                    if (cc.Type == "text")
+                    {
+                        cc.TextColor = TextboxColor;
+                    }
+
+                    _contentContainerService.EditContainer(cc);
+                    order++;
                 }
-                
-                _contentContainerService.EditContainer(cc);
-                order++;
+
+                _moodboardService.EditMoodboard(MoodBoard);
             }
-            _moodboardService.EditMoodboard(MoodBoard);
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "An unexpected error occurred. Please try again.");
+            }
+            
 
             return RedirectToPage("/MoodBoardPages/ViewMoodBoard",  new { Id = MoodBoard.MoodboardId });
         }
