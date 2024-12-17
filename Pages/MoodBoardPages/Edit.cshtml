@@ -13,7 +13,7 @@
         <div class="row h-100 g-3 ">
             <div class="col-8">
                 @* Venstre kasse *@
-                <div class="p-5 rounded-3 h-100 shadow-lg p-4 mb-4" id="Moodboard" style="background-color: #1de0e0;">
+                <div class="p-5 rounded-3 h-100 shadow-lg p-4 mb-4" id="Moodboard" style="background-color: white; mix-blend-mode:hard-light">
                     <p>#Example</p>
 
                     @* //titlen sættes ind her baseret på input *@
@@ -39,7 +39,7 @@
                             @* input til baggrundsfarve *@
                             <div class="col-5 border border-light me-5">
                                 <p>Background color</p>
-                                <input asp-for="BackgroundColor" class="col-3" type="color" id="BackgroundColorPicker" value="#1de0e0" />
+                                <input asp-for="BackgroundColor" class="col-3" type="color" id="BackgroundColorPicker" value="#ffffff" />
 
                             </div>
                             @*Input til titel farve*@
@@ -81,10 +81,10 @@
                         </div>
 
                     </form>
-                    <div class="offcanvas offcanvas-end" id="demo">
+                    <div class="offcanvas offcanvas-end show" id="demo">
                         <button type="button" class="btn-close text-reset ms-auto" data-bs-dismiss="offcanvas"></button>
                         <div class="offcanvas-header">
-                            <h1 class="offcanvas-title" style="color:black">Add content</h1>
+                            <h1 class="offcanvas-title" style="color:black; font-size:50px;">Add</h1>
 
                         </div>
                         <div class="offcanvas-body" id="initialContainer">
@@ -94,11 +94,11 @@
                                         {
                                             case "text":
                                         <div id="@CC.ContentContainterId" class="col-12">
-                                            
-                                                
-                                                    <span id="TextboxColor" class="p-2" style="border-radius:5px">
-                                                        <p3 class="TextboxColor">@CC.Link</p3>
-                                                    </span>
+
+
+
+                                            <h3 class="TextboxColor" style="word-wrap:break-word; color:black; font-size: 20px;">@CC.Link</h3>
+                                                    
                                                 
                                         </div>
                                                 break;
@@ -149,7 +149,7 @@
 
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title">Add new content container</h4>
+                            <h4 class="modal-title"></h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
 
