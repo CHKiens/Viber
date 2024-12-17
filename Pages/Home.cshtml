@@ -27,8 +27,8 @@
 {
     if (Model.IsMoodboard)
     {
-        <div style="margin-top:30px">
-            <h4>Showing results for "@Model.SearchTerm"</h4>
+        <h4 style="margin-top: 30px">Showing results for "@Model.SearchTerm"</h4>
+        <div class="square-row">
             @foreach (var moodboard in Model.SearchResultMoodboards)
             {
                 <a asp-page="/MoodBoardPages/ViewMoodboard" asp-route-Id="@moodboard.MoodboardId">
