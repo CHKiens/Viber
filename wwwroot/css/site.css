@@ -292,7 +292,7 @@ textarea:focus, input:focus{
     font-style: normal;
     font-size: 90px;
     letter-spacing: -7px;
-    color: white;
+    color: #CDC8BA;
     font-weight: bold;
     text-align: left;
 }
@@ -304,7 +304,7 @@ textarea:focus, input:focus{
     font-style: normal;
     font-size: 200px;
     letter-spacing: -7px;
-    color: white;
+    color: #CDC8BA;
     text-align: left;
 }
 
@@ -446,7 +446,12 @@ h3 {
     font-weight: 700;
     color: white;
 }
-
+    h3.TextboxColor {
+        word-wrap: break-word;
+        color: black;
+        font-size: 20px;
+        font-family: "Quicksand", sans-serif;
+    }
 h4 {
     color: white;
     font-size: 40px;

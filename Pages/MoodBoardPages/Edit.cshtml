@@ -13,13 +13,13 @@
         <div class="row h-100 g-3 ">
             <div class="col-8">
                 @* Venstre kasse *@
-                <div class="p-5 rounded-3 h-100 shadow-lg p-4 mb-4" id="Moodboard" style="background-color: #1de0e0;">
+                <div class="p-5 rounded-3 h-100 shadow-lg p-4 mb-4" id="Moodboard" style="background-color: white; mix-blend-mode:hard-light">
                     <p>#Example</p>
 
                     @* //titlen sættes ind her baseret på input *@
                     <h4 class="display-8 text-center mb-5 col-12" style="color:black" id="DynamicTitle">@Model.MoodBoard.Title</h4>
 
-                    <div class="row g-2 d-flex justify-content-between" id="dynamicRow">
+                    <div class="row g-3 align-items-center" id="dynamicRow">
                         @* her indsættes værdierne fra javascript *@
 
                     </div>
@@ -39,7 +39,7 @@
                             @* input til baggrundsfarve *@
                             <div class="col-5 border border-light me-5">
                                 <p>Background color</p>
-                                <input asp-for="BackgroundColor" class="col-3" type="color" id="BackgroundColorPicker" value="#1de0e0" />
+                                <input asp-for="BackgroundColor" class="col-3" type="color" id="BackgroundColorPicker" value="#ffffff" />
 
                             </div>
                             @*Input til titel farve*@
@@ -63,7 +63,7 @@
                         </div>
                         <div class="mt-2">
                             <button class="custom-button shadow-sm text-center mt-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-                                Add content containers
+                                Design content
                             </button>
                         </div>
 
@@ -81,10 +81,10 @@
                         </div>
 
                     </form>
-                    <div class="offcanvas offcanvas-end" id="demo">
+                    <div class="offcanvas offcanvas-end show" id="demo">
                         <button type="button" class="btn-close text-reset ms-auto" data-bs-dismiss="offcanvas"></button>
                         <div class="offcanvas-header">
-                            <h1 class="offcanvas-title" style="color:black">Add content</h1>
+                            <h1 class="offcanvas-title" style="color:black; font-size:50px;">Add</h1>
 
                         </div>
                         <div class="offcanvas-body" id="initialContainer">
@@ -93,19 +93,18 @@
                                         @switch (CC.Type)
                                         {
                                             case "text":
-                                            <div id="@CC.ContentContainterId" class="col-12">
-                                                    <div class="pb-1 shadow">
-                                                        <div class=" mt-2">
-                                                            <span id="TextboxColor" class="p-2" style="border-radius:5px">
-                                                        <p3 class="TextboxColor">@CC.Link</p3>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <div id="@CC.ContentContainterId" class="col-12">
+
+
+
+                                            <h3 class="TextboxColor" style="word-wrap:break-word; color:black; font-size: 20px;">@CC.Link</h3>
+                                                    
+                                                
+                                        </div>
                                                 break;
                                             case "youtube":
                                                 <div class="col-12" id="@CC.ContentContainterId">
-                                                    <div class="mt-2">
+                                                    <div class="">
                                                         <span class="ratio ratio-16x9" style="border-radius:5px">
                                                             <iframe src="https://www.youtube.com/embed/@CC.Link" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:5px"></iframe>
                                                         </span>
@@ -125,7 +124,7 @@
 
                                                 break;
                                             case "spotify":
-                                                    <div class="col-12 mt-2" id="@CC.ContentContainterId">
+                                                    <div class="col-12" id="@CC.ContentContainterId">
                                                         <span style="border-radius:5px">
                                                             <iframe src="https://open.spotify.com/embed/@CC.Link" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                                                         </span>
@@ -150,7 +149,7 @@
 
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title">Add new content container</h4>
+                            <h4 class="modal-title"></h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
 
@@ -228,7 +227,7 @@
 
              // Fjern col-12 og lav om til col-5, så de kan stå ved siden af hinanden
             node.classList.remove("col-12");
-            node.classList.add("col-5");
+            node.classList.add("col-6");
 
             document.getElementById("dynamicRow").appendChild(node);
             button.remove();
@@ -239,6 +238,8 @@
             function undoMove() {
             const lastMovedId = contentOrder.pop();
             const node = document.getElementById(lastMovedId); //finder den sidst flyttede
+                        node.classList.remove("col-md-6");
+            node.classList.add("col-12");
             document.getElementById("initialContainer").appendChild(node); //flytter den tilbage
             //laver knappen der var slettet igen
                 const newButton = document.createElement("button");
